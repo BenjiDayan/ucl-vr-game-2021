@@ -5,14 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class ReloadScene : MonoBehaviour
 {
-    public ScoreManager myScoreManager;
+    private ScoreManager myScoreManager;
+
+    void Awake() {
+        myScoreManager = FindObjectOfType<ScoreManager>();
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
             ReloadGame();
-        }
-            
+        }   
     }
     public void ReloadGame()
     {
@@ -21,6 +25,8 @@ public class ReloadScene : MonoBehaviour
         Debug.Log("Scene loaded");
         
     }
+
+    
     /*
     bool isPaused = false;
     public void pauseGame()

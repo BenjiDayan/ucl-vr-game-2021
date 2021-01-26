@@ -8,13 +8,20 @@ public class TimerCount : MonoBehaviour
 {
     public Button m_MyButton;
     public Text m_MyText;
+    //public ScoreManager myScoreManager;
+    private ScoreManager myScoreManager;
+
+
+
     // Start is called before the first frame update
     void Awake()
     {
         //Don't destroy the GameObject when loading a new Scene
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
         //Make sure the Canvas isn't deleted so the UI stays on the Scene load
-        DontDestroyOnLoad(GameObject.Find("Canvas"));
+        //DontDestroyOnLoad(GameObject.Find("Canvas"));
+
+        myScoreManager = FindObjectOfType<ScoreManager>();
 
         if (m_MyButton != null)
             //Add a listener to call the LoadSceneButton function when the Button is clicked
@@ -25,7 +32,7 @@ public class TimerCount : MonoBehaviour
     void Update()
     {
         //Output the time since the level loaded to the screen using this label
-        m_MyText.text = "Time Since Loaded : " + Time.timeSinceLevelLoad;
+        m_MyText.text = "Time Since Loaded : " + Time.timeSinceLevelLoad + "\nHigh Score: " + myScoreManager.highscore;
     }
     void LoadSceneButton()
     {

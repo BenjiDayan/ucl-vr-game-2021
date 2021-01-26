@@ -6,13 +6,18 @@ using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
+    private static GameObject instance;
     public float score;
     public float highscore = 10000000.00f;
    // public static float highscore;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        DontDestroyOnLoad(gameObject);
+        if (instance == null)
+            instance = gameObject;
+        else
+            Destroy(gameObject);
     }
 
     // Update is called once per frame
