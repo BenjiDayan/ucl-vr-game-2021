@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Scripts.meta
+guid: a4db1d94fbd79614bb48bff0bea61051
+=======
 guid: 606c10358948a7e459d60df21939fd60
+>>>>>>> exploding_buildings:Assets/Materials.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
