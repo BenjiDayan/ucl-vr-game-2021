@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8753630826152695387
+--- !u!1 &4663092440839785642
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8753630826152695385}
-  - component: {fileID: 8753630826152695384}
+  - component: {fileID: 9091631448724905073}
+  - component: {fileID: 3445173407707210464}
   m_Layer: 0
-  m_Name: Game Manager
+  m_Name: Building Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8753630826152695385
+--- !u!4 &9091631448724905073
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8753630826152695387}
+  m_GameObject: {fileID: 4663092440839785642}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,28 +31,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8753630826152695384
+--- !u!114 &3445173407707210464
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8753630826152695387}
+  m_GameObject: {fileID: 4663092440839785642}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe0513eb0881134428d1b9270f56eb07, type: 3}
+  m_Script: {fileID: 11500000, guid: 502f23bbd0da67e4ea1d227931d6c82e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 5578711628781747190, guid: d33d7f103b8d8974a91c46219a2d4aee,
-    type: 3}
-  flagPrefab: {fileID: 384244557332191107, guid: b8bcc8c48f30a1f46997ff8891b194b3,
-    type: 3}
-  hazardPrefab: {fileID: 4835075811832501383, guid: 717f6ae2419d1ef45a09ea51004b1f94,
-    type: 3}
-  enemyPos: {x: 0, y: 0, z: 0}
-  flagPos: {x: 0, y: 0, z: 0}
-  mapXY: 0
-  floor: {fileID: 0}
-  hazardNumber: 100
   buildingSegment: {fileID: 7961965945139813475, guid: 94b6adf1b79150f47a05f5d330aa8ad8,
     type: 3}
+  buildingParent: {fileID: 265120512835996304, guid: 26c15261dcdd17841ad2a026f3cab85c,
+    type: 3}
+  mapSizeX: 201
+  mapSizeY: 150
+  maxLength: 54
+  minLength: 15
+  maxWidth: 36
+  minWidth: 9
+  maxHeight: 100
+  minHeight: 9
+  heightRandomness: 0.3
+  buildingSeparation: 3
+  numberOfPaths: 20
+  maxPathLength: 110
+  minPathLength: 21
+  maxPathWidth: 15
+  minPathWidth: 6

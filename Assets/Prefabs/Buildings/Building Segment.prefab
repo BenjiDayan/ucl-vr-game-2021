@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7961965945139813473}
   - component: {fileID: 7961965945139813472}
   - component: {fileID: 7961965945139813476}
-  - component: {fileID: 5137204454827823979}
   m_Layer: 0
   m_Name: BuildingSegment
   m_TagString: Untagged
@@ -29,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7961965945139813475}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.056717873, y: 0, z: 0.79657745}
-  m_LocalScale: {x: 6, y: 6, z: 6}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -91,7 +90,7 @@ BoxCollider:
   m_GameObject: {fileID: 7961965945139813475}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -111,22 +110,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &5137204454827823979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7961965945139813475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f338210af77db284ebb95c730e4606d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentTransform: {fileID: 0}
-  childRigidbody: {fileID: 0}
-  buildingSegment: {fileID: 0}
-  startingMomentum: 500
-  deletionTimer: 15
-  rb: {fileID: 0}
-  exploderTransform: {fileID: 0}

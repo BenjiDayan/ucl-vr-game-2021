@@ -24,8 +24,13 @@ public class GameManager : MonoBehaviour{
     private GameObject flag;
     private GameObject hazard;
     private ScoreManager myScoreManager;
+    private float segmentNumber;
+    private NaniteShooter naniteShooter;
 
     void Start(){
+
+        naniteShooter = GameObject.Find("Gun").GetComponent<NaniteShooter>();
+
     myScoreManager = FindObjectOfType<ScoreManager>();
 	feedbackUI = GameObject.Find("Feedback UI").GetComponent<TextMeshProUGUI>();
 	feedbackUI.text = "";
@@ -36,6 +41,10 @@ public class GameManager : MonoBehaviour{
 
     void Update() {
         scoreUI.text = "Time Since Loaded : " + Time.timeSinceLevelLoad + "\nHigh Score: " + myScoreManager.highscore;
+
+        segmentNumber = naniteShooter.segmentBank;
+        scoreUI.text += "\nSmart Matter: " + (segmentNumber / 49f).ToString("F2");
+
     }
 
     public void Restart(){ // Replace with Athina's function

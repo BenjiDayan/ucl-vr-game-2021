@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 3171844568938827554}
   - component: {fileID: 3171844568938827553}
   - component: {fileID: 3171844568938827552}
+  - component: {fileID: 3625930005830015255}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Nanite Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 177bfd9098f8d3f4b9b42ee225ea1a76, type: 2}
+  - {fileID: 2100000, guid: 5bebe3370a28fb4418b20eb071b9d860, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -128,3 +129,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &3625930005830015255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3171844568938827559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8167ddb0020a57428ce60b3901413fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  naniteCloud: {fileID: 510854358602889935, guid: dce3538ef20a5584facd30c18803bb27,
+    type: 3}
