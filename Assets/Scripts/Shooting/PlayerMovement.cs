@@ -27,21 +27,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //MovePlayerRb();
-    }
-
-    void MovePlayerRb()
-    {
-        // Fix so player rotates
-        ds.x = Input.GetAxis("Horizontal");
-        ds.z = Input.GetAxis("Vertical");
-
-        if (ds != Vector3.zero)
-        {
-            transform.forward = ds;
-
-            rb.MovePosition(transform.position += speed * ds * Time.fixedDeltaTime);
-        }
     }
 
     void MovePlayerCc()
@@ -52,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
         dx = Input.GetAxisRaw("Horizontal");
         dz = Input.GetAxisRaw("Vertical");
 
-        if (ds != Vector3.zero) transform.forward = ds;
+        //if (ds != Vector3.zero) transform.forward = ds;
 
         cc.SimpleMove(ds * speed * Time.deltaTime);
     }
