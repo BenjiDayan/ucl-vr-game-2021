@@ -452,7 +452,9 @@ public class BuildingGenerator : MonoBehaviour
                                         buildingSegment,
                                         new Vector3((originX + x - (gridX / 2f)) * 3f, z * 3f - 1.5f, (originY + y - (gridY / 2f)) * 3f),
                                         Quaternion.identity,
-                                        parentClone.transform
+                                        //parentClone.transform
+                                        //Building -> Building Parent -> Building Segment so that collapse works.
+                                        parentClone.transform.GetChild(0)
                                     );
                                 }
                             }

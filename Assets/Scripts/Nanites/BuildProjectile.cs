@@ -46,7 +46,8 @@ public class BuildProjectile : MonoBehaviour
                                 originY + (y * 3)
                                 ),
                             Quaternion.identity,
-                            parentClone.transform
+                            //Again Building -> Building Parent -> Building Segment
+                            parentClone.transform.GetChild(0)
                         );
                     }
                 }

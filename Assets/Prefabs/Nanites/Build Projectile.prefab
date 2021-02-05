@@ -144,5 +144,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingParent: {fileID: 265120512835996304, guid: 26c15261dcdd17841ad2a026f3cab85c,
     type: 3}
-  buildingSegment: {fileID: 7961965945139813475, guid: 94b6adf1b79150f47a05f5d330aa8ad8,
+  buildingSegment: {fileID: 7961965945139813475, guid: ba7cd969e5fa91745b723ded3bea1563,
     type: 3}

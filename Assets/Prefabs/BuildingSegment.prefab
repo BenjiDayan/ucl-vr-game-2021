@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7961965945139813472}
   - component: {fileID: 7961965945139813476}
   - component: {fileID: 5137204454827823979}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BuildingSegment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,4 +129,3 @@ MonoBehaviour:
   startingMomentum: 500
   deletionTimer: 15
   rb: {fileID: 0}
-  exploderTransform: {fileID: 0}

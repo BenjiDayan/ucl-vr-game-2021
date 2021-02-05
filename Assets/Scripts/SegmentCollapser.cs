@@ -11,7 +11,8 @@ public class SegmentCollapser : MonoBehaviour
     public float startingMomentum;
     public float deletionTimer;
     public Rigidbody rb;
-    public Transform exploderTransform;
+    //This seems to be unused - and maybe messing things up?
+    //public Transform exploderTransform;
 
     // Start is called before the first frame update
     void Start()
@@ -19,7 +20,7 @@ public class SegmentCollapser : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         buildingSegment = GetComponent<Transform>();
         parentTransform = transform.parent.GetComponent<Transform>();
-        exploderTransform = transform.parent.parent.Find("Explosion Origin");
+        //exploderTransform = transform.parent.parent.Find("Explosion Origin");
     }
 
     void Update()
@@ -34,7 +35,7 @@ public class SegmentCollapser : MonoBehaviour
     {
         if (
             (collision.gameObject.transform.parent == null || collision.gameObject.transform.parent.gameObject != buildingSegment.parent.gameObject) &&
-            collision.gameObject.name != "Plane"
+            collision.gameObject.name != "Plane" && collision.gameObject.layer != LayerMask.NameToLayer("Building")
             )
         {
             RandomCollapse();
