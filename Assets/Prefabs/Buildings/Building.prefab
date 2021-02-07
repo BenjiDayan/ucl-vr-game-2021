@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2408091954780598123}
   - component: {fileID: 6028188209140815151}
   - component: {fileID: 7292278114383423862}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Building
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7838474504740438140}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Explosion Origin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 417126487430817520}
   - component: {fileID: 422009782803809382}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Building Parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
