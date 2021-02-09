@@ -26,6 +26,7 @@ public class TeleportOnClick : MonoBehaviour
         }
         else {
             //This is designed for teleporting on top of buildings
+            Debug.Log("teleporting on top of building: it's position is" + targetTrans.position.ToString());
             transform.parent.position = new Vector3(targetTrans.position.x, targetTrans.position.y + targetTrans.lossyScale.y/2 + 2, targetTrans.position.z);
         }
     }
