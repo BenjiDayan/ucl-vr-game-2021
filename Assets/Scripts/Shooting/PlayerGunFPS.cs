@@ -16,10 +16,30 @@ public class PlayerGunFPS : MonoBehaviour
 
     float cooldownCounter = 0;
 
+    UnityEngine.XR.InputDevice device;
 
     private void Start()
     {
         cooldownCounter = 0;
+
+        var leftHandDevices = new List<UnityEngine.XR.InputDevice>();   
+        UnityEngine.XR.InputDevices.GetDevicesAtXRNode(UnityEngine.XR.XRNode.LeftHand, leftHandDevices);
+        if(leftHandDevices.Count == 1)
+        {
+            UnityEngine.XR.InputDevice device = leftHandDevices[0];
+        }
+        else {
+            Debug.Log("No leftHandDevices!!");
+        }
+
+        var inputDevices = new List<UnityEngine.XR.InputDevice>();
+        UnityEngine.XR.InputDevices.GetDevices(inputDevices);
+
+        foreach (var device in inputDevices)
+        {
+            Debug.Log(string.Format("Device found with name '{0}' and role '{1}'", device.name, device.role.ToString()));
+        }
+                
     }
 
     private void Update()
@@ -28,6 +48,8 @@ public class PlayerGunFPS : MonoBehaviour
 
         SwitchProjectile();
 
+        bool triggerValue;
+        //if (cooldownCounter >= cooldown && device.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out triggerValue) && triggerValue)
         if (cooldownCounter >= cooldown && Input.GetButtonDown("Fire1"))
         {
             Shoot();

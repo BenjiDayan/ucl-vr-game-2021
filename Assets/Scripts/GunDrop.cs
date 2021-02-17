@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GunDrop : Drop
 {
-    public override void CollectDrop(PlayerController player)
+    public override void CollectDrop(PlayerControllerFPS player)
     {
         // Gun switching logic
 

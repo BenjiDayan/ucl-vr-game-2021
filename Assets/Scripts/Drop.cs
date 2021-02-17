@@ -51,12 +51,12 @@ public class Drop : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        var player = collision.gameObject.GetComponent<PlayerController>();
+        var player = collision.gameObject.GetComponent<PlayerControllerFPS>();
 
         if (player != null) CollectDrop(player);
     }
 
-    public virtual void CollectDrop(PlayerController player)
+    public virtual void CollectDrop(PlayerControllerFPS player)
     {
         spawner.ResetCooldown();
         spawner._spawnedDrop = false;

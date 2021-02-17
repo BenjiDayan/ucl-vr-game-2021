@@ -27,7 +27,7 @@ public class TeleportOnClick : MonoBehaviour
         else {
             //This is designed for teleporting on top of buildings
             Debug.Log("teleporting on top of building: it's position is" + targetTrans.position.ToString());
-            transform.parent.position = new Vector3(targetTrans.position.x, targetTrans.position.y + targetTrans.lossyScale.y/2 + 2, targetTrans.position.z);
+            transform.root.position = new Vector3(targetTrans.position.x, targetTrans.position.y + targetTrans.lossyScale.y/2 + 2, targetTrans.position.z);
         }
     }
     /*
@@ -39,6 +39,7 @@ public class TeleportOnClick : MonoBehaviour
     */
     void Update()
     {
+        //if (Input.GetButtonDown("Oculus_CrossPlatform_PrimaryIndexTrigger")) {
         if (Input.GetButtonDown("Fire2")) {
             GameObject targetObject = GetLookedAtObject();
             if (targetObject != null)

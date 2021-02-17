@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AmmoDrop : Drop
 {
-    public override void CollectDrop(PlayerController player)
+    public override void CollectDrop(PlayerControllerFPS player)
     {
         var gun = player._gun;
 
