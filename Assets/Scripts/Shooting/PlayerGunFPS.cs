@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 // Gun object is child of player object
 public class PlayerGunFPS : MonoBehaviour
@@ -16,24 +17,41 @@ public class PlayerGunFPS : MonoBehaviour
 
     float cooldownCounter = 0;
 
-    UnityEngine.XR.InputDevice device;
+    InputDevice device;
 
     private void Start()
     {
         cooldownCounter = 0;
 
-        var leftHandDevices = new List<UnityEngine.XR.InputDevice>();   
-        UnityEngine.XR.InputDevices.GetDevicesAtXRNode(UnityEngine.XR.XRNode.LeftHand, leftHandDevices);
-        if(leftHandDevices.Count == 1)
+        var rightHandDevices = new List<InputDevice>();   
+        InputDevices.GetDevicesAtXRNode(UnityEngine.XR.XRNode.RightHand, rightHandDevices);
+        if(rightHandDevices.Count == 1)
         {
-            UnityEngine.XR.InputDevice device = leftHandDevices[0];
+            device = rightHandDevices[0];
+            Debug.Log("Found right hand device");
+
+            var inputFeatures = new List<InputFeatureUsage>();
+            if (device.TryGetFeatureUsages(inputFeatures)) {
+                foreach (var feature in inputFeatures) {
+                    if (feature.type == typeof(bool)) {
+                        bool featureValue;
+                        if (device.TryGetFeatureValue(feature.As<bool>(), out featureValue))
+                        {
+                            Debug.Log(string.Format("Bool feature '{0}''s value is '{1}'", feature.name, featureValue.ToString()));
+                        }
+                    }
+                    else {
+                        Debug.Log(string.Format("Non bool feature '{0}''s has type is '{1}'", feature.name, feature.type));
+                    }
+                }
+            }
         }
         else {
-            Debug.Log("No leftHandDevices!!");
+            Debug.Log("No right hand devices!!");
         }
 
-        var inputDevices = new List<UnityEngine.XR.InputDevice>();
-        UnityEngine.XR.InputDevices.GetDevices(inputDevices);
+        var inputDevices = new List<InputDevice>();
+        InputDevices.GetDevices(inputDevices);
 
         foreach (var device in inputDevices)
         {
@@ -47,10 +65,19 @@ public class PlayerGunFPS : MonoBehaviour
         cooldownCounter += Time.deltaTime;
 
         SwitchProjectile();
+        bool triggerValue2;
+        if (device.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out triggerValue2) && triggerValue2) {
+            Debug.Log("Trigger Button pressed");
+        } 
 
         bool triggerValue;
         //if (cooldownCounter >= cooldown && device.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out triggerValue) && triggerValue)
-        if (cooldownCounter >= cooldown && Input.GetButtonDown("Fire1"))
+        if (cooldownCounter >= cooldown && 
+            (   
+                Input.GetButtonDown("Fire1") ||
+                (device.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out triggerValue) && triggerValue)
+            )
+        )
         {
             Shoot();
 
@@ -73,6 +100,30 @@ public class PlayerGunFPS : MonoBehaviour
 
         projectile.transform.forward = transform.forward;
         projectile._trajectory = transform.forward;
+
+        // var rightHandDevices = new List<InputDevice>();   
+        // InputDevices.GetDevicesAtXRNode(XRNode.RightHand, rightHandDevices);
+        // InputDevice temp_device ;
+        // var inputFeatures = new List<InputFeatureUsage>();
+        // if(rightHandDevices.Count == 1)
+        // {
+        //     temp_device = rightHandDevices[0];
+        //     if (temp_device.TryGetFeatureUsages(inputFeatures)) {
+        //         foreach (var feature in inputFeatures) {
+        //             if (feature.type == typeof(bool)) {
+        //                 bool featureValue;
+        //                 if (temp_device.TryGetFeatureValue(feature.As<bool>(), out featureValue))
+        //                 {
+        //                     Debug.Log(string.Format("Bool feature '{0}''s value is '{1}'", feature.name, featureValue.ToString()));
+        //                 }
+        //             }
+        //             else {
+        //                 Debug.Log(string.Format("Non bool feature '{0}''s has type is '{1}'", feature.name, feature.type));
+        //             }
+        //         }
+        //     }
+        // }
+
     }
 
     void SwitchProjectile()

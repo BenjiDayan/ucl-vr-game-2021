@@ -1,11 +1,52 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class TeleportOnClick : MonoBehaviour
 {
     public float range = 50f;
     private RaycastHit lastRaycastHit;
+
+    private InputDevice device;
+
+    private void Start() {
+        var leftHandDevices = new List<InputDevice>();   
+        InputDevices.GetDevicesAtXRNode(UnityEngine.XR.XRNode.LeftHand, leftHandDevices);
+        if(leftHandDevices.Count == 1)
+        {
+            device = leftHandDevices[0];
+            Debug.Log("Found left hand device");
+
+            var inputFeatures = new List<InputFeatureUsage>();
+            if (device.TryGetFeatureUsages(inputFeatures)) {
+                foreach (var feature in inputFeatures) {
+                    if (feature.type == typeof(bool)) {
+                        bool featureValue;
+                        if (device.TryGetFeatureValue(feature.As<bool>(), out featureValue))
+                        {
+                            Debug.Log(string.Format("Bool feature '{0}''s value is '{1}'", feature.name, featureValue.ToString()));
+                        }
+                    }
+                    else {
+                        Debug.Log(string.Format("Non bool feature '{0}''s has type is '{1}'", feature.name, feature.type));
+                    }
+                }
+            }
+        }
+        else {
+            Debug.Log("No right hand devices!!");
+        }
+
+        var inputDevices = new List<InputDevice>();
+        InputDevices.GetDevices(inputDevices);
+
+        foreach (var device in inputDevices)
+        {
+            Debug.Log(string.Format("Device found with name '{0}' and role '{1}'", device.name, device.role.ToString()));
+        }
+    }
+
     private GameObject GetLookedAtObject()
     {
         Vector3 origin = transform.position;
@@ -39,8 +80,12 @@ public class TeleportOnClick : MonoBehaviour
     */
     void Update()
     {
-        //if (Input.GetButtonDown("Oculus_CrossPlatform_PrimaryIndexTrigger")) {
-        if (Input.GetButtonDown("Fire2")) {
+        bool triggerValue;
+        if  (   
+                Input.GetButtonDown("Fire2") ||
+                (device.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out triggerValue) && triggerValue)
+            )
+        {
             GameObject targetObject = GetLookedAtObject();
             if (targetObject != null)
                 TeleportToLookAt(targetObject);

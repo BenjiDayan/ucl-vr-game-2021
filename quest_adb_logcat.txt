@@ -65,3 +65,123 @@ adb logcat -s Unity ActivityManager PackageManager dalvikvm DEBUG
 02-17 12:57:41.680  1007  1048 I ActivityManager: Start proc 17879:com.oculus.explore:explore/u0a35 for service {com.oculus.explore/com.oculus.explore.PanelService}
 02-17 12:57:42.954  1007  1023 I ActivityManager: Process com.DefaultCompany.UCLProject (pid 17746) has died: cch CRE
 02-17 12:57:42.968  1007  1035 W ActivityManager: setHasOverlayUi called on unknown pid: 17746
+
+
+
+
+
+
+################
+
+
+02-17 14:30:19.302  1007  4272 I ActivityManager: Process com.oculus.explore:explore (pid 20369) has died: cch+5 CEM
+02-17 14:30:21.364 20607 20627 D Unity   : initOculus Java!
+02-17 14:30:21.365 20607 20607 D Unity   : Oculus UI thread done.
+02-17 14:30:22.202  1007  3851 W ActivityManager: Slow operation: 79ms so far, now at getContentProviderImpl: after updateOomAdj
+02-17 14:30:22.202  1007  3851 W ActivityManager: Slow operation: 79ms so far, now at getContentProviderImpl: done!
+02-17 14:30:25.922 20607 20627 E Unity   : Unable to find AudioPluginOculusSpatializer
+02-17 14:30:25.990 20607 20627 E Unity   : DllNotFoundException: AudioPluginOculusSpatializer
+02-17 14:30:25.990 20607 20627 E Unity   :   at (wrapper managed-to-native) ONSPAudioSource.OSP_SetGlobalVoiceLimit(int)
+02-17 14:30:25.990 20607 20627 E Unity   :   at ONSPAudioSource.OnBeforeSceneLoadRuntimeMethod () [0x00005] in <17b5dd01bfcb43aebee4ddeb746d39c8>:0
+02-17 14:30:25.990 20607 20627 E Unity   :
+02-17 14:30:25.990 20607 20627 E Unity   : (Filename: <17b5dd01bfcb43aebee4ddeb746d39c8> Line: 0)
+02-17 14:30:25.990 20607 20627 E Unity   :
+02-17 14:30:26.170 20607 20627 I Unity   : Found right hand device
+02-17 14:30:26.170 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.170 20607 20627 I Unity   :
+02-17 14:30:26.173 20607 20627 I Unity   : Non bool feature 'Primary2DAxis''s has type is 'UnityEngine.Vector2'
+02-17 14:30:26.173 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.173 20607 20627 I Unity   :
+02-17 14:30:26.175 20607 20627 I Unity   : Bool feature 'PrimaryButton''s value is 'False'
+02-17 14:30:26.175 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.175 20607 20627 I Unity   :
+02-17 14:30:26.175 20607 20627 I Unity   : Bool feature 'SecondaryButton''s value is 'False'
+02-17 14:30:26.175 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.175 20607 20627 I Unity   :
+02-17 14:30:26.175 20607 20627 I Unity   : Bool feature 'PrimaryTouch''s value is 'False'
+02-17 14:30:26.175 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.175 20607 20627 I Unity   :
+02-17 14:30:26.175 20607 20627 I Unity   : Bool feature 'SecondaryTouch''s value is 'False'
+02-17 14:30:26.175 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.175 20607 20627 I Unity   :
+02-17 14:30:26.175 20607 20627 I Unity   : Non bool feature 'Trigger''s has type is 'System.Single'
+02-17 14:30:26.175 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.175 20607 20627 I Unity   :
+02-17 14:30:26.175 20607 20627 I Unity   : Non bool feature 'Grip''s has type is 'System.Single'
+02-17 14:30:26.175 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.175 20607 20627 I Unity   :
+02-17 14:30:26.175 20607 20627 I Unity   : Bool feature 'TriggerButton''s value is 'False'
+02-17 14:30:26.175 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.175 20607 20627 I Unity   :
+02-17 14:30:26.175 20607 20627 I Unity   : Bool feature 'GripButton''s value is 'False'
+02-17 14:30:26.175 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.175 20607 20627 I Unity   :
+02-17 14:30:26.175 20607 20627 I Unity   : Non bool feature 'IndexTouch''s has type is 'System.Single'
+02-17 14:30:26.175 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.175 20607 20627 I Unity   :
+02-17 14:30:26.175 20607 20627 I Unity   : Non bool feature 'ThumbTouch''s has type is 'System.Single'
+02-17 14:30:26.175 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.175 20607 20627 I Unity   :
+02-17 14:30:26.175 20607 20627 I Unity   : Bool feature 'Primary2DAxisClick''s value is 'False'
+02-17 14:30:26.175 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.175 20607 20627 I Unity   :
+02-17 14:30:26.175 20607 20627 I Unity   : Bool feature 'Primary2DAxisTouch''s value is 'True'
+02-17 14:30:26.175 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.175 20607 20627 I Unity   :
+02-17 14:30:26.175 20607 20627 I Unity   : Bool feature 'Thumbrest''s value is 'False'
+02-17 14:30:26.175 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.175 20607 20627 I Unity   :
+02-17 14:30:26.175 20607 20627 I Unity   : Bool feature 'IsTracked''s value is 'True'
+02-17 14:30:26.175 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.175 20607 20627 I Unity   :
+02-17 14:30:26.175 20607 20627 I Unity   : Non bool feature 'TrackingState''s has type is 'System.UInt32'
+02-17 14:30:26.175 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.175 20607 20627 I Unity   :
+02-17 14:30:26.175 20607 20627 I Unity   : Non bool feature 'DevicePosition''s has type is 'UnityEngine.Vector3'
+02-17 14:30:26.175 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.175 20607 20627 I Unity   :
+02-17 14:30:26.175 20607 20627 I Unity   : Non bool feature 'DeviceRotation''s has type is 'UnityEngine.Quaternion'
+02-17 14:30:26.175 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.175 20607 20627 I Unity   :
+02-17 14:30:26.175 20607 20627 I Unity   : Non bool feature 'DeviceVelocity''s has type is 'UnityEngine.Vector3'
+02-17 14:30:26.175 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.175 20607 20627 I Unity   :
+02-17 14:30:26.175 20607 20627 I Unity   : Non bool feature 'DeviceAngularVelocity''s has type is 'UnityEngine.Vector3'
+02-17 14:30:26.175 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.175 20607 20627 I Unity   :
+02-17 14:30:26.175 20607 20627 I Unity   : Non bool feature 'DeviceAcceleration''s has type is 'UnityEngine.Vector3'
+02-17 14:30:26.175 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.175 20607 20627 I Unity   :
+02-17 14:30:26.175 20607 20627 I Unity   : Non bool feature 'DeviceAngularAcceleration''s has type is 'UnityEngine.Vector3'
+02-17 14:30:26.175 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.175 20607 20627 I Unity   :
+02-17 14:30:26.192 20607 20627 I Unity   : Device found with name 'Oculus Quest' and role 'Generic'
+02-17 14:30:26.192 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.192 20607 20627 I Unity   :
+02-17 14:30:26.192 20607 20627 I Unity   : Device found with name 'Oculus Touch Controller - Left' and role 'LeftHanded'
+02-17 14:30:26.192 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.192 20607 20627 I Unity   :
+02-17 14:30:26.192 20607 20627 I Unity   : Device found with name 'Oculus Touch Controller - Right' and role 'RightHanded'
+02-17 14:30:26.192 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.192 20607 20627 I Unity   :
+02-17 14:30:26.236 20607 20627 E Unity   : ArgumentOutOfRangeException: Index and length must refer to a location within the string.
+02-17 14:30:26.236 20607 20627 E Unity   : Parameter name: length
+02-17 14:30:26.236 20607 20627 E Unity   :   at System.String.Substring (System.Int32 startIndex, System.Int32 length) [0x0006a] in <2b3a3162be434770b7a4fac8b896e90c>:0
+02-17 14:30:26.236 20607 20627 E Unity   :   at EnemyHealth.OnTriggerEnter (UnityEngine.Collider col) [0x00018] in <17b5dd01bfcb43aebee4ddeb746d39c8>:0
+02-17 14:30:26.236 20607 20627 E Unity   :
+02-17 14:30:26.236 20607 20627 E Unity   : (Filename: <2b3a3162be434770b7a4fac8b896e90c> Line: 0)
+02-17 14:30:26.236 20607 20627 E Unity   :
+02-17 14:30:26.241 20607 20627 I Unity   : collapsing
+02-17 14:30:26.241 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:26.241 20607 20627 I Unity   :
+02-17 14:30:26.539 20607 20627 W Unity   : A Canvas named "UI Variant" with a render mode of ScreenSpaceOverlay is being used while VR is also enabled. This Canvas will continue to incur a rendering cost, but will not be visible while in VR. Is this intentional?
+02-17 14:30:26.539 20607 20627 W Unity   : (Filename:  Line: 946)
+02-17 14:30:26.539 20607 20627 W Unity   :
+02-17 14:30:32.020 20607 20627 I Unity   : Explode
+02-17 14:30:32.020 20607 20627 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+02-17 14:30:32.020 20607 20627 I Unity   :
+02-17 14:30:36.792  1007  1048 I ActivityManager: Start proc 20734:com.oculus.explore:explore/u0a35 for service {com.oculus.explore/com.oculus.explore.PanelService}
+02-17 14:30:37.459  1007  1315 W ActivityManager: Slow operation: 102ms so far, now at getContentProviderImpl: after updateOomAdj
+02-17 14:30:37.459  1007  1315 W ActivityManager: Slow operation: 102ms so far, now at getContentProviderImpl: done!
+02-17 14:30:38.228  1007  4272 I ActivityManager: Process com.DefaultCompany.UCLProject (pid 20607) has died: cch CRE
+02-17 14:30:38.259  1007  1035 W ActivityManager: setHasOverlayUi called on unknown pid: 20607
