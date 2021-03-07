@@ -59,15 +59,15 @@ public class Drop2 : MonoBehaviour, ICollectable
         yield return null;
     }
 
-    public virtual void CollectDrop(PlayerController player)
-    {
-        spawner.ResetCooldown();
-        spawner._spawnedDrop = false;
+    // public virtual void CollectDrop(PlayerController player)
+    // {
+    //     spawner.ResetCooldown();
+    //     spawner._spawnedDrop = false;
 
-        // UI effects
+    //     // UI effects
 
-        Destroy(gameObject);
-    }
+    //     Destroy(gameObject);
+    // }
 
     public virtual void CollectDrop(PlayerGunFPS2 player)
     {
