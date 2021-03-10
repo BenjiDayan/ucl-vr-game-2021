@@ -5,6 +5,9 @@ using UnityEngine.XR;
 
 public class TeleportOnClick : MonoBehaviour
 {
+    [SerializeField] KeyCode teleportKey = KeyCode.Mouse1;
+    [SerializeField] InputFeatureUsage<bool> teleportKeyVR = CommonUsages.triggerButton;
+
     public float range = 50f;
     private RaycastHit lastRaycastHit;
 
@@ -82,8 +85,8 @@ public class TeleportOnClick : MonoBehaviour
     {
         bool triggerValue;
         if  (   
-                Input.GetButtonDown("Fire2") ||
-                (device.TryGetFeatureValue(UnityEngine.XR.CommonUsages.triggerButton, out triggerValue) && triggerValue)
+                Input.GetKeyDown(teleportKey) ||
+                (device.TryGetFeatureValue(teleportKeyVR, out triggerValue) && triggerValue)
             )
         {
             GameObject targetObject = GetLookedAtObject();

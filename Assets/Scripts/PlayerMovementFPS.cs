@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class PlayerMovementFPS : MonoBehaviour
 {
+    [SerializeField] KeyCode jumpKey = KeyCode.Space;
+
     public CharacterController controller;
     public float speed = 12f;
     
@@ -17,11 +20,22 @@ public class PlayerMovementFPS : MonoBehaviour
     public LayerMask groundMask;
     public float jumpHeight = 6f;
     bool isGrounded;
+    
+    InputDevice device;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        var leftHandDevices = new List<InputDevice>();   
+        InputDevices.GetDevicesAtXRNode(UnityEngine.XR.XRNode.LeftHand, leftHandDevices);
+        if(leftHandDevices.Count == 1)
+        {
+            device = leftHandDevices[0];
+            Debug.Log("Found left hand device");
+        }
+        else {
+            Debug.Log("No left hand devices!!");
+        }
     }
 
     // Update is called once per frame
@@ -33,7 +47,13 @@ public class PlayerMovementFPS : MonoBehaviour
             velocity.y = -2f; //"Set to zero" but actually force player to indeed hit the bottom
         }
 
-        if (isGrounded && Input.GetButtonDown("Jump")) {
+        bool jumpValue;
+        if ( isGrounded &&
+            (   
+                Input.GetKeyDown(jumpKey) ||
+                (device.TryGetFeatureValue(UnityEngine.XR.CommonUsages.primaryButton, out jumpValue) && jumpValue)
+            )
+        ){
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
 
