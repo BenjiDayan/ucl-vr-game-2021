@@ -98,7 +98,7 @@ public class PlayerGunFPS2 : MonoBehaviour
         if (cooldownCounter >= cooldown && 
             (   
                 Input.GetKeyDown(shootGunKey) ||
-                (device.TryGetFeatureValue(CommonUsages.triggerButton, out triggerValue) && triggerValue)
+                (device.TryGetFeatureValue(shootGunKeyVR, out triggerValue) && triggerValue)
             )
         )
         {
