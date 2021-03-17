@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
    public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Time.timeScale = 1f;
         //SceneManager.LoadScene("FPSWithDropsVR"); 
         //If we want to load a particular scene we can just write its name or put 
         //it in the build index settings as number 1 with the MainMenu Scene being number 0
