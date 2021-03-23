@@ -22,7 +22,7 @@ public class EnemyHealth : MonoBehaviour{
     }
 
     void OnTriggerEnter(Collider col){
-	if (col.name == "Hazard(Clone)" || col.name.Substring(0, 15) == "BuildingSegment") {
+	if (col.name == "Hazard(Clone)" || (col.name.Length >= 15 && col.name.Substring(0, 15) == "BuildingSegment")) {
 	    if (health > 0){
 	    	health = health - 1;
 		UpdateHealthUI();
