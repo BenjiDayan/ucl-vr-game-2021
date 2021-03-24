@@ -169,7 +169,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085648713889301811}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d06b99b84e8c6fd49a6d76c3a96697ea, type: 3}
   m_Name: 
@@ -196,6 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fbf752ef2a4b08438c6c70b3a47c9be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teleportKey: 324
   range: 50
 --- !u!114 &5812512828076883858
 MonoBehaviour:
@@ -211,6 +212,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivity: 100
   playerBody: {fileID: 1085648713889301813}
+--- !u!114 &6966042417539965626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3826608067030941350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d06b99b84e8c6fd49a6d76c3a96697ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpKey: 32
+  controller: {fileID: 1085648713889301812}
+  speed: 12
+  gravity: -9.81
+  groundCheck: {fileID: 1085648713175434540}
+  groundDistance: 0.4
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 1
+  jumpHeight: 6
 --- !u!1 &6676377957615772203
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,6 +369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   switchProjectile: 113
   reloadKey: 101
+  shootGunKey: 323
   currentProjectile: 0
   projectilePrefabs:
   - {fileID: 2395040347495949364, guid: a38711b258c8f7f4fbb7c3c14bbb4326, type: 3}

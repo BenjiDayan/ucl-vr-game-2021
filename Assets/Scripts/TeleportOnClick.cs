@@ -38,7 +38,7 @@ public class TeleportOnClick : MonoBehaviour
             }
         }
         else {
-            Debug.Log("No right hand devices!!");
+            Debug.Log("No left hand devices!!");
         }
 
         var inputDevices = new List<InputDevice>();
