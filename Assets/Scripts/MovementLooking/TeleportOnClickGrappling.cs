@@ -3,17 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
-public class TeleportOnClick : MonoBehaviour
+public class TeleportOnClickGrappling : MonoBehaviour
 {
     [SerializeField] KeyCode teleportKey = KeyCode.Mouse1;
     [SerializeField] InputFeatureUsage<bool> teleportKeyVR = CommonUsages.triggerButton;
 
-    public float range = 50f;
     private RaycastHit lastRaycastHit;
 
     private InputDevice device;
 
+    [SerializeField] float range = 50;
+    [SerializeField] float speed = 2.5f;
+
+    [Tooltip("distance to hooked point after which released")]
+    [SerializeField] float epsilon=2.0f;
+    private bool travelling = false;
+    private float gravity;
+    private Vector3 targetPos;
+    private float t = 0;
+    private Vector3 dir;
+    [SerializeField] PlayerMovementFPS movement;
     private void Start() {
+        gravity = movement.gravity;
+        Debug.Log("movement: " + movement);
+
         var leftHandDevices = new List<InputDevice>();   
         InputDevices.GetDevicesAtXRNode(UnityEngine.XR.XRNode.LeftHand, leftHandDevices);
         if(leftHandDevices.Count == 1)
@@ -66,21 +79,36 @@ public class TeleportOnClick : MonoBehaviour
         
         if (Vector3.Dot(lastRaycastHit.normal, Vector3.up) > 1/Mathf.Sqrt(2)) {
             //This is designed for teleporting next to objects - i.e. backtrack along the surface normal a little, and go up so as not to fall through the floor
-            transform.root.position = new Vector3(lastRaycastHit.point.x, lastRaycastHit.point.y + 2, lastRaycastHit.point.z) - lastRaycastHit.normal * 2;
+            //transform.root.position = new Vector3(lastRaycastHit.point.x, lastRaycastHit.point.y + 2, lastRaycastHit.point.z) - lastRaycastHit.normal * 2;
+            targetPos = new Vector3(lastRaycastHit.point.x, lastRaycastHit.point.y + 2, lastRaycastHit.point.z) - lastRaycastHit.normal * 2;
         }
         else {
             //This is designed for teleporting on top of buildings
             Debug.Log("teleporting on top of building: it's position is" + targetTrans.position.ToString());
-            transform.root.position = new Vector3(targetTrans.position.x, targetTrans.position.y + targetTrans.lossyScale.y/2 + 2, targetTrans.position.z);
+            //transform.root.position = new Vector3(targetTrans.position.x, targetTrans.position.y + targetTrans.lossyScale.y/2 + 2, targetTrans.position.z);
+            targetPos = new Vector3(targetTrans.position.x, targetTrans.position.y + targetTrans.lossyScale.y/2 + 2, targetTrans.position.z);
+        }
+
+        movement.gravity = 0;
+        t = 0;
+        dir = targetPos - transform.root.position;
+        travelling = true;
+    }
+    void Travel()
+    {
+        if (travelling)
+        {
+            t += Time.deltaTime * speed / dir.magnitude;
+            Transform root = transform.root;
+            root.position = Vector3.Lerp(root.position, targetPos, t);
+
+            if (Vector3.Distance(root.position, targetPos) <= epsilon)
+            {
+                travelling = false;
+                movement.gravity = gravity;
+            }
         }
     }
-    /*
-    private void TeleportToLookAt()
-    {
-        //transform.position = lastRaycastHit.point + lastRaycastHit.normal * 2;
-       transform.parent.position = new Vector3(lastRaycastHit.point.x, lastRaycastHit.point.y + 2, lastRaycastHit.point.z) - lastRaycastHit.normal * 2;
-    }
-    */
     void Update()
     {
         bool triggerValue;
@@ -90,8 +118,10 @@ public class TeleportOnClick : MonoBehaviour
             )
         {
             GameObject targetObject = GetLookedAtObject();
-            if (targetObject != null)
+            if (targetObject != null && !travelling)
                 TeleportToLookAt(targetObject);
         }
+
+        Travel();
     }
 }
