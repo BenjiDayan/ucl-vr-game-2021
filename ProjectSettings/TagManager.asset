@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Building
+  - Player Drone
+  - Debris
   layers:
   - Default
   - TransparentFX
@@ -16,8 +18,8 @@ TagManager:
   - 
   - Player
   - Building
-  - 
-  - 
+  - Raycatcher
+  - Debris
   - 
   - 
   - 
