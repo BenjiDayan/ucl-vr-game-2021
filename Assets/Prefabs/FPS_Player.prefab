@@ -1,45 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &1439303076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7066247325810234970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 508e36668dd9aa446abddb95bfc1330b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shootKey: 110
-  switchProjectile: 109
-  cooldown: 0.3
-  currentProjectile: 1
-  projectilePrefabs:
-  - {fileID: 3171844568938827554, guid: 9b70d2b81da61384da804e66cbff601a, type: 3}
-  - {fileID: 7638290415175367660, guid: 782765bb94eddb54da6c833d84913016, type: 3}
-  segmentBank: 0
-  noActiveCloud: 0
---- !u!114 &1439303077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7066247325810234970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fa2efbbb9958fd4889305b0050067be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  switchProjectile: 111
-  currentProjectile: 0
-  projectilePrefabs:
-  - {fileID: 2395040347495949364, guid: a38711b258c8f7f4fbb7c3c14bbb4326, type: 3}
-  - {fileID: 3171844568938827554, guid: 9c4b15c6b6d33954d970d3c63545c824, type: 3}
-  - {fileID: 7638290415175367660, guid: a3ad5362fd4f66b49b700da99370be59, type: 3}
-  cooldown: 0.3
 --- !u!1 &1085648713127234160
 GameObject:
   m_ObjectHideFlags: 0
@@ -214,6 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d06b99b84e8c6fd49a6d76c3a96697ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpKey: 32
   controller: {fileID: 1085648713889301812}
   speed: 12
   gravity: -9.81
@@ -335,7 +296,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fbf752ef2a4b08438c6c70b3a47c9be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teleportKey: 324
   range: 50
+--- !u!114 &1439303077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7066247325810234970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fa2efbbb9958fd4889305b0050067be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  switchProjectile: 111
+  currentProjectile: 0
+  projectilePrefabs:
+  - {fileID: 2395040347495949364, guid: a38711b258c8f7f4fbb7c3c14bbb4326, type: 3}
+  - {fileID: 3171844568938827554, guid: 9c4b15c6b6d33954d970d3c63545c824, type: 3}
+  - {fileID: 7638290415175367660, guid: a3ad5362fd4f66b49b700da99370be59, type: 3}
+  cooldown: 0.3
 --- !u!1001 &1373041418
 PrefabInstance:
   m_ObjectHideFlags: 0
