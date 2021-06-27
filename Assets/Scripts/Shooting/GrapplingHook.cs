@@ -51,6 +51,7 @@ public class GrapplingHook : MonoBehaviour
             {
                 var hook = hit.collider.GetComponent<HookPoint>();
                 print(hook == null);
+                print("Hook: " + hook.ToString());
                 if (hook != null)
                 {
                     targetPos = hook._targetPos;

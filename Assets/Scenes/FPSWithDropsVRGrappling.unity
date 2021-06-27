@@ -1169,6 +1169,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 566854865}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &596582276 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6966042417539965626, guid: 0f9277b567b795e40a316aefc5a8d7fd,
+    type: 3}
+  m_PrefabInstance: {fileID: 74193590}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d06b99b84e8c6fd49a6d76c3a96697ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &620825890
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1324,6 +1336,8 @@ MonoBehaviour:
   teleportKey: 324
   range: 50
   speed: 2.5
+  epsilon: 0.2
+  movement: {fileID: 596582276}
 --- !u!1 &681170809
 GameObject:
   m_ObjectHideFlags: 0
