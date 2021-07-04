@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Audio;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
@@ -12,6 +13,9 @@ public class Projectile : MonoBehaviour
     [SerializeField] protected float lifetime = 1;
 
     [SerializeField] protected Vector3 trajectory;
+
+    [SerializeField] protected AudioClip destructionSound;
+    [SerializeField] protected float destructionVolume = 1f;
 
     protected float lifetimeCount = 0;
 
@@ -57,7 +61,9 @@ public class Projectile : MonoBehaviour
         if (damageable != null)
         {
             damageable.OnDamage(damage);
-
+            if (destructionSound != null) {
+                AudioSource.PlayClipAtPoint(destructionSound, transform.position, destructionVolume);
+            }
             Destroy(gameObject);
         }
     }

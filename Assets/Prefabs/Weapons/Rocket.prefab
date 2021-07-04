@@ -99,6 +99,8 @@ MonoBehaviour:
   speed: 20
   lifetime: 1
   trajectory: {x: 0, y: 0, z: 0}
+  destructionSound: {fileID: 8300000, guid: 328d0bff177e13349928412705e46cfd, type: 3}
+  destructionVolume: 100
   acceleration: 400
 --- !u!136 &66415019443609276
 CapsuleCollider:
@@ -156,7 +158,7 @@ AudioSource:
   rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
-  BypassReverbZones: 0
+  BypassReverbZones: 1
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -186,7 +188,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

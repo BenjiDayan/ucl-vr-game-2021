@@ -99,6 +99,8 @@ MonoBehaviour:
   speed: 400
   lifetime: 1
   trajectory: {x: 0, y: 0, z: 0}
+  destructionSound: {fileID: 0}
+  destructionVolume: 1
 --- !u!136 &2395040347495949367
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -141,7 +143,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0a0d2973b6d96b9409988450c35e0af0, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -155,7 +157,7 @@ AudioSource:
   rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
-  BypassReverbZones: 0
+  BypassReverbZones: 1
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
