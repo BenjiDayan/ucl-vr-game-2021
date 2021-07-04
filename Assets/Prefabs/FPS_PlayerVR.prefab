@@ -234,6 +234,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   jumpHeight: 6
+--- !u!81 &6004579232164290197
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3826608067030941350}
+  m_Enabled: 1
 --- !u!1 &6676377957615772203
 GameObject:
   m_ObjectHideFlags: 0
