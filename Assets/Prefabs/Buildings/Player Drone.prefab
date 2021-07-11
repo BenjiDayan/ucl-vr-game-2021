@@ -44,10 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a623c4a51a54a24fae8ea4dafddd5b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mode: follow player
   acceleration: 150
   speedLimit: 150
   defaultHeight: 340
+  playerOrbitRadius: 100
+  playerOrbitPeriod: 6
+  orbitOrigin: {x: 0, y: 0, z: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
+  mode: follow player
 --- !u!54 &490417721112189181
 Rigidbody:
   m_ObjectHideFlags: 0

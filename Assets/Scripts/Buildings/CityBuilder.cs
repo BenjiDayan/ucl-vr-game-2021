@@ -7,6 +7,7 @@ public class CityBuilder : MonoBehaviour
     [Header("Prefabs")]
     [SerializeField] public GameObject raycatcherPrefab;
     [SerializeField] public List<GameObject> buildingPrefabs;
+    [SerializeField] public GameObject fogPlate;
 
     [Header("Procedural generation settings")]
     [SerializeField] public float mapSizeX = 201f;
@@ -17,15 +18,43 @@ public class CityBuilder : MonoBehaviour
     [SerializeField] public float minPathLength = 21f;
     [SerializeField] public float maxPathWidth = 15f;
     [SerializeField] public float minPathWidth = 6f;
+    [SerializeField] public float maxHeightOffset = 50f;
+    [SerializeField] public float heightRandomness = 0.5f;
+    //[SerializeField] public float landmarkRatio = 0.1f;
+    [SerializeField] public int instancesPerLandmark = 3;
+
+    [Header("Fog settings")]
+    [SerializeField] public float fogTop = 25f;
+    [SerializeField] public float fogBottom = 15f;
+    [SerializeField] public int numberOfPlates = 10;
+
+
+    [Header("Leave as default")]
+    [SerializeField] public List<List<float>> prefabOffsets = new List<List<float>>();
+    
+    
+    List<List<float>> trueBuildingDimensions = new List<List<float>>();
 
     void Start()
     {
+        Fog();
         StartCoroutine(GenerateBuildings());
+    }
+
+    void Fog()
+    {
+        GameObject plate;
+        for (int i = 0; i < numberOfPlates; i++)
+        {
+            plate = Instantiate(fogPlate, Vector3.zero, Quaternion.identity);
+            plate.transform.position += new Vector3(0, ((i + 1) * (fogTop - fogBottom) / numberOfPlates) + fogBottom, 0);
+            plate.transform.localScale = new Vector3(mapSizeX / 10, 1, mapSizeY / 10);
+        }
     }
 
     int DivideAndRound(float value)
     {
-        value /= 3;
+        value /= 10;
         float roundedFloat;
         if (value % 0.5f == 0)
             roundedFloat = Mathf.Ceil(value);
@@ -93,34 +122,38 @@ public class CityBuilder : MonoBehaviour
         int gridX = DivideAndRound(mapSizeX);
         int gridY = DivideAndRound(mapSizeY);
         int gap = DivideAndRound(buildingSeparation);
-        int maxPL = DivideAndRound(maxPathLength - (gap * 6));
-        int minPL = DivideAndRound(minPathLength - (gap * 6));
-        int maxPW = DivideAndRound((maxPathWidth - (gap * 6) - 1) / 2) * 2 + 1;
-        int minPW = DivideAndRound((minPathWidth - (gap * 6) - 1) / 2) * 2 + 1;
+        int maxPL = DivideAndRound(maxPathLength - (gap * 20));
+        int minPL = DivideAndRound(minPathLength - (gap * 20));
+        int maxPW = DivideAndRound((maxPathWidth - (gap * 20) - 1) / 2) * 2 + 1;
+        int minPW = DivideAndRound((minPathWidth - (gap * 20) - 1) / 2) * 2 + 1;
         int originX;
         int originY;
-        List<int> buildingDimensions = new List<int>();
         List<int> possibilities;
+        List<int> buildingDimensions = new List<int>();
 
         //Create list of building prefab dimensions
         List<List<int>> prefabDimensions = new List<List<int>>();
-        List<List<float>> prefabOffsets = new List<List<float>>();
         Vector3 centre;
         Vector3 size;
+        float radius;
         float minX;
         float minY;
         float maxX;
         float maxY;
+        float maxZ;
         List<float> offset;
         List<int> dimensions;
+        List<float> trueDimensions;
         foreach (GameObject prefab in buildingPrefabs)
         {
             minX = 0f;
             minY = 0f;
             maxX = 0f;
             maxY = 0f;
+            maxZ = 0f;
             offset = new List<float>();
             dimensions = new List<int>();
+            trueDimensions = new List<float>();
             foreach (BoxCollider collider in prefab.GetComponents<BoxCollider>())
             {
                 centre = collider.center;
@@ -141,14 +174,55 @@ public class CityBuilder : MonoBehaviour
                 {
                     minY = centre.z - (size.z / 2);
                 }
+                if (centre.y + (size.y / 2) > maxZ)
+                {
+                    maxZ = centre.y + (size.y / 2);
+                }
             }
-            offset.Add(Mathf.Abs(minX));
-            offset.Add(Mathf.Abs(minY));
-            dimensions.Add(Mathf.CeilToInt((maxX - minX) / 3));
-            dimensions.Add(Mathf.CeilToInt((maxY - minY) / 3));
+            foreach (CapsuleCollider collider in prefab.GetComponents<CapsuleCollider>())
+            {
+                centre = collider.center;
+                radius = collider.radius;
+                if (centre.x + radius > maxX)
+                {
+                    maxX = centre.x + radius;
+                }
+                if (centre.x - radius < minX)
+                {
+                    minX = centre.x - radius;
+                }
+                if (centre.z + radius > maxY)
+                {
+                    maxY = centre.z + radius;
+                }
+                if (centre.z - radius < minY)
+                {
+                    minY = centre.z - radius;
+                }
+                if (centre.y + (collider.height / 2) > maxZ)
+                {
+                    maxZ = centre.y + (collider.height / 2);
+                }
+            }
+            offset.Add(Mathf.Abs((maxX + minX) / 2));
+            offset.Add(Mathf.Abs((maxY + minY) / 2));
+            dimensions.Add(Mathf.CeilToInt((maxX - minX) / 10));
+            dimensions.Add(Mathf.CeilToInt((maxY - minY) / 10));
+            trueDimensions.Add(maxX - minX);
+            trueDimensions.Add(maxY - minY);
+            trueDimensions.Add(maxZ);
             prefabOffsets.Add(offset);
             prefabDimensions.Add(dimensions);
+            trueBuildingDimensions.Add(trueDimensions);
         }
+
+        //Give the offsets and true building dimensions to the drone controller
+        GameObject droneController = GameObject.Find("Drone Controller");
+        droneController.SendMessage("ReceiveDimensions", trueBuildingDimensions);
+        droneController.SendMessage("ReceiveOffsets", prefabOffsets);
+
+        //Give the offsets to the hologram
+        GameObject.Find("Hologram").SendMessage("ReceiveOffsets", prefabOffsets);
 
         //Create grid
         Dictionary<string, bool> grid = new Dictionary<string, bool>();
@@ -285,6 +359,30 @@ public class CityBuilder : MonoBehaviour
         float maxDistance;
         GameObject raycatcher;
         BoxCollider raycatcherCollider;
+        List<int> landmarks = new List<int>();
+        for (int i = 0; i < buildingPrefabs.Count; i++)
+        {
+            if (buildingPrefabs[i].tag == "Landmark")
+            {
+                for (int j = 0; j < instancesPerLandmark; j++)
+                {
+                    landmarks.Add(i);
+                }
+            }
+        }
+        GameObject instantiatedBuilding;
+        //For the height randomness
+        float distanceFromOrigin;
+        float distanceFactor;
+        float randomFactor;
+        float heightOffset;
+
+        bool firstBuilding = true;
+        bool isPossibility = true;
+
+        int numOfLandmarks = 0;
+        int numOfGenerics = 0;
+
         foreach (List<int> originCoords in gridCells)
         {
             possibilities = new List<int>();
@@ -295,57 +393,141 @@ public class CityBuilder : MonoBehaviour
                 //Determine possibilities
                 for (int i = 0; i < buildingPrefabs.Count; i++)
                 {
-                    possibilities.Add(i);
-                    for (int x = 0; x < prefabDimensions[i][0] + gap * 2; x++)
+                    isPossibility = false;
+                    if (landmarks.Count != 0)
                     {
-                        for (int y = 0; y < prefabDimensions[i][1] + gap * 2; y++)
+                        if (landmarks.Contains(i))
                         {
-                            if (CheckCoords(grid, originX + x, originY + y))
+                            isPossibility = true;
+                        }
+                    }
+                    else
+                    {
+                        if (buildingPrefabs[i].tag != "Landmark")
+                        {
+                            isPossibility = true;
+                        }
+                    }
+
+                    //This section of code attempts to achieve a certain ratio of landmark buildings to non-landmark buildings - it's a bad way of doing this
+                    /*
+                    else
+                    {
+                        if (buildingPrefabs[i].tag == "Landmark")
+                        {
+                            if (numOfLandmarks / (float) (numOfLandmarks + numOfGenerics) <= landmarkRatio)
                             {
-                                possibilities.RemoveAt(possibilities.Count - 1);
-                                x = prefabDimensions[i][0] + gap * 2;
-                                break;
+                                isPossibility = true;
+                            }
+                        }
+                        else
+                        {
+                            if (numOfLandmarks / (float) (numOfLandmarks + numOfGenerics) >= landmarkRatio)
+                            {
+                                isPossibility = true;
+                            }
+                        }
+                    }
+                    */
+
+                    if (isPossibility)
+                    {
+                        possibilities.Add(i);
+                        for (int x = 0; x < prefabDimensions[i][0] + gap * 2; x++)
+                        {
+                            for (int y = 0; y < prefabDimensions[i][1] + gap * 2; y++)
+                            {
+                                if (CheckCoords(grid, originX + x, originY + y))
+                                {
+                                    possibilities.RemoveAt(possibilities.Count - 1);
+                                    x = prefabDimensions[i][0] + gap * 2;
+                                    break;
+                                }
                             }
                         }
                     }
                 }
 
+                //Fiddle with the value if city generation is too slow
+                if (Time.realtimeSinceStartup - startTime > (1f / 30f))
+                {
+                    yield return null;
+                    startTime = Time.realtimeSinceStartup;
+                }
+
                 if (possibilities.Count != 0)
                 {
                     index = possibilities[Random.Range(0, possibilities.Count)];
+                    if (buildingPrefabs[index].tag == "Landmark")
+                    {
+                        if (landmarks.Contains(index))
+                        {
+                            landmarks.Remove(index);
+                        }
+                        numOfLandmarks++;
+                    }
+                    else
+                    {
+                        numOfGenerics++;
+                    }
                     //Instantiate raycatcher
                     raycatcher = Instantiate(
                         raycatcherPrefab,
                         new Vector3(
-                            (originX + gap - (gridX / 2f)) * 3f + prefabOffsets[index][0],
+                            (originX + gap - (gridX / 2f)) * 10f + prefabDimensions[index][0] * 5f,
                             0,
-                            (originY + gap - (gridY / 2f)) * 3f + prefabOffsets[index][1]
+                            (originY + gap - (gridY / 2f)) * 10f + prefabDimensions[index][1] * 5f
                             ),
                         Quaternion.identity
                         );
                     raycatcherCollider = raycatcher.GetComponent<BoxCollider>();
                     raycatcherCollider.center = new Vector3(
-                        prefabDimensions[index][0] * 1.5f - prefabOffsets[index][0],
+                        0,
                         150,
-                        prefabDimensions[index][1] * 1.5f - prefabOffsets[index][1]
+                        0
                         );
                     raycatcherCollider.size = new Vector3(
-                        prefabDimensions[index][0] * 3f,
+                        prefabDimensions[index][0] * 10f,
                         300,
-                        prefabDimensions[index][1] * 3f
+                        prefabDimensions[index][1] * 10f
                         );
 
                     //Instantiate building
-                    Instantiate(
+                    instantiatedBuilding = Instantiate(
                         buildingPrefabs[index],
                         new Vector3(
-                            (originX + gap - (gridX / 2f)) * 3f + prefabOffsets[index][0],
+                            raycatcher.transform.position.x - prefabOffsets[index][0],
                             0,
-                            (originY + gap - (gridY / 2f)) * 3f + prefabOffsets[index][1]
+                            raycatcher.transform.position.z - prefabOffsets[index][1]
                             ),
                         Quaternion.identity,
                         raycatcher.transform
                         );
+
+                    //If the building is a generic building, give it a random height
+                    if (instantiatedBuilding.tag == "Generic Building")
+                    {
+                        distanceFromOrigin = Mathf.Sqrt(Mathf.Pow(instantiatedBuilding.transform.position.x / (mapSizeX / 2), 2)
+                            + Mathf.Pow(instantiatedBuilding.transform.position.z / (mapSizeY / 2), 2));
+                        distanceFactor = Mathf.Clamp(distanceFromOrigin, 0f, 1f);
+                        randomFactor = Random.Range(0f, 1f);
+                        heightOffset = (randomFactor * heightRandomness + distanceFactor * (1 - heightRandomness)) * maxHeightOffset;
+                        instantiatedBuilding.transform.position += new Vector3(0, -heightOffset, 0);
+                    }
+                    else
+                    {
+                        heightOffset = 0f;
+                    }
+
+                    if (firstBuilding && buildingPrefabs[index].tag != "Landmark")
+                    {
+                        GameObject.Find("FPS_Player").transform.position = new Vector3(
+                            raycatcher.transform.position.x,
+                            trueBuildingDimensions[index][2] - heightOffset + 1,
+                            raycatcher.transform.position.z
+                            );
+                        firstBuilding = false;
+                    }
 
                     //Fill in grid
                     for (int x = gap; x < prefabDimensions[index][0] + gap; x++)
@@ -357,11 +539,6 @@ public class CityBuilder : MonoBehaviour
                     }
                 }
             }
-        }
-        if (Time.realtimeSinceStartup - startTime > 0.1)
-        {
-            yield return null;
-            startTime = Time.realtimeSinceStartup;
         }
     }
 }

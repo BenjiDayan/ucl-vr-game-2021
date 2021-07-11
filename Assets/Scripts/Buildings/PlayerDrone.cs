@@ -8,26 +8,67 @@ public class PlayerDrone : MonoBehaviour
     GameObject player;
     float realAcceleration;
     int damping = 2;
-    public string mode = "follow player";
 
     GameObject debrisTarget;
     GameObject bubble;
     Rigidbody targetRb;
     float targetOffset;
 
-    Vector3 targetPosition;
+    
     bool trueTarget;
 
     Vector3[] bubbleOffsets;
 
-    public float acceleration = 10f;
-    public float speedLimit = 2f;
-    public float defaultHeight = 340f;
+    [Header("Flight settings")]
+    [SerializeField] public float acceleration = 10f;
+    [SerializeField] public float speedLimit = 2f;
+    [SerializeField] public float defaultHeight = 340f;
+    [SerializeField] public float playerOrbitRadius = 20f;
+    [SerializeField] public float playerOrbitPeriod = 4f;
+    Vector3 playerOrbitVelocity;
+    float playerOrbitSpeed;
+
+    Vector3 constructionSiteTarget;
+
+    GameObject droneController;
+
+    [Header("Leave as default")]
+    [SerializeField] public Vector3 orbitOrigin;
+    [SerializeField] public Vector3 targetPosition;
+    [SerializeField] public string mode = "follow player";
+
+    //Orbiting information
+    float orbitStartTime;
+    float orbitOffset;
+    float orbitRadius;
+    float orbitTopSpeed;
+    int orbitRotationsNumber;
+    float orbitDuration;
+    float orbitDistance;
+
+    GameObject hologram;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         player = GameObject.Find("FPS_Player");
+        droneController = GameObject.Find("Drone Controller");
+        hologram = GameObject.Find("Hologram");
+        playerOrbitSpeed = playerOrbitRadius * 2f * Mathf.PI / playerOrbitPeriod;
+        Debug.Log(playerOrbitSpeed.ToString());
+    }
+
+    void GoToConstructionSite (Vector3 siteTarget)
+    {
+        constructionSiteTarget = siteTarget;
+        mode = "move towards site";
+        orbitOrigin = droneController.GetComponent<PDController>().raycatcherTransform.position;
+    }
+
+    void EndTask()
+    {
+        mode = "follow player";
+        rb.constraints = RigidbodyConstraints.None;
     }
 
     void AssignDebrisTarget(GameObject target)
@@ -39,6 +80,8 @@ public class PlayerDrone : MonoBehaviour
         mode = "grab debris";
     }
 
+    //This is how drones used to follow the player
+    /*
     void FollowPlayer()
     {
         targetPosition = player.transform.position;
@@ -63,6 +106,7 @@ public class PlayerDrone : MonoBehaviour
             rb.velocity = Vector3.Normalize(rb.velocity) * speedLimit;
         }
     }
+    */
 
     bool CastRays()
     {
@@ -124,6 +168,10 @@ public class PlayerDrone : MonoBehaviour
             {
                 idealVelocity += targetRb.velocity;
             }
+            else if (mode == "follow player")
+            {
+                idealVelocity += playerOrbitVelocity;
+            }
             if (idealVelocity.magnitude > speedLimit)
             {
                 idealVelocity = Vector3.Normalize(idealVelocity) * speedLimit;
@@ -166,6 +214,39 @@ public class PlayerDrone : MonoBehaviour
         }
     }
 
+    void FollowPlayer()
+    {
+        Vector3 orbitPoint = player.transform.position;
+        orbitPoint.y = defaultHeight;
+        Vector3 leadingOrbitPoint = orbitPoint;
+
+        List<GameObject> dronesFollowingPlayer = droneController.GetComponent<PDController>().dronesFollowingPlayer;
+        float angle = dronesFollowingPlayer.IndexOf(gameObject) * 2f * Mathf.PI / dronesFollowingPlayer.Count;
+        angle += ((Time.realtimeSinceStartup / playerOrbitPeriod) % 1) * 2f * Mathf.PI;
+
+        orbitPoint += new Vector3(
+            Mathf.Sin(angle) * playerOrbitRadius,
+            0,
+            Mathf.Cos(angle) * playerOrbitRadius
+            );
+
+        leadingOrbitPoint += new Vector3(
+            Mathf.Sin(angle + 0.01f) * playerOrbitRadius,
+            0,
+            Mathf.Cos(angle + 0.01f) * playerOrbitRadius
+            );
+
+        playerOrbitVelocity = leadingOrbitPoint - orbitPoint;
+        playerOrbitVelocity = Vector3.Normalize(playerOrbitVelocity) * playerOrbitSpeed;
+
+        targetPosition = orbitPoint;
+
+        Navigate();
+
+        //For the benefit of the drone mask
+        targetPosition = leadingOrbitPoint;
+    }
+
     void GrabDebris()
     {
         targetPosition = debrisTarget.transform.position;
@@ -189,8 +270,11 @@ public class PlayerDrone : MonoBehaviour
     {
         //Move the debris
         debrisTarget.transform.position = transform.position + Vector3.down * targetOffset;
+
+        //Give the debris to the player if I am close enough
         if (Vector3.Distance(debrisTarget.transform.position, player.transform.position) < targetOffset)
         {
+            hologram.SendMessage("AddDebris");
             Destroy(bubble);
             Destroy(debrisTarget);
             mode = "follow player";
@@ -205,6 +289,100 @@ public class PlayerDrone : MonoBehaviour
         Navigate();
     }
 
+    void MoveTowardsSite()
+    {
+        targetPosition = constructionSiteTarget;
+
+        if (Vector3.Distance(targetPosition, transform.position) < rb.velocity.magnitude * Time.deltaTime)
+        {
+            transform.position = targetPosition;
+            mode = "wait for instructions";
+            rb.velocity = Vector3.zero;
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            droneController.SendMessage("InPosition");
+            return;
+        }
+
+        Navigate();
+    }
+
+    void BeginOrbit(float offset)
+    {
+        mode = "orbit";
+        orbitStartTime = Time.realtimeSinceStartup;
+
+        //Get information from drone controller
+        orbitOffset = offset;
+        orbitOrigin.y = droneController.GetComponent<PDController>().buildingDimensions[droneController.GetComponent<PDController>().buildingIndex][2];
+        orbitRadius = droneController.GetComponent<PDController>().radius;
+        orbitDuration = droneController.GetComponent<PDController>().buildingConstructionTime;
+
+        //Work out details of orbit
+        float d;
+        int i = 0;
+        float num1 = acceleration * orbitDuration / 2f;
+        float num2 = Mathf.Pow(num1 * 2f, 2f);
+        float num3;
+        float sAdd;
+        float sSubtract;
+        while (true)
+        {
+            i++;
+            d = Mathf.Sqrt(Mathf.Pow(i * orbitRadius * 2f * Mathf.PI, 2f) + Mathf.Pow(orbitOrigin.y, 2f));
+            num3 = Mathf.Sqrt(num2 - (4f * acceleration * d)) / 2f;
+            sAdd = num1 + num3;
+            sSubtract = num1 - num3;
+            if (sAdd < sSubtract && sAdd < speedLimit)
+            {
+                orbitTopSpeed = sAdd;
+            }
+            else if (sSubtract < speedLimit)
+            {
+                orbitTopSpeed = sSubtract;
+            }
+            else
+            {
+                break;
+            }
+            orbitDistance = d;
+        }
+        orbitRotationsNumber = i - 1;
+    }
+
+    void Orbit()
+    {
+        float t = Time.realtimeSinceStartup - orbitStartTime;
+        float accelerationDuration = orbitTopSpeed / acceleration;
+        float remainingT = orbitDuration - t;
+        float orbitDistanceCovered;
+
+        //Starting acceleration
+        if (t < accelerationDuration)
+        {
+            orbitDistanceCovered = acceleration * Mathf.Pow(t, 2f) / 2f;
+        }
+        //Braking deceleration
+        else if (remainingT < accelerationDuration)
+        {
+            orbitDistanceCovered = orbitDistance - (acceleration * Mathf.Pow(remainingT, 2f) / 2f);
+        }
+        //Moving at constant speed
+        else
+        {
+            orbitDistanceCovered = orbitTopSpeed * t - (Mathf.Pow(orbitTopSpeed, 2f) / (acceleration * 2f));
+        }
+
+        //Move to where in the orbit I should be
+        float angle = (orbitOffset + (orbitDistanceCovered / orbitDistance) * orbitRotationsNumber) * 2f * Mathf.PI;
+        Vector3 goToPosition = new Vector3(
+            Mathf.Sin(angle) * orbitRadius,
+            0,
+            Mathf.Cos(angle) * orbitRadius
+            ) + orbitOrigin;
+        goToPosition.y = (orbitDistanceCovered / orbitDistance) * orbitOrigin.y;
+        transform.position = goToPosition;
+    }
+
     void Update()
     {
         switch (mode)
@@ -217,6 +395,14 @@ public class PlayerDrone : MonoBehaviour
                 break;
             case "bring debris":
                 BringDebris();
+                break;
+            case "move towards site":
+                MoveTowardsSite();
+                break;
+            case "wait for instructions":
+                break;
+            case "orbit":
+                Orbit();
                 break;
         }
     }

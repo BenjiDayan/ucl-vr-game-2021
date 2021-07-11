@@ -47,11 +47,26 @@ MonoBehaviour:
     type: 3}
   buildingPrefabs:
   - {fileID: 812953171044662743, guid: e76e1136ccca706429e6a21bf38282e7, type: 3}
-  mapSizeX: 201
-  mapSizeY: 150
-  buildingSeparation: 3
+  - {fileID: 452246586172267112, guid: c7e6507ed2873604c9aa7e0c523b5b82, type: 3}
+  - {fileID: 8537070541563303196, guid: a44df752342612445a661250bf8e0ecf, type: 3}
+  - {fileID: 5430384347292923440, guid: 3b47f6bd2fc78744a8a89352fa6dcbf1, type: 3}
+  - {fileID: 4876627905554624614, guid: 5d9fa2b4d20d9f1459069a539ddfe9f8, type: 3}
+  - {fileID: 5766036017356372904, guid: 75611e75777ff9d40a5d6fa3cf01954d, type: 3}
+  - {fileID: 610782704714641016, guid: 989f6790f4e12214d9e848969aa8b663, type: 3}
+  - {fileID: 3355520153530604603, guid: 7a8b2d0954b6b574d87936a9f8c5e363, type: 3}
+  - {fileID: 2427626756832285911, guid: 052433f0175b00c43a7bf26c0d10eb86, type: 3}
+  - {fileID: 4583146346931847104, guid: 45e5364d224a9fd42bd1849df0b181af, type: 3}
+  fogPlate: {fileID: 8847898283242113356, guid: 8919e41819d17f44ab7a1ce438076530,
+    type: 3}
+  mapSizeX: 1000
+  mapSizeY: 1000
+  buildingSeparation: 10
   numberOfPaths: 20
-  maxPathLength: 89
-  minPathLength: 21
-  maxPathWidth: 15
-  minPathWidth: 6
+  maxPathLength: 630
+  minPathLength: 140
+  maxPathWidth: 100
+  minPathWidth: 42
+  maxHeightOffset: 50
+  heightRandomness: 0.5
+  fogHeight: 25
+  numberOfPlates: 10
