@@ -149,6 +149,7 @@ MonoBehaviour:
   numberOfSegments: 30
   verticalRandomness: 0.1
   segmentSpin: 9000
+  collapseSound: {fileID: 0}
 --- !u!54 &6801382307807509749
 Rigidbody:
   m_ObjectHideFlags: 0

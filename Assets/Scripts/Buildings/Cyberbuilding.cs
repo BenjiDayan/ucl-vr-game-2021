@@ -18,7 +18,7 @@ public class Cyberbuilding : MonoBehaviour
     [SerializeField] public int numberOfSegments = 30;
     [SerializeField] public float verticalRandomness = 0.1f;
     [SerializeField] public float segmentSpin =91000f;
-    [SerializeFiled] AudioClip collapseSound;
+    [SerializeField] AudioClip collapseSound;
 
     private Collider[] colliders;
     private Rigidbody rb;

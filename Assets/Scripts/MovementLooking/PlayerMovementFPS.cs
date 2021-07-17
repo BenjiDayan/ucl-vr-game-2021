@@ -42,7 +42,7 @@ public class PlayerMovementFPS : MonoBehaviour
     void Update()
     {
         //isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-        isGrounded = GetComponent<CharacterController>().isGrounded;
+        isGrounded = controller.isGrounded;
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f; //"Set to zero" but actually force player to indeed hit the bottom
