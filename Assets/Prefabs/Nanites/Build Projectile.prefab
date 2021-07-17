@@ -99,6 +99,8 @@ MonoBehaviour:
   speed: 20
   lifetime: 1
   trajectory: {x: 0, y: 0, z: 0}
+  destructionSound: {fileID: 0}
+  destructionVolume: 1
   acceleration: 400
 --- !u!136 &66415019443609276
 CapsuleCollider:
@@ -146,5 +148,5 @@ MonoBehaviour:
     type: 3}
   buildingSegment: {fileID: 7961965945139813475, guid: ba7cd969e5fa91745b723ded3bea1563,
     type: 3}
-  cyberbuilding: {fileID: 812953171044662743, guid: e76e1136ccca706429e6a21bf38282e7,
+  cyberbuilding: {fileID: 812953171044662743, guid: 60a4139f1d9339a42b991ede98ef55c7,
     type: 3}

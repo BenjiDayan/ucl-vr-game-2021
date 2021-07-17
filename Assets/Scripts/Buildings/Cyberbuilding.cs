@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Audio;
 using UnityEngine;
 
 public class Cyberbuilding : MonoBehaviour
@@ -11,6 +12,7 @@ public class Cyberbuilding : MonoBehaviour
     public int numberOfSegments = 10;
     public float verticalRandomness = 0.3f;
     public float segmentSpin = 1000f;
+    public AudioClip collapseSound;
 
     private Collider[] colliders;
     private Rigidbody rb;
@@ -63,6 +65,9 @@ public class Cyberbuilding : MonoBehaviour
 
     void Collapse(Collision collision)
     {
+            if (collapseSound != null) {
+                AudioSource.PlayClipAtPoint(collapseSound, transform.position);
+            }
         foreach (Collider cldr in colliders)
             cldr.enabled = false;
         rb.constraints = RigidbodyConstraints.None;

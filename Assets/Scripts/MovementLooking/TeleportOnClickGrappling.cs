@@ -20,6 +20,8 @@ public class TeleportOnClickGrappling : MonoBehaviour
     private bool travelling = false;
     private float gravity;
     private Vector3 targetPos;
+    private GameObject targetObject;
+    private Collider targetCollider;
     private float t = 0;
     private Vector3 dir;
     [SerializeField] PlayerMovementFPS movement;
@@ -63,15 +65,38 @@ public class TeleportOnClickGrappling : MonoBehaviour
         }
     }
 
-    private GameObject GetLookedAtObject()
+    private Collider GetLookedAtCollider()
     {
         Vector3 origin = transform.position;
         Vector3 direction = transform.forward;
-        if (Physics.Raycast(origin, direction, out lastRaycastHit, range))
-            return lastRaycastHit.collider.gameObject;
+        if (Physics.Raycast(origin, direction, out lastRaycastHit, range)) {
+            return lastRaycastHit.collider;
+        }
         else
             return null;
     }
+
+    private void ModifyObjectsColliders(GameObject building, bool enabled) {
+        Component[] components = gameObject.GetComponentsInChildren<Component>(true);
+        List<Collider> colliders = new List<Collider>();
+        foreach (Component c in components) {
+            if (c.GetType() is Collider) {
+                colliders.Add((Collider) c);
+            } 
+        }
+        Debug.Log("Found " + colliders.Count.ToString() + " colliders");
+        List<BoxCollider> box_colliders = new List<BoxCollider>();
+        foreach (Component c in components) {
+            if (c.GetType() is BoxCollider) {
+                colliders.Add((BoxCollider) c);
+            } 
+        }
+        Debug.Log("Found " + box_colliders.Count.ToString() + " BoxColliders");
+        foreach (Collider c in colliders) {
+            c.enabled = enabled;
+        }
+    }
+
     private void TeleportToLookAt(GameObject teleportationTarget)
     {
         //transform.position = lastRaycastHit.point + lastRaycastHit.normal * 2; 
@@ -94,6 +119,29 @@ public class TeleportOnClickGrappling : MonoBehaviour
         dir = targetPos - transform.root.position;
         travelling = true;
     }
+
+    private void TeleportOnCollider(Collider teleportationTarget) {
+                //transform.position = lastRaycastHit.point + lastRaycastHit.normal * 2; 
+        Transform targetTrans = teleportationTarget.transform;
+        
+        if (Vector3.Dot(lastRaycastHit.normal, Vector3.up) > 1/Mathf.Sqrt(2)) {
+            //This is designed for teleporting next to objects - i.e. backtrack along the surface normal a little, and go up so as not to fall through the floor
+            //transform.root.position = new Vector3(lastRaycastHit.point.x, lastRaycastHit.point.y + 2, lastRaycastHit.point.z) - lastRaycastHit.normal * 2;
+            targetPos = new Vector3(lastRaycastHit.point.x, lastRaycastHit.point.y + 2, lastRaycastHit.point.z) - lastRaycastHit.normal * 2;
+        }
+        else {
+            //This is designed for teleporting on top of buildings
+            Debug.Log("teleporting on top of building: it's position is" + targetTrans.position.ToString());
+            //transform.root.position = new Vector3(targetTrans.position.x, targetTrans.position.y + targetTrans.lossyScale.y/2 + 2, targetTrans.position.z);
+            targetPos = new Vector3(targetTrans.position.x, teleportationTarget.bounds.max.y + 4, targetTrans.position.z);
+        }
+
+        movement.gravity = 0;
+        t = 0;
+        dir = targetPos - transform.root.position;
+        travelling = true;
+    }
+
     void Travel()
     {
         if (travelling)
@@ -106,6 +154,7 @@ public class TeleportOnClickGrappling : MonoBehaviour
             {
                 travelling = false;
                 movement.gravity = gravity;
+                ModifyObjectsColliders(targetObject, true);
             }
         }
     }
@@ -117,9 +166,14 @@ public class TeleportOnClickGrappling : MonoBehaviour
                 (device.TryGetFeatureValue(teleportKeyVR, out triggerValue) && triggerValue)
             )
         {
-            GameObject targetObject = GetLookedAtObject();
+            targetCollider = GetLookedAtCollider();
+            if (targetCollider != null) {
+                targetObject = targetCollider.gameObject;
+            }
             if (targetObject != null && !travelling)
-                TeleportToLookAt(targetObject);
+                ModifyObjectsColliders(targetObject, false);
+                //TeleportToLookAt(targetObject);
+                TeleportOnCollider(targetCollider);
         }
 
         Travel();

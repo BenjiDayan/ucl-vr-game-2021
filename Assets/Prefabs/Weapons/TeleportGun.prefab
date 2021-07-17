@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7066247326585578847}
   - component: {fileID: 7066247326585578846}
   - component: {fileID: 7066247326585578833}
-  - component: {fileID: 897595211066888748}
+  - component: {fileID: 247985542347998490}
   m_Layer: 0
   m_Name: TeleportGun
   m_TagString: Untagged
@@ -94,7 +94,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &897595211066888748
+--- !u!114 &247985542347998490
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,7 +103,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7066247326585578832}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fbf752ef2a4b08438c6c70b3a47c9be, type: 3}
+  m_Script: {fileID: 11500000, guid: 461198531ebb09c4082b0064fa950bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teleportKey: 324
   range: 50
+  speed: 2.5
+  epsilon: 2
+  movement: {fileID: 0}

@@ -2772,6 +2772,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: cb_better_debris
       objectReference: {fileID: 0}
+    - target: {fileID: 1552282257413007558, guid: 60a4139f1d9339a42b991ede98ef55c7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6545030194348378382, guid: 60a4139f1d9339a42b991ede98ef55c7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60a4139f1d9339a42b991ede98ef55c7, type: 3}
 --- !u!1 &1741165756
