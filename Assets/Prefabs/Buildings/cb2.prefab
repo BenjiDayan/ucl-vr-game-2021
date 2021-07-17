@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: -1285058887900611698}
   - component: {fileID: 6814928729171444708}
   - component: {fileID: 2944172829002269149}
+  - component: {fileID: 2720552927650973981}
   m_Layer: 9
   m_Name: cb2
-  m_TagString: Untagged
+  m_TagString: Landmark
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,10 +96,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 28
-  m_Height: 540
+  m_Radius: 16.350275
+  m_Height: 315.32672
   m_Direction: 1
-  m_Center: {x: 0, y: 268.09827, z: 0}
+  m_Center: {x: 0, y: 156.55289, z: 0}
 --- !u!54 &6814928729171444708
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -127,6 +128,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bd2cd71080713c49876fd3931d885e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dustCloud: {fileID: 0}
-  segment: {fileID: 0}
-  spin: 0.2
+  buildingIndex: 1
+  dustCloud: {fileID: 5828400458613345193, guid: 137fa010831a1d047a81d1acecda3c4a,
+    type: 3}
+  segment: {fileID: 8294475452549803696, guid: fee11dccf92d08f4ab6da06017c65bee, type: 3}
+  intersectionDetector: {fileID: 4844770369484684958, guid: aeaf505a609693543b29c0538faa4b9d,
+    type: 3}
+  spin: 0.6
+  numberOfSegments: 30
+  verticalRandomness: 0.1
+  segmentSpin: 9000
+--- !u!136 &2720552927650973981
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452246586172267112}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 24
+  m_Height: 70
+  m_Direction: 1
+  m_Center: {x: 0, y: 20, z: 0}

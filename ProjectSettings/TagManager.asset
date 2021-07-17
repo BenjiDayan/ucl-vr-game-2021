@@ -7,6 +7,8 @@ TagManager:
   - Building
   - Player Drone
   - Debris
+  - Landmark
+  - Generic Building
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - Building
   - Raycatcher
   - Debris
-  - 
+  - Collider Tester
   - 
   - 
   - 

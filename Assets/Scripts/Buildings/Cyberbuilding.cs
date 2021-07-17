@@ -5,33 +5,46 @@ using UnityEngine;
 
 public class Cyberbuilding : MonoBehaviour
 {
+    [Header("Give each building prefab a unique number, starting from 0")]
+    [SerializeField] public int buildingIndex;
 
-    public GameObject dustCloud;
-    public GameObject segment;
-    public float spin = 0.2f;
-    public int numberOfSegments = 10;
-    public float verticalRandomness = 0.3f;
-    public float segmentSpin = 1000f;
-    public AudioClip collapseSound;
+    [Header("Prefabs")]
+    [SerializeField] public GameObject dustCloud;
+    [SerializeField] public GameObject segment;
+    [SerializeField] public GameObject intersectionDetector;
+
+    [Header("Collapse settings")]
+    [SerializeField] public float spin = 0.6f;
+    [SerializeField] public int numberOfSegments = 30;
+    [SerializeField] public float verticalRandomness = 0.1f;
+    [SerializeField] public float segmentSpin =91000f;
+    [SerializeFiled] AudioClip collapseSound;
 
     private Collider[] colliders;
     private Rigidbody rb;
     private Vector3 dir = new Vector3(0, 0, 0);
     private GameObject segmentInstance;
+    private GameObject hologram;
 
 
     void Start()
     {
         colliders = GetComponentsInChildren<Collider>();
         rb = GetComponent<Rigidbody>();
+        hologram = GameObject.Find("Hologram");
     }
 
     void Update()
     {
         rb.AddTorque(dir * Time.deltaTime * Mathf.Sin(Vector3.Angle(transform.up, Vector3.up) * Mathf.Deg2Rad + 0.02f), ForceMode.VelocityChange);
 
-        if (transform.position.y < -300f)
+        if (transform.position.y < -313f)
         {
+            Instantiate(
+                intersectionDetector,
+                transform.parent,
+                false
+                );
             transform.parent.gameObject.GetComponent<BoxCollider>().enabled = true;
             Destroy(gameObject);
         }
@@ -39,6 +52,7 @@ public class Cyberbuilding : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+
         string colliderName = collision.gameObject.name;
         if (colliderName.Contains("Bullet") || colliderName.Contains("Laser") || colliderName.Contains("Rocket"))
         {
@@ -65,9 +79,11 @@ public class Cyberbuilding : MonoBehaviour
 
     void Collapse(Collision collision)
     {
-            if (collapseSound != null) {
-                AudioSource.PlayClipAtPoint(collapseSound, transform.position);
-            }
+        if (collapseSound != null) {
+            AudioSource.PlayClipAtPoint(collapseSound, transform.position);
+        }
+        hologram.SendMessage("EarnBuilding", buildingIndex);
+
         foreach (Collider cldr in colliders)
             cldr.enabled = false;
         rb.constraints = RigidbodyConstraints.None;
