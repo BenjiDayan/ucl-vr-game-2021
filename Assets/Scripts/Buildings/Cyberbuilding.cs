@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Audio;
 using UnityEngine;
 
 public class Cyberbuilding : MonoBehaviour
@@ -17,6 +18,7 @@ public class Cyberbuilding : MonoBehaviour
     [SerializeField] public int numberOfSegments = 30;
     [SerializeField] public float verticalRandomness = 0.1f;
     [SerializeField] public float segmentSpin =91000f;
+    [SerializeField] AudioClip collapseSound;
 
     private Collider[] colliders;
     private Rigidbody rb;
@@ -77,6 +79,9 @@ public class Cyberbuilding : MonoBehaviour
 
     void Collapse(Collision collision)
     {
+        if (collapseSound != null) {
+            AudioSource.PlayClipAtPoint(collapseSound, transform.position);
+        }
         hologram.SendMessage("EarnBuilding", buildingIndex);
 
         foreach (Collider cldr in colliders)
