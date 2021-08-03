@@ -52,7 +52,7 @@ public class Cyberbuilding : MonoBehaviour
     {
 
         string colliderName = collision.gameObject.name;
-        if (colliderName.Contains("Bullet") || colliderName.Contains("Laser") || colliderName.Contains("Rocket"))
+        if (colliderName.Contains("Rocket"))
         {
             Collapse(collision);
         }

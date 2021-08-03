@@ -61,12 +61,14 @@ MonoBehaviour:
   mapSizeX: 1000
   mapSizeY: 1000
   buildingSeparation: 10
-  numberOfPaths: 20
+  numberOfPaths: 10
   maxPathLength: 630
   minPathLength: 140
-  maxPathWidth: 100
+  maxPathWidth: 50
   minPathWidth: 42
-  maxHeightOffset: 50
-  heightRandomness: 0.5
-  fogHeight: 25
+  maxHeightOffset: 100
+  heightRandomness: 0.9
+  instancesPerLandmark: 3
+  fogTop: 25
+  fogBottom: 15
   numberOfPlates: 10
