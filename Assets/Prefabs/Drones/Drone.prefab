@@ -52,7 +52,7 @@ MonoBehaviour:
   attackRunDistance: 200
   maxAttackAngle: 30
   attackRunDuration: 10
-  attackRunCooldown: 2
+  attackRunCooldown: 6
   attackRunSpeed: 50
   attackRunSidewaysMovement: 1
   hackDuration: 5.5
@@ -60,7 +60,7 @@ MonoBehaviour:
   startingHP: 10
   bulletDamage: 1
   laserDamage: 2
-  rocketDamage: 3
+  rocketDamage: 10
   droneMaskPrefab: {fileID: 3066532254485366278, guid: e6f1d241c12e9cd4daf5a175be467427,
     type: 3}
   orbitOrigin: {x: 0, y: 0, z: 0}

@@ -56,7 +56,7 @@ public class Cyberbuilding : MonoBehaviour
         string colliderName = collision.gameObject.name;
         if (colliderName.Contains("Rocket"))
         {
-            Collapse(collision);
+            Collapse(collision.transform.position.y);
         }
 
     }
@@ -77,7 +77,7 @@ public class Cyberbuilding : MonoBehaviour
         return directionVector;
     }
 
-    void Collapse(Collision collision)
+    void Collapse(float collisionHeight)
     {
         if (collapseSound != null) {
             AudioSource.PlayClipAtPoint(collapseSound, transform.position);
@@ -91,7 +91,7 @@ public class Cyberbuilding : MonoBehaviour
 
         Transform cloudTransform = dustCloud.transform;
         Vector3 explosionOrigin = transform.position;
-        explosionOrigin.y = collision.transform.position.y;
+        explosionOrigin.y = collisionHeight;
         Instantiate(dustCloud, explosionOrigin, cloudTransform.rotation);
 
         Vector3 randDir;

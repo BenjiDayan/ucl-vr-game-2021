@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1933298190284586711}
   - component: {fileID: 1133738151813766045}
   - component: {fileID: 6886232970725572797}
+  - component: {fileID: 6412946235013333224}
   m_Layer: 9
   m_Name: cb4
   m_TagString: Landmark
@@ -115,6 +116,7 @@ MonoBehaviour:
   numberOfSegments: 30
   verticalRandomness: 0.1
   segmentSpin: 9000
+  collapseSound: {fileID: 0}
 --- !u!54 &-5426842342734069051
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -173,3 +175,19 @@ CapsuleCollider:
   m_Height: 200
   m_Direction: 1
   m_Center: {x: 0.013961792, y: 130.00002, z: -0.008333206}
+--- !u!208 &6412946235013333224
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5430384347292923440}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 49.147003, y: 130, z: 35}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.014, y: 130, z: -0.008}
+  m_TimeToStationary: 0.5

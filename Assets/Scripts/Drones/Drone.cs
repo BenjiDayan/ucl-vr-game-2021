@@ -38,7 +38,6 @@ public class Drone : MonoBehaviour
     [SerializeField] public float attackRunSpeed = 50f;
     [SerializeField] public float attackRunSidewaysMovement = 5f;
 
-    float futureTime;
     int invertRotation = 1;
 
     [Header("Hacking settings")]
@@ -68,6 +67,7 @@ public class Drone : MonoBehaviour
     [SerializeField] public Vector3 targetPosition;
     [SerializeField] public string mode = "follow player";
     [SerializeField] public float rebootStart;
+    [SerializeField] public float futureTime;
 
     //Orbiting information
     float orbitStartTime;
@@ -264,7 +264,11 @@ public class Drone : MonoBehaviour
         {
             lookVector = targetPosition - transform.position;
         }
-        transform.rotation = Quaternion.LookRotation(lookVector);
+
+        if (lookVector != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(lookVector);
+        }
 
         //Accelerate
         if (doAccelerate)
@@ -319,6 +323,7 @@ public class Drone : MonoBehaviour
         {
             mode = "bring debris";
             Destroy(targetRb);
+            Destroy(debrisTarget.GetComponent<BoxCollider>());
             targetRb = player.GetComponent<Rigidbody>();
             bubble.GetComponent<Renderer>().enabled = true;
             BringDebris();

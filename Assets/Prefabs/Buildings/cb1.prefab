@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 5206623483544607523}
   - component: {fileID: 2321665029458672759}
   - component: {fileID: 2731893370982044585}
+  - component: {fileID: 4547719539875197840}
   m_Layer: 9
   m_Name: cb1
   m_TagString: Landmark
@@ -244,3 +245,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 30.418915, y: 18.245987, z: 33.73685}
   m_Center: {x: 33.29648, y: 12.018829, z: 0.016870499}
+--- !u!208 &4547719539875197840
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812953171044662743}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 31.5, y: 125, z: 17.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 130, z: -3}
+  m_TimeToStationary: 0.5

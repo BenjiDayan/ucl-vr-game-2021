@@ -106,15 +106,15 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
-    agentHeight: 2
-    agentSlope: 45
+    agentRadius: 15
+    agentHeight: 15
+    agentSlope: 14
     agentClimb: 0.4
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 5
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -262,6 +262,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6245023829128451043, guid: 1e472c10827d06c488ff1da3a4550651,
+        type: 3}
+      propertyPath: minPathLength
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 6245023829128451043, guid: 1e472c10827d06c488ff1da3a4550651,
         type: 3}
       propertyPath: buildingPrefabs.Array.size
@@ -678,7 +683,7 @@ PrefabInstance:
     - target: {fileID: -3315663512825476707, guid: 2671ee719d091f640852ef627bfc149e,
         type: 3}
       propertyPath: mode
-      value: begin attack run
+      value: follow player
       objectReference: {fileID: 0}
     - target: {fileID: 3106921536158419003, guid: 2671ee719d091f640852ef627bfc149e,
         type: 3}
@@ -688,7 +693,7 @@ PrefabInstance:
     - target: {fileID: 3106921536158419003, guid: 2671ee719d091f640852ef627bfc149e,
         type: 3}
       propertyPath: m_TagString
-      value: Enemy Drone
+      value: Player Drone
       objectReference: {fileID: 0}
     - target: {fileID: 3861350428480581622, guid: 2671ee719d091f640852ef627bfc149e,
         type: 3}
@@ -708,7 +713,7 @@ PrefabInstance:
     - target: {fileID: 3861350428480581622, guid: 2671ee719d091f640852ef627bfc149e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 500
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3861350428480581622, guid: 2671ee719d091f640852ef627bfc149e,
         type: 3}

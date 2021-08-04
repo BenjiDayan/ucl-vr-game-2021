@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4569249783846766667}
   - component: {fileID: 883556750383933206}
   - component: {fileID: 6576043033573905502}
+  - component: {fileID: -5497484097867862640}
   m_Layer: 9
   m_Name: gb2
   m_TagString: Generic Building
@@ -109,6 +110,7 @@ MonoBehaviour:
   numberOfSegments: 30
   verticalRandomness: 0.1
   segmentSpin: 9000
+  collapseSound: {fileID: 0}
 --- !u!65 &4569249783846766667
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -158,3 +160,19 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 981d2efe24d07a84a84feac8d1b48689, type: 2}
   - {fileID: 2100000, guid: 0a547ffdd1fe11d4ead675c06e8851df, type: 2}
   - {fileID: 2100000, guid: 1617aa0130ab7424cb5c1daebca1a114, type: 2}
+--- !u!208 &-5497484097867862640
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 610782704714641016}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 21.734001, y: 87.50001, z: 17.893002}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 87.50001, z: 0}
+  m_TimeToStationary: 0.5

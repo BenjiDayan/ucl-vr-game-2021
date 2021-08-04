@@ -40,7 +40,10 @@ public class DroneMask : MonoBehaviour
         droneScript = assignedDrone.GetComponent<Drone>();
         foreach (Transform child in transform)
         {
-            child.SendMessage("ReceiveDroneObject", assignedDrone);
+            if (child.gameObject.name.Contains("muzzle_flash"))
+            {
+                child.SendMessage("ReceiveDroneObject", assignedDrone);
+            }
         }
 
         shieldTransform = transform.Find("drone_shield");
@@ -156,7 +159,10 @@ public class DroneMask : MonoBehaviour
         }
         else
         {
-            targetRotation = Quaternion.LookRotation(droneScript.targetPosition - droneTransform.position);
+            if (droneScript.targetPosition - droneTransform.position != Vector3.zero)
+            {
+                targetRotation = Quaternion.LookRotation(droneScript.targetPosition - droneTransform.position);
+            }
 
             if (parentMode == "hack drone")
             {
