@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class Hologram : MonoBehaviour
 {
-
+    [SerializeField] KeyCode createBuildingKey = KeyCode.F;
+    [SerializeField] InputFeatureUsage<bool> createBuildingKeyVR = CommonUsages.secondaryButton;
+    InputDevice device;
     List<GameObject> buildings;
 
     public Material hologramMaterial;
@@ -101,6 +104,34 @@ public class Hologram : MonoBehaviour
 
     void Start()
     {
+        
+        var leftHandDevices = new List<InputDevice>();   
+        InputDevices.GetDevicesAtXRNode(XRNode.LeftHand, leftHandDevices);
+        if(leftHandDevices.Count == 1)
+        {
+            device = leftHandDevices[0];
+            Debug.Log("Found left hand device");
+
+            var inputFeatures = new List<InputFeatureUsage>();
+            if (device.TryGetFeatureUsages(inputFeatures)) {
+                foreach (var feature in inputFeatures) {
+                    if (feature.type == typeof(bool)) {
+                        bool featureValue;
+                        if (device.TryGetFeatureValue(feature.As<bool>(), out featureValue))
+                        {
+                            Debug.Log(string.Format("Bool feature '{0}''s value is '{1}'", feature.name, featureValue.ToString()));
+                        }
+                    }
+                    else {
+                        Debug.Log(string.Format("Non bool feature '{0}''s has type is '{1}'", feature.name, feature.type));
+                    }
+                }
+            }
+        }
+        else {
+            Debug.Log("No left hand devices!!");
+        }  
+
         buildings = GameObject.Find("City Builder").GetComponent<CityBuilder>().buildingPrefabs;
 
         for (int i = 0; i < buildings.Count; i++){
@@ -158,7 +189,13 @@ public class Hologram : MonoBehaviour
                 }
 
                 //Create new building
-                if (Input.GetKey(KeyCode.Mouse2))
+                // if (Input.GetKey(KeyCode.Mouse2))
+                // {
+                bool triggerValue;
+                if (   
+                        Input.GetKeyDown(createBuildingKey) ||
+                        (device.TryGetFeatureValue(createBuildingKeyVR, out triggerValue) && triggerValue)
+                    )
                 {
                     debris -= debrisCost;
                     creatingBuilding = true;
