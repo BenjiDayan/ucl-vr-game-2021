@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.AI;
 
 public class CityBuilder : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class CityBuilder : MonoBehaviour
     [SerializeField] public GameObject raycatcherPrefab;
     [SerializeField] public List<GameObject> buildingPrefabs;
     [SerializeField] public GameObject fogPlate;
+    [SerializeField] public GameObject navMeshSurfacePrefab;
+    [SerializeField] public GameObject mainEnemyPrefab;
 
     [Header("Procedural generation settings")]
     [SerializeField] public float mapSizeX = 201f;
@@ -28,6 +31,9 @@ public class CityBuilder : MonoBehaviour
     [SerializeField] public float fogBottom = 15f;
     [SerializeField] public int numberOfPlates = 10;
 
+    [Header("NavMesh settings")]
+    [SerializeField] public float navMeshHeight = 60f;
+
 
     [Header("Leave as default")]
     [SerializeField] public List<List<float>> prefabOffsets = new List<List<float>>();
@@ -35,10 +41,21 @@ public class CityBuilder : MonoBehaviour
     
     List<List<float>> trueBuildingDimensions = new List<List<float>>();
 
+    List<Vector3> enemyDestinations = new List<Vector3>();
+
     void Start()
     {
+        GameObject navMeshSurface = Instantiate(navMeshSurfacePrefab);
+        navMeshSurface.transform.position = new Vector3(0, navMeshHeight - 2.5f, 0);
+        navMeshSurface.transform.localScale = new Vector3(mapSizeX / 10f, 1, mapSizeY / 10f);
+
         Fog();
         StartCoroutine(GenerateBuildings());
+
+        NavMeshBuilder.BuildNavMesh();
+
+        GameObject mainEnemy = Instantiate(mainEnemyPrefab);
+        mainEnemy.SendMessage("ReceiveDestinations", enemyDestinations);
     }
 
     void Fog()
@@ -55,11 +72,7 @@ public class CityBuilder : MonoBehaviour
     int DivideAndRound(float value)
     {
         value /= 10;
-        float roundedFloat;
-        if (value % 0.5f == 0)
-            roundedFloat = Mathf.Ceil(value);
-        else
-            roundedFloat = Mathf.Round(value);
+        float roundedFloat = Mathf.Ceil(value);
         if (roundedFloat < 0f)
         {
             return 0;
@@ -116,18 +129,21 @@ public class CityBuilder : MonoBehaviour
         return originX.ToString() + " " + originY.ToString();
     }
 
+    Vector3 coordsToPosition(string inputCoords, int gridX, int gridY)
+    {
+        List<string> coords = new List<string>(inputCoords.Split(' '));
+        Vector3 outputPosition = new Vector3(int.Parse(coords[0]), 0, int.Parse(coords[1]));
+        outputPosition -= new Vector3(gridX / 2f, 0, gridY / 2f);
+        outputPosition *= 10;
+        outputPosition += new Vector3(5, 0, 5);
+        outputPosition.y = navMeshHeight;
+
+        return (outputPosition);
+    }
+
     IEnumerator GenerateBuildings()
     {
         float startTime = Time.realtimeSinceStartup;
-        int gridX = DivideAndRound(mapSizeX);
-        int gridY = DivideAndRound(mapSizeY);
-        int gap = DivideAndRound(buildingSeparation);
-        int maxPL = DivideAndRound(maxPathLength - (gap * 20));
-        int minPL = DivideAndRound(minPathLength - (gap * 20));
-        int maxPW = DivideAndRound((maxPathWidth - (gap * 20) - 1) / 2) * 2 + 1;
-        int minPW = DivideAndRound((minPathWidth - (gap * 20) - 1) / 2) * 2 + 1;
-        int originX;
-        int originY;
         List<int> possibilities;
         List<int> buildingDimensions = new List<int>();
 
@@ -216,6 +232,43 @@ public class CityBuilder : MonoBehaviour
             trueBuildingDimensions.Add(trueDimensions);
         }
 
+        //Started working on this, then realised it was pointless, because the agent can become trapped anyway if the player
+        //clears an artifical path through a chunk of buildings, then seals the entrance and exit while the agent is inside
+        /*
+        //Make sure the paths are wide enough that the main enemy can't be trapped by a large building replacing a small building
+        float maxRadius = 0f;
+        float minRadius = 999f;
+        foreach(List<float> currentDimensions in trueDimensions)
+        {
+            foreach(float currentDimension in currentDimensions)
+            {
+                if (maxRadius < currentDimension / 2f)
+                {
+                    maxRadius = currentDimension / 2f;
+                }
+                if (minRadius > currentDimension / 2f)
+                {
+                    minRadius = currentDimension / 2f;
+                }
+            }
+        }
+        if (minPathWidth + (minRadius - maxRadius) * 2 < agentRadius * 2)
+        {
+
+        }
+        */
+
+        int gridX = DivideAndRound(mapSizeX);
+        int gridY = DivideAndRound(mapSizeY);
+        int gap = DivideAndRound(buildingSeparation);
+        int maxPL = DivideAndRound(maxPathLength - (gap * 20));
+        int minPL = DivideAndRound(minPathLength - (gap * 20));
+        int maxPW = DivideAndRound((maxPathWidth - (gap * 20) - 1) / 2) * 2 + 1;
+        int minPW = DivideAndRound((minPathWidth - (gap * 20) - 1) / 2) * 2 + 1;
+        int originX;
+        int originY;
+
+
         //Give the offsets and true building dimensions to the drone controller
         GameObject droneController = GameObject.Find("Drone Controller");
         droneController.SendMessage("ReceiveDimensions", trueBuildingDimensions);
@@ -245,6 +298,7 @@ public class CityBuilder : MonoBehaviour
         int index;
         string cornerCoords;
         string testCoords;
+        string tempCoords;
         int pathLength;
         int pathWidth;
         int newPathWidth;
@@ -341,11 +395,20 @@ public class CityBuilder : MonoBehaviour
             {
                 for (int r = (1 - pathWidth) / 2; r < (pathWidth + 1) / 2; r++)
                 {
-                    try
+                    tempCoords = cardinalTranslate(originCorner[0], originDir, f, r);
+                    if (grid.ContainsKey(tempCoords))
                     {
-                        grid[cardinalTranslate(originCorner[0], originDir, f, r)] = true;
+                        grid[tempCoords] = true;
+                        if (r == 0)
+                        {
+                            enemyDestinations.Add(coordsToPosition(tempCoords, gridX, gridY));
+                        }
                     }
-                    catch (KeyNotFoundException) { }
+                    else
+                    {
+                        f = pathLength;
+                        break;
+                    }
                 }
             }
             pathsAdded++;

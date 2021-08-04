@@ -43,11 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dffdbfa7d4098d479da5fb9140b8518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  droneMaskPrefab: {fileID: 3066532254485366278, guid: e6f1d241c12e9cd4daf5a175be467427,
-    type: 3}
   buildingConstructionTime: 5
   glowFadeTime: 1
-  glowMaterial: {fileID: 0}
+  glowMaterial: {fileID: 2100000, guid: 9e20f1065e8a40441ba59b02e74e9203, type: 2}
   raycatcherTransform: {fileID: 0}
   buildingIndex: 0
   radius: 0
+  dronesFollowingPlayer: []

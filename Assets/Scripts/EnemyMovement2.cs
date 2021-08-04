@@ -10,10 +10,12 @@ public class EnemyMovement2 : MonoBehaviour
 
     void Start()
     {
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        //gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
-        agent.destination = gameManager.flagPos;
+
+        agent.destination = GameObject.Find("here i am dont tread on me").transform.position;
+        //agent.destination = gameManager.flagPos;
         //agent.destination = goal.position;
     }
 }

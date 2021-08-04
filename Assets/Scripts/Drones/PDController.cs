@@ -7,9 +7,10 @@ public class PDController : MonoBehaviour
     List<GameObject> availableDrones = new List<GameObject>();
     List<GameObject> debris = new List<GameObject>();
     List<GameObject> processedDebris = new List<GameObject>();
+    List<GameObject> scrambledDrones = new List<GameObject>();
+    List<GameObject> dronesBeingHacked = new List<GameObject>();
     Dictionary<GameObject, GameObject> collectorDrones = new Dictionary<GameObject, GameObject>();
 
-    public GameObject droneMaskPrefab;
     public float buildingConstructionTime = 5f;
     public float glowFadeTime = 1f;
 
@@ -70,12 +71,6 @@ public class PDController : MonoBehaviour
     {
         hologram = GameObject.Find("Hologram");
         buildingPrefabs = GameObject.Find("City Builder").GetComponent<CityBuilder>().buildingPrefabs;
-        GameObject droneMask;
-        foreach (GameObject drone in GameObject.FindGameObjectsWithTag("Player Drone"))
-        {
-            droneMask = Instantiate(droneMaskPrefab);
-            droneMask.SendMessage("ReceiveDroneObject", drone);
-        }
     }
 
     void Update()
@@ -179,9 +174,10 @@ public class PDController : MonoBehaviour
             }
         }
 
-        //Look for floating debris and available drones
+        //Look for floating debris, available drones and scrambled enemy drones
         debris = new List<GameObject>();
         availableDrones = new List<GameObject>();
+        scrambledDrones = new List<GameObject>();
         Vector3 segmentPosition;
         foreach (GameObject segment in GameObject.FindGameObjectsWithTag("Debris"))
         {
@@ -203,10 +199,17 @@ public class PDController : MonoBehaviour
         dronesFollowingPlayer = new List<GameObject>();
         foreach (GameObject drone in GameObject.FindGameObjectsWithTag("Player Drone"))
         {
-            if (drone.GetComponent<PlayerDrone>().mode == "follow player")
+            if (drone.GetComponent<Drone>().mode == "follow player")
             {
                 dronesFollowingPlayer.Add(drone);
                 availableDrones.Add(drone);
+            }
+        }
+        foreach (GameObject drone in GameObject.FindGameObjectsWithTag("Enemy Drone"))
+        {
+            if (drone.GetComponent<Drone>().mode == "scrambled" && !dronesBeingHacked.Contains(drone))
+            {
+                scrambledDrones.Add(drone);
             }
         }
 
@@ -223,12 +226,31 @@ public class PDController : MonoBehaviour
             availableDrones.RemoveAt(0);
         }
 
+        //Assign drones scrambled enemy drones to hack
+        float distance;
+        float distanceTemp;
+        int distanceIndex = 0;
+        int numOfAvailableDrones = availableDrones.Count;
+        for (int i = 0; i < scrambledDrones.Count && i < numOfAvailableDrones; i++)
+        {
+            distance = 9999f;
+            for (int j = 0; j < availableDrones.Count; j++)
+            {
+                distanceTemp = Vector3.Distance(availableDrones[j].transform.position, scrambledDrones[i].transform.position);
+                if (distanceTemp < distance)
+                {
+                    distance = distanceTemp;
+                    distanceIndex = j;
+                }
+            }
+            availableDrones[distanceIndex].SendMessage("ReceiveEnemyDroneTarget", scrambledDrones[i]);
+            availableDrones.RemoveAt(distanceIndex);
+            dronesBeingHacked.Add(scrambledDrones[i]);
+        }
+
         //Assign drones debris to collect
         if (debris.Count != 0)
         {
-            float distance;
-            float distanceTemp;
-            int debrisIndex = 0;
             for (int i = 0; i < debris.Count && i < availableDrones.Count; i++)
             {
                 distance = 9999f;
@@ -240,13 +262,13 @@ public class PDController : MonoBehaviour
                         if (distanceTemp < distance)
                         {
                             distance = distanceTemp;
-                            debrisIndex = j;
+                            distanceIndex = j;
                         }
                     }
                 }
-                availableDrones[i].SendMessage("AssignDebrisTarget", debris[debrisIndex]);
-                processedDebris.Add(debris[debrisIndex]);
-                collectorDrones.Add(debris[debrisIndex], availableDrones[i]);
+                availableDrones[i].SendMessage("AssignDebrisTarget", debris[distanceIndex]);
+                processedDebris.Add(debris[distanceIndex]);
+                collectorDrones.Add(debris[distanceIndex], availableDrones[i]);
             }
         }
     }

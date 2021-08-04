@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerDrone : MonoBehaviour
+public class Drone : MonoBehaviour
 {
     Rigidbody rb;
     GameObject player;
     float realAcceleration;
-    int damping = 2;
+    //int damping = 2;
 
     GameObject debrisTarget;
     GameObject bubble;
     Rigidbody targetRb;
     float targetOffset;
+
+    GameObject droneTarget;
 
     
     bool trueTarget;
@@ -28,6 +30,34 @@ public class PlayerDrone : MonoBehaviour
     Vector3 playerOrbitVelocity;
     float playerOrbitSpeed;
 
+    [Header("Attacking settings")]
+    [SerializeField] public float attackRunDistance = 100f;
+    [SerializeField] public float maxAttackAngle = 20f;
+    [SerializeField] public float attackRunDuration = 10f;
+    [SerializeField] public float attackRunCooldown = 10f;
+    [SerializeField] public float attackRunSpeed = 50f;
+    [SerializeField] public float attackRunSidewaysMovement = 5f;
+
+    int invertRotation = 1;
+
+    [Header("Hacking settings")]
+    [SerializeField] public float hackDuration = 5.5f;
+    [SerializeField] public float rebootDuration = 4f;
+
+    float hackCompleteAt;
+
+    [Header("Health settings")]
+    [SerializeField] public float startingHP = 3f;
+    [SerializeField] public float bulletDamage = 1f;
+    [SerializeField] public float laserDamage = 2f;
+    [SerializeField] public float rocketDamage = 3f;
+    float hp;
+
+    [Header("Prefabs")]
+    [SerializeField] public GameObject droneMaskPrefab;
+
+    GameObject droneMask;
+
     Vector3 constructionSiteTarget;
 
     GameObject droneController;
@@ -36,6 +66,8 @@ public class PlayerDrone : MonoBehaviour
     [SerializeField] public Vector3 orbitOrigin;
     [SerializeField] public Vector3 targetPosition;
     [SerializeField] public string mode = "follow player";
+    [SerializeField] public float rebootStart;
+    [SerializeField] public float futureTime;
 
     //Orbiting information
     float orbitStartTime;
@@ -55,7 +87,11 @@ public class PlayerDrone : MonoBehaviour
         droneController = GameObject.Find("Drone Controller");
         hologram = GameObject.Find("Hologram");
         playerOrbitSpeed = playerOrbitRadius * 2f * Mathf.PI / playerOrbitPeriod;
-        Debug.Log(playerOrbitSpeed.ToString());
+
+        droneMask = Instantiate(droneMaskPrefab);
+        droneMask.SendMessage("ReceiveDroneObject", gameObject);
+
+        hp = startingHP;
     }
 
     void GoToConstructionSite (Vector3 siteTarget)
@@ -78,6 +114,18 @@ public class PlayerDrone : MonoBehaviour
         targetRb = debrisTarget.GetComponent<Rigidbody>();
         targetOffset = bubble.transform.localScale.y * target.transform.localScale.y / 2;
         mode = "grab debris";
+    }
+
+    void ReceiveEnemyDroneTarget(GameObject target)
+    {
+        droneTarget = target;
+        mode = "begin hack";
+    }
+
+    void HackComplete()
+    {
+        rebootStart = Time.realtimeSinceStartup;
+        mode = "reboot";
     }
 
     //This is how drones used to follow the player
@@ -146,31 +194,46 @@ public class PlayerDrone : MonoBehaviour
         {
             targetPosition.y = defaultHeight;
             trueTarget = false;
+
+            //If I can't get to the sky above the target, go to the sky above me
+            if (CastRays())
+            {
+                targetPosition = transform.position;
+                targetPosition.y = defaultHeight;
+            }
         }
         else
         {
             trueTarget = true;
         }
-        //If I can't get to the sky above the target, go to the sky above me
-        if (CastRays())
-        {
-            targetPosition = transform.position;
-            targetPosition.y = defaultHeight;
-        }
 
         //Point in the right direction
         if (trueTarget)
         {
-            Vector3 targetDirection = (targetPosition - transform.position);
-            targetDirection.Normalize();
-            Vector3 idealVelocity = targetDirection * Mathf.Sqrt(2 * acceleration * Vector3.Distance(targetPosition, transform.position));
-            if (mode == "grab debris")
+            Vector3 targetDirection;
+            if (targetPosition == transform.position)
             {
-                idealVelocity += targetRb.velocity;
+                targetDirection = Vector3.zero;
             }
-            else if (mode == "follow player")
+            else
             {
-                idealVelocity += playerOrbitVelocity;
+                targetDirection = (targetPosition - transform.position);
+                targetDirection.Normalize();
+            }
+            Vector3 idealVelocity = targetDirection * Mathf.Sqrt(2 * acceleration * Vector3.Distance(targetPosition, transform.position));
+            switch (mode)
+            {
+                case "grab debris":
+                    idealVelocity += targetRb.velocity;
+                    break;
+                case "follow player":
+                    idealVelocity += playerOrbitVelocity;
+                    break;
+                case "attack":
+                    Vector3 attackDirection = player.transform.position - transform.position;
+                    attackDirection.y = 0;
+                    idealVelocity += Vector3.Normalize(attackDirection) * attackRunSpeed;
+                    break;
             }
             if (idealVelocity.magnitude > speedLimit)
             {
@@ -201,7 +264,11 @@ public class PlayerDrone : MonoBehaviour
         {
             lookVector = targetPosition - transform.position;
         }
-        transform.rotation = Quaternion.LookRotation(lookVector);
+
+        if (lookVector != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(lookVector);
+        }
 
         //Accelerate
         if (doAccelerate)
@@ -256,6 +323,7 @@ public class PlayerDrone : MonoBehaviour
         {
             mode = "bring debris";
             Destroy(targetRb);
+            Destroy(debrisTarget.GetComponent<BoxCollider>());
             targetRb = player.GetComponent<Rigidbody>();
             bubble.GetComponent<Renderer>().enabled = true;
             BringDebris();
@@ -383,6 +451,156 @@ public class PlayerDrone : MonoBehaviour
         transform.position = goToPosition;
     }
 
+    void AttackCooldown()
+    {
+        if (Time.realtimeSinceStartup > futureTime)
+        {
+            mode = "begin attack run";
+        }
+        else
+        {
+            Vector3 relativePosition = transform.position - player.transform.position;
+            relativePosition.y = 0f;
+            targetPosition = Quaternion.Euler(0, 20 * invertRotation, 0) * Vector3.Normalize(relativePosition) * attackRunDistance + player.transform.position;
+            targetPosition.y += 50;
+
+            Navigate();
+        }
+    }
+
+    void Attack()
+    {
+        Vector3 playerHorizontalPosition = player.transform.position;
+        playerHorizontalPosition.y = transform.position.y;
+
+        targetPosition = Quaternion.Euler(0, attackRunSidewaysMovement * invertRotation, 0) * (transform.position - playerHorizontalPosition) + playerHorizontalPosition;
+        if (Time.realtimeSinceStartup > futureTime
+            || Vector3.Angle((playerHorizontalPosition - transform.position), (player.transform.position - transform.position)) > maxAttackAngle
+            || Physics.Raycast(transform.position, player.transform.position - transform.position, Vector3.Distance(player.transform.position, transform.position), 1 << 9))
+        {
+            invertRotation = Random.value < .5 ? 1 : -1;
+            futureTime = Time.realtimeSinceStartup + attackRunCooldown;
+            mode = "attack cooldown";
+            AttackCooldown();
+        }
+        else
+        {
+            Navigate();
+
+            targetPosition = player.transform.position;
+        }
+    }
+
+    void BeginAttackRun()
+    {
+        Vector3 playerHorizontalPosition = player.transform.position;
+        playerHorizontalPosition.y += 30;
+        Vector3 horizontalPosition = transform.position;
+        horizontalPosition.y = playerHorizontalPosition.y;
+
+        targetPosition = Vector3.Normalize(horizontalPosition - playerHorizontalPosition) * attackRunDistance + playerHorizontalPosition;
+        for (int j = 0; j < 4; j++)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                if (Physics.Raycast(targetPosition, player.transform.position - targetPosition, Vector3.Distance(player.transform.position, targetPosition), 1 << 9))
+                {
+                    targetPosition.y = playerHorizontalPosition.y;
+                    targetPosition = Quaternion.Euler(0, 36, 0) * (targetPosition - playerHorizontalPosition) + playerHorizontalPosition;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            if (Physics.Raycast(targetPosition, player.transform.position - targetPosition, Vector3.Distance(player.transform.position, targetPosition), 1 << 9))
+            {
+                targetPosition.y += (defaultHeight - targetPosition.y) / (4f - j);
+                playerHorizontalPosition.y += (defaultHeight - targetPosition.y) / (4f - j);
+                horizontalPosition.y += (defaultHeight - targetPosition.y) / (4f - j);
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        if (Vector3.Distance(transform.position, targetPosition) < 1 &&
+            !Physics.Raycast(targetPosition, player.transform.position - targetPosition, Vector3.Distance(player.transform.position, targetPosition), 1 << 9))
+        {
+            invertRotation = Random.value < .5 ? 1 : -1;
+            futureTime = attackRunDuration + Time.realtimeSinceStartup;
+            mode = "attack";
+            Attack();
+        }
+        else
+        {
+            Navigate();
+        }
+    }
+
+    void Scrambled()
+    {
+        targetPosition = transform.position;
+
+        Navigate();
+    }
+
+    void Reboot()
+    {
+        if (Time.realtimeSinceStartup - rebootStart < rebootDuration)
+        {
+            targetPosition = transform.position;
+
+            Navigate();
+        }
+        else
+        {
+            tag = "Player Drone";
+            mode = "follow player";
+            FollowPlayer();
+        }
+    }
+
+    void HackDrone()
+    {
+        if (Time.realtimeSinceStartup < hackCompleteAt)
+        {
+            targetPosition = transform.position;
+
+            Navigate();
+
+            //So the mask looks in the right direction
+            targetPosition = droneTarget.transform.position;
+        }
+        else
+        {
+            droneTarget.SendMessage("HackComplete");
+            mode = "follow player";
+            FollowPlayer();
+        }
+    }
+
+    void BeginHack()
+    {
+        Vector3 relativeLocation = transform.position - droneTarget.transform.position;
+        relativeLocation.y = 0;
+        targetPosition = Vector3.Normalize(relativeLocation) * 12.1855f + droneTarget.transform.position;
+        if (Vector3.Distance(targetPosition, transform.position) < 0.2)
+        {
+            droneMask.SendMessage("BeginHack");
+            hackCompleteAt = Time.realtimeSinceStartup + hackDuration;
+            mode = "hack drone";
+            HackDrone();
+        }
+
+        Navigate();
+
+        //So the mask looks in the right direction
+        targetPosition = droneTarget.transform.position;
+    }
+
     void Update()
     {
         switch (mode)
@@ -404,6 +622,50 @@ public class PlayerDrone : MonoBehaviour
             case "orbit":
                 Orbit();
                 break;
+            case "begin attack run":
+                BeginAttackRun();
+                break;
+            case "attack":
+                Attack();
+                break;
+            case "attack cooldown":
+                AttackCooldown();
+                break;
+            case "scrambled":
+                Scrambled();
+                break;
+            case "reboot":
+                Reboot();
+                break;
+            case "begin hack":
+                BeginHack();
+                break;
+            case "hack drone":
+                HackDrone();
+                break;
+        }
+    }
+
+    void ReceiveCollisionInfo(Collision collision)
+    {
+        string colliderName = collision.gameObject.name;
+        if (colliderName.Contains("Bullet"))
+        {
+            hp -= bulletDamage;
+        }
+        else if (colliderName.Contains("Laser"))
+        {
+            hp -= laserDamage;
+        }
+        else if (colliderName.Contains("Rocket"))
+        {
+            hp -= rocketDamage;
+        }
+
+        if (hp <= 0)
+        {
+            mode = "scrambled";
+            droneMask.SendMessage("ScrambleStart");
         }
     }
 }

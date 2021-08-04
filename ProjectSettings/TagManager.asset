@@ -9,6 +9,7 @@ TagManager:
   - Debris
   - Landmark
   - Generic Building
+  - Enemy Drone
   layers:
   - Default
   - TransparentFX

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -3315663512825476707}
   - component: {fileID: 490417721112189181}
   m_Layer: 0
-  m_Name: Player Drone
+  m_Name: Drone
   m_TagString: Player Drone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,9 +49,24 @@ MonoBehaviour:
   defaultHeight: 340
   playerOrbitRadius: 100
   playerOrbitPeriod: 6
+  attackRunDistance: 200
+  maxAttackAngle: 30
+  attackRunDuration: 10
+  attackRunCooldown: 6
+  attackRunSpeed: 50
+  attackRunSidewaysMovement: 1
+  hackDuration: 5.5
+  rebootDuration: 4
+  startingHP: 10
+  bulletDamage: 1
+  laserDamage: 2
+  rocketDamage: 10
+  droneMaskPrefab: {fileID: 3066532254485366278, guid: e6f1d241c12e9cd4daf5a175be467427,
+    type: 3}
   orbitOrigin: {x: 0, y: 0, z: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   mode: follow player
+  rebootStart: 0
 --- !u!54 &490417721112189181
 Rigidbody:
   m_ObjectHideFlags: 0
