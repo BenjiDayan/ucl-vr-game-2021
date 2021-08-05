@@ -29,7 +29,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 64.5, z: 0}
   m_LocalScale: {x: 30, y: 129, z: 30}
   m_Children: []
-  m_Father: {fileID: 557087018857309930}
+  m_Father: {fileID: 759460045535583132}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &557087018300501486
@@ -110,8 +110,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 557087018300501484}
   - {fileID: 7378995950298066355}
+  - {fileID: 759460045535583132}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -146,14 +146,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 557087018857309929}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 498dcb2db336bcd449679887cf780b76, type: 3}
+  m_Script: {fileID: 11500000, guid: b359bd2272d7fb444b6ab41fd0f17cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   minDestinationDistance: 500
   totalDistanceToCover: 2800
   totalDronesToRelease: 12
-  startingHP: 100
+  startingHP: 1
   dronePrefab: {fileID: 3106921536158419003, guid: 2671ee719d091f640852ef627bfc149e,
+    type: 3}
+  destinationMarkerPrefab: {fileID: 4549405767463574984, guid: 2a792c3d32fea824e9c9b01c5913bb09,
     type: 3}
 --- !u!65 &-2023562718624599278
 BoxCollider:
@@ -184,6 +186,70 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!1 &3006916353581711868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 759460045535583132}
+  - component: {fileID: 7289890591919979579}
+  - component: {fileID: 9020993034139963238}
+  m_Layer: 0
+  m_Name: Mask
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &759460045535583132
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3006916353581711868}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 557087018300501484}
+  m_Father: {fileID: 557087018857309930}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &7289890591919979579
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3006916353581711868}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &9020993034139963238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3006916353581711868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d48d79b241643f241ae664b6b0fb1c29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrustFailRate: 0.1
+  particleObjectPrefab: {fileID: 5828400458613345193, guid: 848fd1eaf31bed2438d40a1e9df69c08,
+    type: 3}
 --- !u!1 &5361621216519199952
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,7 +279,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 557087018857309930}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!120 &2891063890335806213
 LineRenderer:
@@ -262,7 +328,7 @@ LineRenderer:
   - {x: -355, y: 60, z: 155}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 4
+    widthMultiplier: 3
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -310,7 +376,7 @@ LineRenderer:
     numCornerVertices: 5
     numCapVertices: 0
     alignment: 1
-    textureMode: 0
+    textureMode: 1
     shadowBias: 0.5
     generateLightingData: 0
   m_UseWorldSpace: 1

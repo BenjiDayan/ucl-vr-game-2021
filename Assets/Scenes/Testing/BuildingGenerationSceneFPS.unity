@@ -264,6 +264,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6245023829128451043, guid: 1e472c10827d06c488ff1da3a4550651,
         type: 3}
+      propertyPath: mapSizeX
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6245023829128451043, guid: 1e472c10827d06c488ff1da3a4550651,
+        type: 3}
       propertyPath: minPathLength
       value: 300
       objectReference: {fileID: 0}
