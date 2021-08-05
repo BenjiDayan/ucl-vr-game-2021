@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.AI;
+//using UnityEditor.AI;
 
 public class CityBuilder : MonoBehaviour
 {
@@ -9,7 +9,7 @@ public class CityBuilder : MonoBehaviour
     [SerializeField] public GameObject raycatcherPrefab;
     [SerializeField] public List<GameObject> buildingPrefabs;
     [SerializeField] public GameObject fogPlate;
-    [SerializeField] public GameObject navMeshSurfacePrefab;
+    //[SerializeField] public GameObject navMeshSurfacePrefab;
     [SerializeField] public GameObject mainEnemyPrefab;
 
     [Header("Procedural generation settings")]
@@ -45,14 +45,16 @@ public class CityBuilder : MonoBehaviour
 
     void Start()
     {
+        /*
         GameObject navMeshSurface = Instantiate(navMeshSurfacePrefab);
         navMeshSurface.transform.position = new Vector3(0, navMeshHeight - 2.5f, 0);
         navMeshSurface.transform.localScale = new Vector3(mapSizeX / 10f, 1, mapSizeY / 10f);
+        */
 
         Fog();
         StartCoroutine(GenerateBuildings());
 
-        NavMeshBuilder.BuildNavMesh();
+        //NavMeshBuilder.BuildNavMesh();
 
         GameObject mainEnemy = Instantiate(mainEnemyPrefab);
         mainEnemy.SendMessage("ReceiveDestinations", enemyDestinations);
