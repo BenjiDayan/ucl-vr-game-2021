@@ -1,0 +1,20 @@
+These are basic instructions - to be improved on.
+The game is designed to be playable on both PC and Oculus Quest 2 headset
+So each ability has two implementations
+
+Movement: wasd / left joystick
+Jump: Space / left hand primary button
+Grappling Hook: right click / left hand trigger button 
+Fire gun: left click / right hand trigger button
+Switch Projectile: Q / right hand secondary button
+Reload: E / right hand primary button
+Create a building: F / left hand secondary button
+Pause game: T / left hand menu button
+
+Goal of the game: Move from rooftop to rooftop, track down the moving
+monolith, and stop it before it completes its journey! By blowing up
+buildings with your rocket launcher, damage it on collision with debris.
+Shoot down enemy drones with your pistol. Build more buildings from
+collected debris to jump on / blow up.
+
+On PC: X to lose health, C to gain health.

@@ -39,7 +39,11 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         currentHp += health;
         if (currentHp > hp) currentHp = hp;
-        if (currentHp < 0) currentHp = 0;
+        if (currentHp < 0) {
+           currentHp = 0; 
+           PauseMenu pauseMenu = (PauseMenu)FindObjectOfType(typeof(PauseMenu));
+           pauseMenu.ReloadGame();
+        }
 
         ui.UpdateHealth(_healthFraction);
     }
