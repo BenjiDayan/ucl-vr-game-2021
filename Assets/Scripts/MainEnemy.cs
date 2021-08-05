@@ -46,6 +46,13 @@ public class MainEnemy : MonoBehaviour
         return(outputList);
     }
 
+    public void Awake() {
+        Debug.Log("Enemy searches for UI");
+        ui = (PlayerUI)FindObjectOfType(typeof(PlayerUI));
+        Debug.Log("Has enemy found UI?");
+        Debug.Log(ui);
+    }
+
     void RandomDestination()
     {
         float distance;
@@ -68,6 +75,7 @@ public class MainEnemy : MonoBehaviour
     void ReceiveDestinations(List<Vector3> inputDestinations)
     {
         hp = startingHP;
+        ui.UpdateEnemyHealth(hp);
 
         agent = GetComponent<NavMeshAgent>();
 
@@ -91,7 +99,11 @@ public class MainEnemy : MonoBehaviour
 
     void Update()
     {
-        if (hp > 0)
+
+        ui.UpdateEnemyHealth(hp);
+        //Mark the path we're following
+        line.SetVertexCount(agent.path.corners.Length);
+        for (int i = 0; i < agent.path.corners.Length; i++)
         {
             //Mark the path we're following
             line.SetVertexCount(agent.path.corners.Length);
@@ -178,6 +190,8 @@ public class MainEnemy : MonoBehaviour
         if (collision.collider.gameObject.name.Contains("debris"))
         {
             hp -= 1;
+
+            ui.UpdateEnemyHealth(hp);
 
             if (hp <= 0)
             {
