@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using UnityEngine.XR;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -12,14 +13,32 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseFirstButton;
 
+    [SerializeField] InputFeatureUsage<bool> createBuildingKeyVR = CommonUsages.menuButton;
+    [SerializeField] KeyCode pauseKey = KeyCode.T;
+
+    InputDevice device;
+
     void Start()
     {
-        
+        var leftHandDevices = new List<InputDevice>();   
+        InputDevices.GetDevicesAtXRNode(UnityEngine.XR.XRNode.LeftHand, leftHandDevices);
+        if(leftHandDevices.Count == 1)
+        {
+            device = leftHandDevices[0];
+            Debug.Log("Found left hand device");
+        }
+        else {
+            Debug.Log("No left hand devices!!");
+        }
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        bool pausePushed;
+        if  (   
+                Input.GetKeyDown(pauseKey) ||
+                (device.TryGetFeatureValue(createBuildingKeyVR, out pausePushed) && pausePushed)
+            )
         {
             if (GameIsPaused)
             {
