@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -14,6 +14,7 @@ public class MainEnemy : MonoBehaviour
     [Header("Prefabs")]
     [SerializeField] public GameObject dronePrefab;
     [SerializeField] public GameObject destinationMarkerPrefab;
+    PlayerUI ui;
 
     GameObject destinationMarker;
 
@@ -101,9 +102,7 @@ public class MainEnemy : MonoBehaviour
     {
 
         ui.UpdateEnemyHealth(hp);
-        //Mark the path we're following
-        line.SetVertexCount(agent.path.corners.Length);
-        for (int i = 0; i < agent.path.corners.Length; i++)
+        if (hp > 0)
         {
             //Mark the path we're following
             line.SetVertexCount(agent.path.corners.Length);
@@ -190,8 +189,6 @@ public class MainEnemy : MonoBehaviour
         if (collision.collider.gameObject.name.Contains("debris"))
         {
             hp -= 1;
-
-            ui.UpdateEnemyHealth(hp);
 
             if (hp <= 0)
             {
