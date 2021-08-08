@@ -10,11 +10,15 @@ public class MuzzleFlash : MonoBehaviour
     bool projectileAlreadyInstantiated = false;
     public GameObject droneProjectilePrefab;
     GameObject player;
+    Vector3 previousPlayerPosition;
+    float projectileSpeed;
 
     void Start()
     {
         renderer = GetComponent<MeshRenderer>();
         player = GameObject.Find("FPS_Player");
+
+        projectileSpeed = droneProjectilePrefab.GetComponent<Projectile>().speed;
     }
 
     void ReceiveDroneObject(GameObject assignedDrone)
@@ -24,15 +28,21 @@ public class MuzzleFlash : MonoBehaviour
 
     void Update()
     {
+        Vector3 playerPosition = player.transform.position;
+
         if (droneScript.mode == "attack" && ((Time.realtimeSinceStartup + random) % 0.125f) > 0.0875f)
         {
             renderer.enabled = true;
             if (!projectileAlreadyInstantiated)
             {
+                //Work out how far we need to lead the shot
+                Vector3 lead = (playerPosition - previousPlayerPosition) / Time.deltaTime;
+                lead *= Vector3.Distance(playerPosition, transform.position) / projectileSpeed;
+
                 projectileAlreadyInstantiated = true;
                 GameObject projectile = Instantiate(droneProjectilePrefab);
                 projectile.transform.position = transform.position;
-                projectile.transform.forward = player.transform.position - projectile.transform.position;
+                projectile.transform.forward = playerPosition + lead - projectile.transform.position;
                 projectile.GetComponent<Projectile>()._trajectory = projectile.transform.forward;
             }
         }
@@ -46,5 +56,7 @@ public class MuzzleFlash : MonoBehaviour
             projectileAlreadyInstantiated = false;
         }
         random += Random.Range(0f, 0.02f);
+
+        previousPlayerPosition = playerPosition;
     }
 }

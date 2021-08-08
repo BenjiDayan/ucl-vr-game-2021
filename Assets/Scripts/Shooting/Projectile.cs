@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] protected bool affectedByGravity = false;
 
-    [SerializeField] protected float speed = 50;
+    [SerializeField] public float speed = 50;
 
     [SerializeField] protected float lifetime = 1;
 

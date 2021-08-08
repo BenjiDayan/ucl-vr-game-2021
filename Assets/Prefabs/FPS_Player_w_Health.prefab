@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 82710195636811629}
   - component: {fileID: 6133986591979858848}
   - component: {fileID: 787578824644338192}
+  - component: {fileID: -1580147188641757358}
   m_Layer: 8
   m_Name: FPS_Player_w_Health
   m_TagString: Untagged
@@ -103,9 +104,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d60ebdd8d96a704989a7e8862930128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
+  hp: 500
   currentHp: 0
+  droneProjectileDamage: 1
   ui: {fileID: 0}
+--- !u!136 &-1580147188641757358
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82710195636811624}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &82710195864964440
 GameObject:
   m_ObjectHideFlags: 0

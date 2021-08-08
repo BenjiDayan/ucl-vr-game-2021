@@ -152,7 +152,7 @@ MonoBehaviour:
   minDestinationDistance: 500
   totalDistanceToCover: 2800
   totalDronesToRelease: 12
-  startingHP: 1
+  startingHP: 100
   dronePrefab: {fileID: 3106921536158419003, guid: 2671ee719d091f640852ef627bfc149e,
     type: 3}
   destinationMarkerPrefab: {fileID: 4549405767463574984, guid: 2a792c3d32fea824e9c9b01c5913bb09,

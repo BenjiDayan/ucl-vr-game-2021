@@ -176,25 +176,25 @@ public class CityBuilder : MonoBehaviour
             {
                 centre = collider.center;
                 size = collider.size;
-                if (centre.x + (size.x / 2) > maxX)
+                if (centre.x + (size.x / 2f) > maxX)
                 {
-                    maxX = centre.x + (size.x / 2);
+                    maxX = centre.x + (size.x / 2f);
                 }
-                if (centre.x - (size.x / 2) < minX)
+                if (centre.x - (size.x / 2f) < minX)
                 {
-                    minX = centre.x - (size.x / 2);
+                    minX = centre.x - (size.x / 2f);
                 }
-                if (centre.z + (size.z / 2) > maxY)
+                if (centre.z + (size.z / 2f) > maxY)
                 {
-                    maxY = centre.z + (size.z / 2);
+                    maxY = centre.z + (size.z / 2f);
                 }
-                if (centre.z - (size.z / 2) < minY)
+                if (centre.z - (size.z / 2f) < minY)
                 {
-                    minY = centre.z - (size.z / 2);
+                    minY = centre.z - (size.z / 2f);
                 }
-                if (centre.y + (size.y / 2) > maxZ)
+                if (centre.y + (size.y / 2f) > maxZ)
                 {
-                    maxZ = centre.y + (size.y / 2);
+                    maxZ = centre.y + (size.y / 2f);
                 }
             }
             foreach (CapsuleCollider collider in prefab.GetComponents<CapsuleCollider>())
@@ -217,9 +217,9 @@ public class CityBuilder : MonoBehaviour
                 {
                     minY = centre.z - radius;
                 }
-                if (centre.y + (collider.height / 2) > maxZ)
+                if (centre.y + (collider.height / 2f) > maxZ)
                 {
-                    maxZ = centre.y + (collider.height / 2);
+                    maxZ = centre.y + (collider.height / 2f);
                 }
             }
             offset.Add(Mathf.Abs((maxX + minX) / 2));

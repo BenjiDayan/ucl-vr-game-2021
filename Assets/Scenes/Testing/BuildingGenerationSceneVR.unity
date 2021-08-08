@@ -808,9 +808,19 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3315663512825476707, guid: 2671ee719d091f640852ef627bfc149e,
+        type: 3}
+      propertyPath: mode
+      value: follow player
+      objectReference: {fileID: 0}
     - target: {fileID: 3106921536158419003, guid: 2671ee719d091f640852ef627bfc149e,
         type: 3}
       propertyPath: m_Name
+      value: Player Drone
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106921536158419003, guid: 2671ee719d091f640852ef627bfc149e,
+        type: 3}
+      propertyPath: m_TagString
       value: Player Drone
       objectReference: {fileID: 0}
     - target: {fileID: 3861350428480581622, guid: 2671ee719d091f640852ef627bfc149e,

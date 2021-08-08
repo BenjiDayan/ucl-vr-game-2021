@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 1085648713889301813}
   - component: {fileID: 1085648713889301812}
   - component: {fileID: 1085648713889301814}
+  - component: {fileID: 4186286948808486529}
   m_Layer: 8
   m_Name: FPS_Player
   m_TagString: Untagged
@@ -184,6 +185,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   jumpHeight: 6
+--- !u!136 &4186286948808486529
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085648713889301811}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1085648714117349123
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,7 +312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teleportKey: 324
-  range: 50
+  range: 200
 --- !u!114 &3125010965382616246
 MonoBehaviour:
   m_ObjectHideFlags: 0

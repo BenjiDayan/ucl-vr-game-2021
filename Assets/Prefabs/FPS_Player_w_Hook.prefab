@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6175214208264173994}
   - component: {fileID: 755621843728838682}
   - component: {fileID: 4725488368095912602}
+  - component: {fileID: 5383377216933721342}
   m_Layer: 8
   m_Name: FPS_Player_w_Hook
   m_TagString: Untagged
@@ -68,6 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d06b99b84e8c6fd49a6d76c3a96697ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpKey: 32
   controller: {fileID: 123656199513843045}
   speed: 12
   gravity: -9.81
@@ -103,8 +105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d60ebdd8d96a704989a7e8862930128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
+  hp: 500
   currentHp: 0
+  droneProjectileDamage: 1
   ui: {fileID: 0}
 --- !u!114 &4725488368095912602
 MonoBehaviour:
@@ -126,6 +129,20 @@ MonoBehaviour:
   cooldown: 5
   cooldownCount: Infinity
   targetPos: {x: 0, y: 0, z: 0}
+--- !u!136 &5383377216933721342
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123656199513843042}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &123656200274681682
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,6 +255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fbf752ef2a4b08438c6c70b3a47c9be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  teleportKey: 324
   range: 50
 --- !u!1 &123656201433541153
 GameObject:
@@ -383,6 +401,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   switchProjectile: 113
   reloadKey: 101
+  shootGunKey: 323
   currentProjectile: 0
   projectilePrefabs:
   - {fileID: 2395040347495949364, guid: a38711b258c8f7f4fbb7c3c14bbb4326, type: 3}

@@ -119,6 +119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1085648713889301813}
   - component: {fileID: 1085648713889301812}
+  - component: {fileID: 7616082681512435431}
   m_Layer: 8
   m_Name: FPS_PlayerVR
   m_TagString: Untagged
@@ -160,6 +161,20 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &7616082681512435431
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085648713889301811}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!81 &6004579232164290197
 AudioListener:

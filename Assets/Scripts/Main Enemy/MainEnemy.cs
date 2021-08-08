@@ -100,7 +100,6 @@ public class MainEnemy : MonoBehaviour
 
     void Update()
     {
-
         ui.UpdateEnemyHealth(hp);
         if (hp > 0)
         {

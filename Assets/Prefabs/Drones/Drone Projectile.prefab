@@ -322,6 +322,8 @@ MonoBehaviour:
   speed: 400
   lifetime: 1
   trajectory: {x: 0, y: 0, z: 0}
+  destructionSound: {fileID: 0}
+  destructionVolume: 1
 --- !u!1 &7224869176786392848
 GameObject:
   m_ObjectHideFlags: 0
