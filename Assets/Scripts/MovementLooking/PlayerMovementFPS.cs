@@ -20,6 +20,8 @@ public class PlayerMovementFPS : MonoBehaviour
     public LayerMask groundMask;
     public float jumpHeight = 6f;
     bool isGrounded;
+
+    private PlayerHealth playerHealth;
     
     InputDevice device;
 
@@ -36,11 +38,17 @@ public class PlayerMovementFPS : MonoBehaviour
         else {
             Debug.Log("No left hand devices!!");
         }
+
+        playerHealth = (PlayerHealth)FindObjectOfType(typeof(PlayerHealth));
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (controller.transform.position.y < 0) {
+            playerHealth.OnDamage(25);
+        }
+
         //isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
         isGrounded = controller.isGrounded;
         if (isGrounded && velocity.y < 0)
