@@ -79,6 +79,14 @@ public class Cyberbuilding : MonoBehaviour
 
     void Collapse(float collisionHeight)
     {
+        try
+        {
+            Destroy(transform.Find("Ammo Spawner").gameObject);
+        }
+        catch
+        {
+        }
+
         if (collapseSound != null) {
             AudioSource.PlayClipAtPoint(collapseSound, transform.position);
         }

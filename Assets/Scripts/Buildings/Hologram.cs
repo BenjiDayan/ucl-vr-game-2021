@@ -5,7 +5,7 @@ using UnityEngine.XR;
 
 public class Hologram : MonoBehaviour
 {
-    [SerializeField] KeyCode createBuildingKey = KeyCode.F;
+    [SerializeField] KeyCode createBuildingKey = KeyCode.Mouse2;
     [SerializeField] InputFeatureUsage<bool> createBuildingKeyVR = CommonUsages.secondaryButton;
     InputDevice device;
     List<GameObject> buildings;

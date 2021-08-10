@@ -11,6 +11,7 @@ public class CityBuilder : MonoBehaviour
     [SerializeField] public GameObject fogPlate;
     //[SerializeField] public GameObject navMeshSurfacePrefab;
     [SerializeField] public GameObject mainEnemyPrefab;
+    [SerializeField] public GameObject ammoControllerPrefab;
 
     [Header("Procedural generation settings")]
     [SerializeField] public float mapSizeX = 201f;
@@ -55,9 +56,6 @@ public class CityBuilder : MonoBehaviour
         StartCoroutine(GenerateBuildings());
 
         //NavMeshBuilder.BuildNavMesh();
-
-        GameObject mainEnemy = Instantiate(mainEnemyPrefab);
-        mainEnemy.SendMessage("ReceiveDestinations", enemyDestinations);
     }
 
     void Fog()
@@ -141,6 +139,14 @@ public class CityBuilder : MonoBehaviour
         outputPosition.y = navMeshHeight;
 
         return (outputPosition);
+    }
+
+    void PostGeneration()
+    {
+        GameObject mainEnemy = Instantiate(mainEnemyPrefab);
+        mainEnemy.SendMessage("ReceiveDestinations", enemyDestinations);
+
+        Instantiate(ammoControllerPrefab);
     }
 
     IEnumerator GenerateBuildings()
@@ -605,5 +611,7 @@ public class CityBuilder : MonoBehaviour
                 }
             }
         }
+
+        PostGeneration();
     }
 }

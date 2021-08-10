@@ -17,11 +17,11 @@ public class PlayerGunFPS2 : MonoBehaviour
     [SerializeField] int currentProjectile = 0;
     [SerializeField] Projectile[] projectilePrefabs = null;
 
-    [SerializeField] Magazine laser = new Magazine(12, 20);
-    [SerializeField] Magazine bullet = new Magazine(12, 20);
-    [SerializeField] Magazine rocket = new Magazine(4, 10);
+    [SerializeField] Magazine laser = new Magazine(12, 48);
+    [SerializeField] Magazine bullet = new Magazine(12, 96);
+    [SerializeField] Magazine rocket = new Magazine(1, 24);
 
-    Magazine[] magazines;
+    public Magazine[] magazines;
 
     [SerializeField] float cooldown = 0.3f;
 
@@ -97,7 +97,7 @@ public class PlayerGunFPS2 : MonoBehaviour
         bool triggerValue;
         if (cooldownCounter >= cooldown && 
             (   
-                Input.GetKeyDown(shootGunKey) ||
+                Input.GetKey(shootGunKey) ||
                 (device.TryGetFeatureValue(shootGunKeyVR, out triggerValue) && triggerValue)
             )
         )

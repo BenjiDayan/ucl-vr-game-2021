@@ -106,7 +106,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 15
+    agentRadius: 14.5
     agentHeight: 15
     agentSlope: 14
     agentClimb: 0.4
@@ -114,7 +114,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 5
+    cellSize: 4.8333335
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -715,6 +715,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 100
   currentHp: 0
+  droneProjectileDamage: 1
+  healthRegenDelay: 10
+  healthRegenRate: 5
   ui: {fileID: 99247826}
 --- !u!4 &1095813359 stripped
 Transform:
@@ -1311,21 +1314,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: MainCamera
-      objectReference: {fileID: 0}
-    - target: {fileID: 1355726178895288727, guid: 0f9277b567b795e40a316aefc5a8d7fd,
-        type: 3}
-      propertyPath: laser.ammo
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1355726178895288727, guid: 0f9277b567b795e40a316aefc5a8d7fd,
-        type: 3}
-      propertyPath: bullet.ammo
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1355726178895288727, guid: 0f9277b567b795e40a316aefc5a8d7fd,
-        type: 3}
-      propertyPath: rocket.ammo
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2396224633091649123, guid: 0f9277b567b795e40a316aefc5a8d7fd,
         type: 3}

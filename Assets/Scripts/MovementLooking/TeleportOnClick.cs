@@ -67,7 +67,7 @@ public class TeleportOnClick : MonoBehaviour
     {
         Vector3 origin = transform.position;
         Vector3 direction = transform.forward;
-        if (Physics.Raycast(origin, direction, out lastRaycastHit, range) && (lastRaycastHit.collider.gameObject.tag == "Generic Building" || lastRaycastHit.collider.gameObject.tag == "Landmark"))
+        if (Physics.Raycast(origin, direction, out lastRaycastHit, range, 1 << 9) && (lastRaycastHit.collider.gameObject.tag == "Generic Building" || lastRaycastHit.collider.gameObject.tag == "Landmark"))
             return lastRaycastHit.collider.gameObject;
         else
             return null;

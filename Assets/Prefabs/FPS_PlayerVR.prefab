@@ -356,19 +356,20 @@ MonoBehaviour:
   - {fileID: 7638290415175367660, guid: a3ad5362fd4f66b49b700da99370be59, type: 3}
   laser:
     ammoSize: 12
-    stockSize: 20
+    stockSize: 48
     ammo: 12
     stock: 12
   bullet:
     ammoSize: 12
-    stockSize: 20
+    stockSize: 96
     ammo: 12
-    stock: 12
+    stock: 36
   rocket:
-    ammoSize: 4
-    stockSize: 10
-    ammo: 4
-    stock: 4
+    ammoSize: 1
+    stockSize: 24
+    ammo: 1
+    stock: 8
+  magazines: []
   cooldown: 0.3
 --- !u!1001 &1373041418
 PrefabInstance:

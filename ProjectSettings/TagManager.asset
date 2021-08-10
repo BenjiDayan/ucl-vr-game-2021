@@ -10,6 +10,7 @@ TagManager:
   - Landmark
   - Generic Building
   - Enemy Drone
+  - Ammo Spawner
   layers:
   - Default
   - TransparentFX

@@ -58,13 +58,22 @@ public class Projectile : MonoBehaviour
         int damage = 0;
         var damageable = collision.gameObject.GetComponent<IDamageable>();
 
-        if (damageable != null)
+        if (true) //(damageable != null)   Unfortunately we did not end up using this system
         {
-            damageable.OnDamage(damage);
+            //damageable.OnDamage(damage);
             if (destructionSound != null) {
                 AudioSource.PlayClipAtPoint(destructionSound, transform.position, destructionVolume);
             }
-            Destroy(gameObject);
+            //Destroy(gameObject);      Destroying the game object causes the sound to stop playing
+            if (GetComponent<MeshRenderer>() != null)
+            {
+                GetComponent<MeshRenderer>().enabled = false;
+            }
+            foreach(Transform child in transform)
+            {
+                Destroy(child.gameObject);
+            }
+            GetComponent<CapsuleCollider>().enabled = false;
         }
     }
 

@@ -58,9 +58,9 @@ MonoBehaviour:
   - {fileID: 4583146346931847104, guid: 45e5364d224a9fd42bd1849df0b181af, type: 3}
   fogPlate: {fileID: 8847898283242113356, guid: 8919e41819d17f44ab7a1ce438076530,
     type: 3}
-  navMeshSurfacePrefab: {fileID: 4683018911992541941, guid: dce564b59761fb846858a29518837f85,
-    type: 3}
   mainEnemyPrefab: {fileID: 557087018857309929, guid: 66e3e6ad48b220043823aaea0f37155a,
+    type: 3}
+  ammoControllerPrefab: {fileID: 3913111811709982749, guid: 5fa03fd281680c94c94be02bdc89a0c3,
     type: 3}
   mapSizeX: 1000
   mapSizeY: 1000
