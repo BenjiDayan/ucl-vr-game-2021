@@ -13,6 +13,7 @@ public class PDController : MonoBehaviour
 
     public float buildingConstructionTime = 5f;
     public float glowFadeTime = 1f;
+    public float playerBuildingSegmentDamage = 5f;
 
     
     bool creatingBuilding = false;
@@ -146,7 +147,7 @@ public class PDController : MonoBehaviour
                     drone.SendMessage("EndTask");
                 }
                 constructionCompletedTime = Time.realtimeSinceStartup;
-                Instantiate(
+                GameObject buildingInstance = Instantiate(
                     buildingPrefabs[buildingIndex],
                         new Vector3(
                             raycatcherTransform.position.x - buildingOffsets[buildingIndex][0],
@@ -156,6 +157,9 @@ public class PDController : MonoBehaviour
                         Quaternion.identity,
                         raycatcherTransform
                     );
+                Cyberbuilding buildingInstanceScript = buildingInstance.GetComponent<Cyberbuilding>();
+                buildingInstanceScript.playerBuilding = true;
+                buildingInstanceScript.playerBuildingDamage = playerBuildingSegmentDamage;
             }
         }
 

@@ -45,6 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingConstructionTime: 5
   glowFadeTime: 1
+  playerBuildingSegmentDamage: 5
   glowMaterial: {fileID: 2100000, guid: 9e20f1065e8a40441ba59b02e74e9203, type: 2}
   raycatcherTransform: {fileID: 0}
   buildingIndex: 0

@@ -20,6 +20,10 @@ public class Cyberbuilding : MonoBehaviour
     [SerializeField] public float segmentSpin =91000f;
     [SerializeField] AudioClip collapseSound;
 
+    [Header("Leave as default")]
+    [SerializeField] public bool playerBuilding = false;
+    [SerializeField] public float playerBuildingDamage = 5f;
+
     private Collider[] colliders;
     private Rigidbody rb;
     private Vector3 dir = new Vector3(0, 0, 0);
@@ -111,6 +115,14 @@ public class Cyberbuilding : MonoBehaviour
             randDir = RandomDirection(segmentAngle, segmentAngle + angle);
             randDir.y += Random.Range(-verticalRandomness, verticalRandomness);
             segmentInstance = Instantiate(segment, explosionOrigin, Quaternion.identity);
+            if (playerBuilding)
+            {
+                segmentInstance.name = playerBuildingDamage.ToString();
+            }
+            else
+            {
+                segmentInstance.name = "1";
+            }
             segmentInstance.GetComponent<Rigidbody>().AddForce(randDir * 3000);
             segmentInstance.GetComponent<Rigidbody>().AddTorque(RandomDirection3D() * Random.value * segmentSpin);
         }

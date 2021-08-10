@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7066247326585578846}
   - component: {fileID: 411257371979671737}
   - component: {fileID: 7066247326585578833}
-  - component: {fileID: -6417452808729492802}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -123,24 +122,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-6417452808729492802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7066247326585578832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 508e36668dd9aa446abddb95bfc1330b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shootKey: 110
-  switchProjectile: 109
-  cooldown: 0.3
-  currentProjectile: 1
-  projectilePrefabs:
-  - {fileID: 7638290415175367660, guid: 782765bb94eddb54da6c833d84913016, type: 3}
-  - {fileID: 3171844568938827554, guid: 9b70d2b81da61384da804e66cbff601a, type: 3}
-  segmentBank: 0
-  noActiveCloud: 0

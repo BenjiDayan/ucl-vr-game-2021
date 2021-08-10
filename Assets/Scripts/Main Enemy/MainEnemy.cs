@@ -33,6 +33,7 @@ public class MainEnemy : MonoBehaviour
 
     float destinationCompletenessChange;
     float completeness;
+    float currentPathLength;
 
     List<Vector3> Shuffle(List<Vector3> inputList)
     {
@@ -45,6 +46,16 @@ public class MainEnemy : MonoBehaviour
             inputList.RemoveAt(randomIndex);
         }
         return(outputList);
+    }
+
+    float PathLength(NavMeshPath path)
+    {
+        float length = 0;
+        for (int i = 1; i < path.corners.Length; i++)
+        {
+            length += Vector3.Distance(path.corners[i - 1], path.corners[i]);
+        }
+        return length;
     }
 
     public void Awake() {
@@ -67,7 +78,13 @@ public class MainEnemy : MonoBehaviour
             {
                 agent.destination = destinations[i];
                 destination = destinations[i];
-                destinationCompletenessChange = distance / totalDistanceToCover;
+                float pathLengthTemp = PathLength(path);
+                destinationCompletenessChange = pathLengthTemp / totalDistanceToCover;
+                if (destinationCompletenessChange + completeness > 1f)
+                {
+                    destinationCompletenessChange = 1f - completeness;
+                }
+                currentPathLength = pathLengthTemp;
                 break;
             }
         }
@@ -91,6 +108,8 @@ public class MainEnemy : MonoBehaviour
             }
         }
 
+        agent.enabled = true;
+
         line = transform.Find("Line").GetComponent<LineRenderer>();
 
         destinationMarker = Instantiate(destinationMarkerPrefab);
@@ -101,6 +120,12 @@ public class MainEnemy : MonoBehaviour
     void Update()
     {
         ui.UpdateEnemyHealth(hp);
+        ui.UpdateEnemyHealthBar(hp / startingHP);
+
+        NavMeshPath path = new NavMeshPath();
+        agent.CalculatePath(destination, path);
+        ui.UpdateCompleteness(completeness + destinationCompletenessChange * (1 - PathLength(path) / currentPathLength));
+
         if (hp > 0)
         {
             //Mark the path we're following
@@ -146,7 +171,8 @@ public class MainEnemy : MonoBehaviour
                 completeness += destinationCompletenessChange;
                 if (completeness >= 1)
                 {
-                    Debug.Log("Game Over");
+                    PauseMenu pauseMenu = (PauseMenu)FindObjectOfType(typeof(PauseMenu));
+                    pauseMenu.ReloadGame();
                 }
                 else
                 {
@@ -185,9 +211,9 @@ public class MainEnemy : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.gameObject.name.Contains("debris"))
+        if (collision.collider.gameObject.tag == "Debris")
         {
-            hp -= 1;
+            hp -= float.Parse(collision.collider.gameObject.name);
 
             if (hp <= 0)
             {

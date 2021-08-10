@@ -358,19 +358,23 @@ MonoBehaviour:
     ammoSize: 12
     stockSize: 48
     ammo: 12
-    stock: 12
+    stock: 0
   bullet:
     ammoSize: 12
     stockSize: 96
     ammo: 12
     stock: 36
   rocket:
-    ammoSize: 1
+    ammoSize: 2
     stockSize: 24
-    ammo: 1
+    ammo: 2
     stock: 8
   magazines: []
   cooldown: 0.3
+  reloadTime:
+  - 3
+  - 3
+  - 4.5
 --- !u!1001 &1373041418
 PrefabInstance:
   m_ObjectHideFlags: 0

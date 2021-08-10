@@ -24,6 +24,7 @@ public class PlayerGunFPS2 : MonoBehaviour
     public Magazine[] magazines;
 
     [SerializeField] float cooldown = 0.3f;
+    [SerializeField] float[] reloadTime = new float[] {1.5f, 1.5f, 1.5f};
 
     float cooldownCounter = 0;
 
@@ -33,8 +34,15 @@ public class PlayerGunFPS2 : MonoBehaviour
 
     InputDevice device;
 
+    PlayerUI ui;
+
+    bool reloading = false;
+    float reloadFinishTime = 0f;
+
     private void Start()
     {
+        ui = (PlayerUI)FindObjectOfType(typeof(PlayerUI));
+
         magazines = new Magazine[] { laser, bullet, rocket };
 
         cooldownCounter = 0;
@@ -81,9 +89,20 @@ public class PlayerGunFPS2 : MonoBehaviour
 
         SwitchProjectile();
 
-        Reload();
+        if (!reloading)
+        {
+            Shoot();
 
-        Shoot();
+            Reload();
+        }
+
+        UpdateUI();
+
+        if (reloading && Time.realtimeSinceStartup > reloadFinishTime)
+        {
+            reloading = false;
+            magazines[currentProjectile].Reload();
+        }
     }
 
     private void OnDrawGizmos()
@@ -131,6 +150,15 @@ public class PlayerGunFPS2 : MonoBehaviour
         }
     }
 
+    void UpdateUI()
+    {
+        string outputString = "";
+        outputString += new string[] { "Laser", "Bullet", "Rocket" }[currentProjectile];
+        outputString += "\n";
+        outputString += magazines[currentProjectile]._ammo.ToString() + " / " + magazines[currentProjectile]._stock.ToString();
+        ui.UpdateAmmo(outputString);
+    }
+
     void SwitchProjectile()
     {
         bool switchValue;
@@ -139,6 +167,8 @@ public class PlayerGunFPS2 : MonoBehaviour
             (device.TryGetFeatureValue(switchProjectileVR, out switchValue) && switchValue)
         )
         {
+            reloading = false;
+
             currentProjectile++;
             currentProjectile = currentProjectile % projectilePrefabs.Length;
         }
@@ -147,12 +177,15 @@ public class PlayerGunFPS2 : MonoBehaviour
     void Reload()
     {
         bool reloadValue;
-        if (   
-            Input.GetKeyDown(reloadKey) ||
-            (device.TryGetFeatureValue(reloadKeyVR, out reloadValue) && reloadValue)
+        if (
+            ((Input.GetKeyDown(reloadKey) ||
+            (device.TryGetFeatureValue(reloadKeyVR, out reloadValue) && reloadValue)) &&
+            magazines[currentProjectile]._ammo != magazines[currentProjectile]._size) ||
+            magazines[currentProjectile]._ammo == 0
         )
         {
-            magazines[currentProjectile].Reload();
+            reloading = true;
+            reloadFinishTime = Time.realtimeSinceStartup + reloadTime[currentProjectile];
         }
     }
 }
