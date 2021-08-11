@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.26321808, g: 0.2506251, b: 0.31353226, a: 1}
+  m_IndirectSpecularColor: {r: 0.26262194, g: 0.2522997, b: 0.31389827, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1624,7 +1624,7 @@ MonoBehaviour:
   teleportKey: 324
   range: 50
   speed: 2.5
-  epsilon: 0.2
+  epsilon: 5
   movement: {fileID: 1848525905}
 --- !u!1001 &1730454660
 PrefabInstance:
@@ -1807,6 +1807,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4620770817478610469, guid: 0f9277b567b795e40a316aefc5a8d7fd,
+        type: 3}
+      propertyPath: epsilon
+      value: 5.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4643119343356466511, guid: 0f9277b567b795e40a316aefc5a8d7fd,
         type: 3}
       propertyPath: m_RootOrder
@@ -1842,6 +1847,7 @@ PrefabInstance:
     - {fileID: 3272287906613222186, guid: 0f9277b567b795e40a316aefc5a8d7fd, type: 3}
     - {fileID: 5703145975550564627, guid: 0f9277b567b795e40a316aefc5a8d7fd, type: 3}
     - {fileID: 2805919227323511220, guid: 0f9277b567b795e40a316aefc5a8d7fd, type: 3}
+    - {fileID: 4620770817478610469, guid: 0f9277b567b795e40a316aefc5a8d7fd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0f9277b567b795e40a316aefc5a8d7fd, type: 3}
 --- !u!1 &1826926947
 GameObject:
@@ -1947,7 +1953,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 1
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 143.71344, y: 0, z: 250.4248, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

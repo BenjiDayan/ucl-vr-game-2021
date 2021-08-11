@@ -16,13 +16,15 @@ public class TeleportOnClickGrappling : MonoBehaviour
     [SerializeField] float speed = 2.5f;
 
     [Tooltip("distance to hooked point after which released")]
-    [SerializeField] float epsilon=2.0f;
+    [SerializeField] float epsilon=5.0f;
     private bool travelling = false;
     private float gravity;
     private Vector3 targetPos;
     private GameObject targetObject;
     private Collider targetCollider;
     private float t = 0;
+    private float cancel_travel_cooldown_percent = 0.2f;
+    private float travel_again_cooldown_time = 0.2f;
     private Vector3 dir;
     [SerializeField] PlayerMovementFPS movement;
     private void Start() {
@@ -77,24 +79,24 @@ public class TeleportOnClickGrappling : MonoBehaviour
     }
 
     private void ModifyObjectsColliders(GameObject building, bool enabled) {
-        Component[] components = gameObject.GetComponentsInChildren<Component>(true);
-        List<Collider> colliders = new List<Collider>();
-        foreach (Component c in components) {
-            if (c.GetType() is Collider) {
-                colliders.Add((Collider) c);
-            } 
-        }
-        Debug.Log("Found " + colliders.Count.ToString() + " colliders");
-        List<BoxCollider> box_colliders = new List<BoxCollider>();
-        foreach (Component c in components) {
-            if (c.GetType() is BoxCollider) {
-                colliders.Add((BoxCollider) c);
-            } 
-        }
-        Debug.Log("Found " + box_colliders.Count.ToString() + " BoxColliders");
-        foreach (Collider c in colliders) {
-            c.enabled = enabled;
-        }
+        // Component[] components = gameObject.GetComponentsInChildren<Component>(true);
+        // List<Collider> colliders = new List<Collider>();
+        // foreach (Component c in components) {
+        //     if (c.GetType() is Collider) {
+        //         colliders.Add((Collider) c);
+        //     } 
+        // }
+        // Debug.Log("Found " + colliders.Count.ToString() + " colliders");
+        // List<BoxCollider> box_colliders = new List<BoxCollider>();
+        // foreach (Component c in components) {
+        //     if (c.GetType() is BoxCollider) {
+        //         colliders.Add((BoxCollider) c);
+        //     } 
+        // }
+        // Debug.Log("Found " + box_colliders.Count.ToString() + " BoxColliders");
+        // foreach (Collider c in colliders) {
+        //     c.enabled = enabled;
+        // }
     }
 
     private void TeleportToLookAt(GameObject teleportationTarget)
@@ -150,20 +152,36 @@ public class TeleportOnClickGrappling : MonoBehaviour
             Transform root = transform.root;
             root.position = Vector3.Lerp(root.position, targetPos, t);
 
-            if (Vector3.Distance(root.position, targetPos) <= epsilon)
+            bool triggerValue;
+            if  (   
+                    (
+                        (
+                        Input.GetKeyDown(teleportKey) ||
+                        (device.TryGetFeatureValue(teleportKeyVR, out triggerValue) && triggerValue) 
+                        ) &&
+                        t > cancel_travel_cooldown_percent
+                    ) ||
+                    (Vector3.Distance(root.position, targetPos) <= epsilon)
+                )
             {
+                Debug.Log("No longer travelling - within " + epsilon.ToString() + " distance of target");
                 travelling = false;
                 movement.gravity = gravity;
                 ModifyObjectsColliders(targetObject, true);
+                t=0;
             }
         }
     }
     void Update()
     {
+        if (!travelling) {
+            t += Time.deltaTime;
+        }
         bool triggerValue;
         if  (   
-                Input.GetKeyDown(teleportKey) ||
+                (Input.GetKeyDown(teleportKey) ||
                 (device.TryGetFeatureValue(teleportKeyVR, out triggerValue) && triggerValue)
+                ) && t > travel_again_cooldown_time
             )
         {
             targetCollider = GetLookedAtCollider();
