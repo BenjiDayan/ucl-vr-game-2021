@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 7888397920242414793}
   - component: {fileID: -7858429924323873512}
   - component: {fileID: 1144094255086789652}
-  - component: {fileID: 9038460249632323822}
   - component: {fileID: 6496709936441035810}
+  - component: {fileID: 6046802047554465288}
   m_Layer: 9
   m_Name: cb3
   m_TagString: Landmark
@@ -106,6 +106,8 @@ MonoBehaviour:
   verticalRandomness: 0.1
   segmentSpin: 9000
   collapseSound: {fileID: 0}
+  playerBuilding: 0
+  playerBuildingDamage: 5
 --- !u!54 &1144094255086789652
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -122,20 +124,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!136 &9038460249632323822
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8537070541563303196}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 32.5
-  m_Height: 247
-  m_Direction: 1
-  m_Center: {x: 5, y: 119.99986, z: 0}
 --- !u!208 &6496709936441035810
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -152,3 +140,17 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 5, y: 119.9999, z: 0}
   m_TimeToStationary: 0.5
+--- !u!64 &6046802047554465288
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8537070541563303196}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7693828240516548591, guid: f9ab9d5617d4d3047bbe1edc101ce2fa, type: 3}

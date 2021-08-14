@@ -178,6 +178,54 @@ public class CityBuilder : MonoBehaviour
             offset = new List<float>();
             dimensions = new List<int>();
             trueDimensions = new List<float>();
+            Bounds rendererBounds = prefab.GetComponent<MeshRenderer>().bounds;
+            if (rendererBounds.max.x > maxX)
+            {
+                maxX = rendererBounds.max.x;
+            }
+            if (rendererBounds.min.x < minX)
+            {
+                minX = rendererBounds.min.x;
+            }
+            if (rendererBounds.max.z > maxY)
+            {
+                maxY = rendererBounds.max.z;
+            }
+            if (rendererBounds.min.z < minY)
+            {
+                minY = rendererBounds.min.z;
+            }
+            if (rendererBounds.max.y > maxZ)
+            {
+                maxZ = rendererBounds.max.y;
+            }
+            /*
+            foreach (BoxCollider collider in prefab.GetComponents<BoxCollider>())
+            {
+                Debug.Log(collider.bounds.max.x);
+                if (collider.bounds.max.x > maxX)
+                {
+                    maxX = collider.bounds.max.x;
+                }
+                if (collider.bounds.min.x < minX)
+                {
+                    minX = collider.bounds.min.x;
+                }
+                if (collider.bounds.max.z > maxY)
+                {
+                    maxY = collider.bounds.max.z;
+                }
+                if (collider.bounds.min.z < minY)
+                {
+                    minY = collider.bounds.min.z;
+                }
+                if (collider.bounds.max.y > maxZ)
+                {
+                    maxZ = collider.bounds.max.y;
+                }
+            }
+            */
+            /*
             foreach (BoxCollider collider in prefab.GetComponents<BoxCollider>())
             {
                 centre = collider.center;
@@ -228,6 +276,7 @@ public class CityBuilder : MonoBehaviour
                     maxZ = centre.y + (collider.height / 2f);
                 }
             }
+            */
             offset.Add(Mathf.Abs((maxX + minX) / 2));
             offset.Add(Mathf.Abs((maxY + minY) / 2));
             dimensions.Add(Mathf.CeilToInt((maxX - minX) / 10));
