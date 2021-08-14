@@ -5,11 +5,12 @@ using UnityEngine.XR;
 
 public class PlayerGunFPS2 : MonoBehaviour
 {
+    [SerializeField] AudioSource reloadSound;
     [Header("Input")]
     [SerializeField] KeyCode switchProjectile = KeyCode.Q;
     [SerializeField] InputFeatureUsage<bool> switchProjectileVR = CommonUsages.secondaryButton;
     [SerializeField] KeyCode reloadKey = KeyCode.E;
-    [SerializeField] InputFeatureUsage<bool> reloadKeyVR = CommonUsages.primaryButton;
+    [SerializeField] InputFeatureUsage<bool> reloadKeyVR = CommonUsages.gripButton;
     [SerializeField] KeyCode shootGunKey = KeyCode.Mouse0;
     [SerializeField] InputFeatureUsage<bool> shootGunKeyVR = CommonUsages.triggerButton;
 
@@ -43,10 +44,14 @@ public class PlayerGunFPS2 : MonoBehaviour
 
     private void Start()
     {
+
         for (int i = 0; i < 3; i++)
         {
             renderers[i] = transform.GetChild(i).GetComponent<MeshRenderer>();
         }
+
+
+        reloadSound = GetComponent<AudioSource>();
 
         ui = (PlayerUI)FindObjectOfType(typeof(PlayerUI));
 
@@ -54,7 +59,7 @@ public class PlayerGunFPS2 : MonoBehaviour
 
         cooldownCounter = 0;
 
-        var rightHandDevices = new List<InputDevice>();   
+        var rightHandDevices = new List<InputDevice>();
         InputDevices.GetDevicesAtXRNode(XRNode.RightHand, rightHandDevices);
         if(rightHandDevices.Count == 1)
         {
@@ -121,8 +126,8 @@ public class PlayerGunFPS2 : MonoBehaviour
     void Shoot()
     {
         bool triggerValue;
-        if (cooldownCounter >= cooldown && 
-            (   
+        if (cooldownCounter >= cooldown &&
+            (
                 Input.GetKey(shootGunKey) ||
                 (device.TryGetFeatureValue(shootGunKeyVR, out triggerValue) && triggerValue)
             )
@@ -169,7 +174,7 @@ public class PlayerGunFPS2 : MonoBehaviour
     void SwitchProjectile()
     {
         bool switchValue;
-        if (   
+        if (
             Input.GetKeyDown(switchProjectile) ||
             (device.TryGetFeatureValue(switchProjectileVR, out switchValue) && switchValue)
         )
@@ -196,6 +201,7 @@ public class PlayerGunFPS2 : MonoBehaviour
         {
             reloading = true;
             reloadFinishTime = Time.realtimeSinceStartup + reloadTime[currentProjectile];
+            reloadSound.Play();
         }
     }
 }
