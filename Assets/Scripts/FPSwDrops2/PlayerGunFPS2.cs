@@ -5,11 +5,12 @@ using UnityEngine.XR;
 
 public class PlayerGunFPS2 : MonoBehaviour
 {
+    [SerializeField] AudioSource reloadSound;
     [Header("Input")]
     [SerializeField] KeyCode switchProjectile = KeyCode.Q;
     [SerializeField] InputFeatureUsage<bool> switchProjectileVR = CommonUsages.secondaryButton;
     [SerializeField] KeyCode reloadKey = KeyCode.E;
-    [SerializeField] InputFeatureUsage<bool> reloadKeyVR = CommonUsages.primaryButton;
+    [SerializeField] InputFeatureUsage<bool> reloadKeyVR = CommonUsages.gripButton;
     [SerializeField] KeyCode shootGunKey = KeyCode.Mouse0;
     [SerializeField] InputFeatureUsage<bool> shootGunKeyVR = CommonUsages.triggerButton;
 
@@ -41,6 +42,7 @@ public class PlayerGunFPS2 : MonoBehaviour
 
     private void Start()
     {
+        reloadSound = GetComponent<AudioSource>();
         ui = (PlayerUI)FindObjectOfType(typeof(PlayerUI));
 
         magazines = new Magazine[] { laser, bullet, rocket };
@@ -186,6 +188,7 @@ public class PlayerGunFPS2 : MonoBehaviour
         {
             reloading = true;
             reloadFinishTime = Time.realtimeSinceStartup + reloadTime[currentProjectile];
+            reloadSound.Play();
         }
     }
 }
