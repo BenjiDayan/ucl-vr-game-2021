@@ -28,11 +28,11 @@ public class PlayerMovementFPS : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var leftHandDevices = new List<InputDevice>();   
-        InputDevices.GetDevicesAtXRNode(UnityEngine.XR.XRNode.LeftHand, leftHandDevices);
-        if(leftHandDevices.Count == 1)
+        var rightHandDevices = new List<InputDevice>();   
+        InputDevices.GetDevicesAtXRNode(UnityEngine.XR.XRNode.RightHand, rightHandDevices);
+        if(rightHandDevices.Count == 1)
         {
-            device = leftHandDevices[0];
+            device = rightHandDevices[0];
             Debug.Log("Found left hand device");
         }
         else {
