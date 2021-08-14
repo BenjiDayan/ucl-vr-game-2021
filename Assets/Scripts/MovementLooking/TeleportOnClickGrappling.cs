@@ -12,6 +12,8 @@ public class TeleportOnClickGrappling : MonoBehaviour
 
     private InputDevice device;
 
+    private AudioSource spoolSound;
+
     [SerializeField] float range = 50;
     [SerializeField] float speed = 2.5f;
 
@@ -28,6 +30,9 @@ public class TeleportOnClickGrappling : MonoBehaviour
     private Vector3 dir;
     [SerializeField] PlayerMovementFPS movement;
     private void Start() {
+        spoolSound = GetComponent<AudioSource>();
+        spoolSound.loop = true;
+
         gravity = movement.gravity;
         Debug.Log("movement: " + movement);
 
@@ -71,11 +76,22 @@ public class TeleportOnClickGrappling : MonoBehaviour
     {
         Vector3 origin = transform.position;
         Vector3 direction = transform.forward;
-        if (Physics.Raycast(origin, direction, out lastRaycastHit, range)) {
-            return lastRaycastHit.collider;
+        // if (Physics.Raycast(origin, direction, out lastRaycastHit, range)) {
+        //     return lastRaycastHit.collider;
+        // }
+        // else
+        //     return null;
+
+        RaycastHit[] hits;
+        hits = Physics.RaycastAll(origin, direction, range);
+        for (int i=0; i < hits.Length; i++) {
+            GameObject hit = hits[i].transform.gameObject;
+            if (hit.layer == LayerMask.NameToLayer("Building")) {
+                return hit.GetComponent<Collider>();
+            }
         }
-        else
-            return null;
+        return null;
+
     }
 
     private void ModifyObjectsColliders(GameObject building, bool enabled) {
@@ -142,6 +158,7 @@ public class TeleportOnClickGrappling : MonoBehaviour
         t = 0;
         dir = targetPos - transform.root.position;
         travelling = true;
+        spoolSound.Play();
     }
 
     void Travel()
@@ -169,6 +186,7 @@ public class TeleportOnClickGrappling : MonoBehaviour
                 movement.gravity = gravity;
                 ModifyObjectsColliders(targetObject, true);
                 t=0;
+                spoolSound.Stop();
             }
         }
     }

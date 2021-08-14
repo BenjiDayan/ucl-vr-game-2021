@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.26262194, g: 0.2522997, b: 0.31389827, a: 1}
+  m_IndirectSpecularColor: {r: 0.26323602, g: 0.2506544, b: 0.31354988, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1603,29 +1603,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &1615546370 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2396224633091649135, guid: 0f9277b567b795e40a316aefc5a8d7fd,
-    type: 3}
-  m_PrefabInstance: {fileID: 1759738417}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1615546372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1615546370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 461198531ebb09c4082b0064fa950bdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  teleportKey: 324
-  range: 50
-  speed: 2.5
-  epsilon: 5
-  movement: {fileID: 1848525905}
 --- !u!1001 &1730454660
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1842,12 +1819,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8304675419273810525, guid: 0f9277b567b795e40a316aefc5a8d7fd,
+        type: 3}
+      propertyPath: movement
+      value: 
+      objectReference: {fileID: 1848525905}
     m_RemovedComponents:
     - {fileID: 5812512828076883858, guid: 0f9277b567b795e40a316aefc5a8d7fd, type: 3}
     - {fileID: 3272287906613222186, guid: 0f9277b567b795e40a316aefc5a8d7fd, type: 3}
-    - {fileID: 5703145975550564627, guid: 0f9277b567b795e40a316aefc5a8d7fd, type: 3}
-    - {fileID: 2805919227323511220, guid: 0f9277b567b795e40a316aefc5a8d7fd, type: 3}
-    - {fileID: 4620770817478610469, guid: 0f9277b567b795e40a316aefc5a8d7fd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0f9277b567b795e40a316aefc5a8d7fd, type: 3}
 --- !u!1 &1826926947
 GameObject:
