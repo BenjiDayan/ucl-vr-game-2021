@@ -39,8 +39,15 @@ public class PlayerGunFPS2 : MonoBehaviour
     bool reloading = false;
     float reloadFinishTime = 0f;
 
+    MeshRenderer[] renderers = new MeshRenderer[] { null, null, null };
+
     private void Start()
     {
+        for (int i = 0; i < 3; i++)
+        {
+            renderers[i] = transform.GetChild(i).GetComponent<MeshRenderer>();
+        }
+
         ui = (PlayerUI)FindObjectOfType(typeof(PlayerUI));
 
         magazines = new Magazine[] { laser, bullet, rocket };
@@ -169,8 +176,10 @@ public class PlayerGunFPS2 : MonoBehaviour
         {
             reloading = false;
 
+            renderers[currentProjectile].enabled = false;
             currentProjectile++;
             currentProjectile = currentProjectile % projectilePrefabs.Length;
+            renderers[currentProjectile].enabled = true;
         }
     }
 
@@ -178,10 +187,11 @@ public class PlayerGunFPS2 : MonoBehaviour
     {
         bool reloadValue;
         if (
-            ((Input.GetKeyDown(reloadKey) ||
+            (((Input.GetKeyDown(reloadKey) ||
             (device.TryGetFeatureValue(reloadKeyVR, out reloadValue) && reloadValue)) &&
             magazines[currentProjectile]._ammo != magazines[currentProjectile]._size) ||
-            magazines[currentProjectile]._ammo == 0
+            magazines[currentProjectile]._ammo == 0) &&
+            magazines[currentProjectile]._stock != 0
         )
         {
             reloading = true;

@@ -17,6 +17,7 @@ public class Hologram : MonoBehaviour
     public int debrisCost = 6;
 
     public bool canOnlyBuildCyberbuildings = true;
+    public bool mustEarnBuildings = false;
 
     [Header("Leave as default")]
     [SerializeField] public int listIndex = 0;
@@ -135,7 +136,7 @@ public class Hologram : MonoBehaviour
         buildings = GameObject.Find("City Builder").GetComponent<CityBuilder>().buildingPrefabs;
 
         for (int i = 0; i < buildings.Count; i++){
-            buildingEarned.Add(false);
+            buildingEarned.Add(!mustEarnBuildings && (!canOnlyBuildCyberbuildings || buildings[i].tag == "Landmark"));
         }
 
         gun = GameObject.Find("Gun").transform;
