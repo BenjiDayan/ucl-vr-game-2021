@@ -19,6 +19,7 @@ public class PlayerMovementFPS : MonoBehaviour
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
     public float jumpHeight = 6f;
+    public float groundDeathHeight = 30f;
     bool isGrounded;
 
     private PlayerHealth playerHealth;
@@ -45,7 +46,7 @@ public class PlayerMovementFPS : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (controller.transform.position.y < 0) {
+        if (controller.transform.position.y < groundDeathHeight) {
             playerHealth.OnDamage(25);
         }
 
