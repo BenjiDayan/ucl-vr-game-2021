@@ -46,6 +46,6 @@ MonoBehaviour:
   createBuildingKey: 325
   hologramMaterial: {fileID: 2100000, guid: ca47286a31e2db34990efbbd21911391, type: 2}
   scrollSensitivity: 10
-  debrisCost: 6
+  debrisCost: 20
   canOnlyBuildCyberbuildings: 1
   listIndex: 0

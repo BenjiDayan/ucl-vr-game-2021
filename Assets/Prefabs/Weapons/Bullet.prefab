@@ -57,10 +57,11 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7bc077a3758289c40a794bc154175c4e, type: 2}
+  - {fileID: 2100000, guid: 96c26398add3df24e868018fdb707943, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -68,6 +69,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -96,6 +98,8 @@ MonoBehaviour:
   speed: 400
   lifetime: 1
   trajectory: {x: 0, y: 0, z: 0}
+  destructionSound: {fileID: 0}
+  destructionVolume: 1
 --- !u!136 &3171844568938827553
 CapsuleCollider:
   m_ObjectHideFlags: 0

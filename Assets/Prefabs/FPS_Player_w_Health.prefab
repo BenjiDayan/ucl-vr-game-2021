@@ -107,6 +107,8 @@ MonoBehaviour:
   hp: 500
   currentHp: 0
   droneProjectileDamage: 1
+  healthRegenDelay: 10
+  healthRegenRate: 5
   ui: {fileID: 0}
 --- !u!136 &-1580147188641757358
 CapsuleCollider:
@@ -357,6 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1688267577247f5448b95737193cf7f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reloadSound: {fileID: 0}
   switchProjectile: 113
   reloadKey: 101
   shootGunKey: 323
@@ -380,7 +383,12 @@ MonoBehaviour:
     stockSize: 10
     ammo: 4
     stock: 4
+  magazines: []
   cooldown: 0.3
+  reloadTime:
+  - 1.5
+  - 1.5
+  - 1.5
 --- !u!1001 &1023768181150417233
 PrefabInstance:
   m_ObjectHideFlags: 0

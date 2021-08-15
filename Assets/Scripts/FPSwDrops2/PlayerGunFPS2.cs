@@ -40,16 +40,26 @@ public class PlayerGunFPS2 : MonoBehaviour
     bool reloading = false;
     float reloadFinishTime = 0f;
 
+    MeshRenderer[] renderers = new MeshRenderer[] { null, null, null };
+
     private void Start()
     {
+
+        for (int i = 0; i < 3; i++)
+        {
+            renderers[i] = transform.GetChild(i).GetComponent<MeshRenderer>();
+        }
+
+
         reloadSound = GetComponent<AudioSource>();
+
         ui = (PlayerUI)FindObjectOfType(typeof(PlayerUI));
 
         magazines = new Magazine[] { laser, bullet, rocket };
 
         cooldownCounter = 0;
 
-        var rightHandDevices = new List<InputDevice>();   
+        var rightHandDevices = new List<InputDevice>();
         InputDevices.GetDevicesAtXRNode(XRNode.RightHand, rightHandDevices);
         if(rightHandDevices.Count == 1)
         {
@@ -116,8 +126,8 @@ public class PlayerGunFPS2 : MonoBehaviour
     void Shoot()
     {
         bool triggerValue;
-        if (cooldownCounter >= cooldown && 
-            (   
+        if (cooldownCounter >= cooldown &&
+            (
                 Input.GetKey(shootGunKey) ||
                 (device.TryGetFeatureValue(shootGunKeyVR, out triggerValue) && triggerValue)
             )
@@ -164,15 +174,17 @@ public class PlayerGunFPS2 : MonoBehaviour
     void SwitchProjectile()
     {
         bool switchValue;
-        if (   
+        if (
             Input.GetKeyDown(switchProjectile) ||
             (device.TryGetFeatureValue(switchProjectileVR, out switchValue) && switchValue)
         )
         {
             reloading = false;
 
+            renderers[currentProjectile].enabled = false;
             currentProjectile++;
             currentProjectile = currentProjectile % projectilePrefabs.Length;
+            renderers[currentProjectile].enabled = true;
         }
     }
 
@@ -180,10 +192,11 @@ public class PlayerGunFPS2 : MonoBehaviour
     {
         bool reloadValue;
         if (
-            ((Input.GetKeyDown(reloadKey) ||
+            (((Input.GetKeyDown(reloadKey) ||
             (device.TryGetFeatureValue(reloadKeyVR, out reloadValue) && reloadValue)) &&
             magazines[currentProjectile]._ammo != magazines[currentProjectile]._size) ||
-            magazines[currentProjectile]._ammo == 0
+            magazines[currentProjectile]._ammo == 0) &&
+            magazines[currentProjectile]._stock != 0
         )
         {
             reloading = true;
