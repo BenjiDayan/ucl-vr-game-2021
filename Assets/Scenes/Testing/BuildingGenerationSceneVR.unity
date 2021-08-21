@@ -1493,6 +1493,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8304675419273810525, guid: 0f9277b567b795e40a316aefc5a8d7fd,
         type: 3}
+      propertyPath: epsilon
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8304675419273810525, guid: 0f9277b567b795e40a316aefc5a8d7fd,
+        type: 3}
       propertyPath: movement
       value: 
       objectReference: {fileID: 1848525905}

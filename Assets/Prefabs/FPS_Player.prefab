@@ -185,6 +185,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   jumpHeight: 6
+  groundDeathHeight: 30
 --- !u!136 &4186286948808486529
 CapsuleCollider:
   m_ObjectHideFlags: 0
