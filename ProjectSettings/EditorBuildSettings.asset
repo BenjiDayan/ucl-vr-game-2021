@@ -14,9 +14,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/FPSWithDropsVR.unity
     guid: 832c2c1864869564293340aadd182690
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Testing/BuildingGenerationSceneVR.unity
     guid: 2d5ce74f7ee176646a1c7f5b7a35e8e1
+  - enabled: 1
+    path: Assets/Scenes/Testing/BuildingGenerationSceneFPS.unity
+    guid: b0cd3b8a8cd72114fb7430d687898621
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: a76c5a266a6d0374ca75f67a06e77b3a,
       type: 2}
