@@ -1,0 +1,48 @@
+--------- beginning of system
+--------- beginning of tracking
+02-22 18:12:07.190  1012  1053 I PackageManager: Update package com.DefaultCompany.UCLProject code path from /data/app/com.DefaultCompany.UCLProject-PG8tZ2v2qWSLLbqnYUZoVQ== to /data/app/com.DefaultCompany.UCLProject-noLOJKr-_i5JsMMumGFiDA==; Retain data and using new
+02-22 18:12:07.190  1012  1053 I PackageManager: Update package com.DefaultCompany.UCLProject resource path from /data/app/com.DefaultCompany.UCLProject-PG8tZ2v2qWSLLbqnYUZoVQ== to /data/app/com.DefaultCompany.UCLProject-noLOJKr-_i5JsMMumGFiDA==; Retain data and using new
+02-22 18:12:07.281  1012  1053 I PackageManager: Un-granting permission android.permission.GET_DETAILED_TASKS from package com.oculus.vrshell (protectionLevel=2 flags=0x38883e45)
+02-22 18:12:07.283  1012  1053 I PackageManager: Un-granting permission android.permission.CAPTURE_AUDIO_OUTPUT from package com.oculus.horizon (protectionLevel=18 flags=0x38883e45)
+02-22 18:12:07.287  1012  1053 I PackageManager: Un-granting permission com.oculus.horizon.auth from package com.oculus.socialplatform (protectionLevel=18 flags=0x38c83ec5)
+02-22 18:12:07.296  1012  1053 I PackageManager: Un-granting permission android.permission.NETWORK_SETTINGS from package com.oculus.ocms (protectionLevel=2 flags=0x38883e45)
+02-22 18:12:07.297  1012  1053 I PackageManager: Un-granting permission com.oculus.permission.READ_SETTINGS from package com.oculus.tv (protectionLevel=1026 flags=0x38483e44)
+02-22 18:12:07.298  1012  1053 I PackageManager: Un-granting permission com.oculus.permission.WRITE_SETTINGS from package com.oculus.tv (protectionLevel=1026 flags=0x38483e44)
+02-22 18:12:07.700  1012  1053 I ActivityManager: Force stopping com.DefaultCompany.UCLProject appid=10072 user=0: pkg removed
+02-22 18:12:07.765  1012  1040 I ActivityManager: Start proc 4593:com.android.keychain/1000 for service {com.android.keychain/com.android.keychain.KeyChainService}
+02-22 18:13:09.714  1012  1040 W ActivityManager: Slow operation: 51ms so far, now at startProcess: returned from zygote!
+02-22 18:13:09.715  1012  1040 W ActivityManager: Slow operation: 52ms so far, now at startProcess: done updating battery stats
+02-22 18:13:09.716  1012  1040 W ActivityManager: Slow operation: 53ms so far, now at startProcess: building log message
+02-22 18:13:09.716  1012  1040 I ActivityManager: Start proc 4724:com.DefaultCompany.UCLProject/u0a72 for activity {com.DefaultCompany.UCLProject/com.unity3d.player.UnityPlayerActivity}
+02-22 18:13:09.716  1012  1040 W ActivityManager: Slow operation: 53ms so far, now at startProcess: starting to update pids map
+02-22 18:13:09.716  1012  1040 W ActivityManager: Slow operation: 53ms so far, now at startProcess: done updating pids map
+02-22 18:13:10.003  1012  4547 I ActivityManager: Process com.oculus.explore:explore (pid 3997) has died: cch+5 CEM 
+02-22 18:13:12.716  1012  4385 W ActivityManager: Slow operation: 69ms so far, now at getContentProviderImpl: after updateOomAdj
+02-22 18:13:12.716  1012  4385 W ActivityManager: Slow operation: 69ms so far, now at getContentProviderImpl: done!
+02-22 18:13:16.812  1012  1039 W ActivityManager: Stopping service due to app idle: u0a15 -1m10s18ms com.oculus.appsafety/.AppSafetyService
+02-22 18:13:52.054  1012  1040 W ActivityManager: Slow operation: 125ms so far, now at startProcess: returned from zygote!
+02-22 18:13:52.054  1012  1040 W ActivityManager: Slow operation: 126ms so far, now at startProcess: done updating battery stats
+02-22 18:13:52.055  1012  1040 W ActivityManager: Slow operation: 127ms so far, now at startProcess: building log message
+02-22 18:13:52.055  1012  1040 I ActivityManager: Start proc 4881:com.oculus.explore:explore/u0a35 for service {com.oculus.explore/com.oculus.explore.PanelService}
+02-22 18:13:52.055  1012  1040 W ActivityManager: Slow operation: 127ms so far, now at startProcess: starting to update pids map
+02-22 18:13:52.056  1012  1040 W ActivityManager: Slow operation: 127ms so far, now at startProcess: done updating pids map
+02-22 18:13:52.188  1012  2838 W ActivityManager: Slow operation: 67ms so far, now at attachApplicationLocked: immediately after bindApplication
+02-22 18:13:52.190  1012  2838 W ActivityManager: Slow operation: 69ms so far, now at attachApplicationLocked: after updateLruProcessLocked
+02-22 18:13:52.210  1012  2838 W ActivityManager: Slow operation: 90ms so far, now at attachApplicationLocked: after mServices.attachApplicationLocked
+02-22 18:13:52.550  1012  1339 W ActivityManager: Slow operation: 51ms so far, now at getContentProviderImpl: after updateLruProcess
+02-22 18:13:52.573  1012  1339 W ActivityManager: Slow operation: 57ms so far, now at getContentProviderImpl: before updateOomAdj
+02-22 18:13:52.657  1012  1339 W ActivityManager: Slow operation: 157ms so far, now at getContentProviderImpl: after updateOomAdj
+02-22 18:13:52.657  1012  1339 W ActivityManager: Slow operation: 158ms so far, now at getContentProviderImpl: done!
+02-22 18:13:52.658  1012  3873 I ActivityManager: Process com.DefaultCompany.UCLProject (pid 4724) has died: cch CRE 
+02-22 18:13:52.820  1012  1033 W ActivityManager: setHasOverlayUi called on unknown pid: 4724
+--------- beginning of main
+02-22 18:17:00.499  1012  1356 W ActivityManager: Slow operation: 70ms so far, now at getContentProviderImpl: after updateLruProcess
+02-22 18:17:00.499  1012  1356 W ActivityManager: Slow operation: 70ms so far, now at getContentProviderImpl: before updateOomAdj
+02-22 18:17:00.508  1012  1356 W ActivityManager: Slow operation: 79ms so far, now at getContentProviderImpl: after updateOomAdj
+02-22 18:17:00.512  1012  1356 W ActivityManager: Slow operation: 83ms so far, now at getContentProviderImpl: done!
+02-22 18:17:21.138  1012  1329 W ActivityManager: Slow operation: 56ms so far, now at getContentProviderImpl: after updateOomAdj
+02-22 18:17:21.138  1012  1329 W ActivityManager: Slow operation: 56ms so far, now at getContentProviderImpl: done!
+02-22 18:17:22.846  1012  5304 W ActivityManager: Slow operation: 145ms so far, now at getContentProviderImpl: after updateLruProcess
+02-22 18:17:22.850  1012  5304 W ActivityManager: Slow operation: 145ms so far, now at getContentProviderImpl: before updateOomAdj
+02-22 18:17:22.879  1012  5304 W ActivityManager: Slow operation: 177ms so far, now at getContentProviderImpl: after updateOomAdj
+02-22 18:17:22.879  1012  5304 W ActivityManager: Slow operation: 177ms so far, now at getContentProviderImpl: done!

@@ -1,0 +1,342 @@
+--------- beginning of system
+--------- beginning of tracking
+--------- beginning of main
+03-13 11:46:03.015  8663  8684 I Unity   : SystemInfo CPU = ARM64 FP ASIMD AES, Cores = 3, Memory = 5842mb
+03-13 11:46:03.015  8663  8684 I Unity   : SystemInfo ARM big.LITTLE configuration: 3 big (mask: 0x70), 0 little (mask: 0x0)
+03-13 11:46:03.015  8663  8684 I Unity   : XR UsableCoreMask: 0x70
+03-13 11:46:03.016  8663  8684 I Unity   : ApplicationInfo com.DefaultCompany.UCLProject version 0.1 build 2b22cea0-ca67-4430-8170-a5a48283b118
+03-13 11:46:03.016  8663  8684 I Unity   : Built from '2019.4/release' branch, Version '2019.4.18f1 (3310a4d4f880)', Build type 'Release', Scripting Backend 'mono', CPU 'armeabi-v7a', Stripping 'Disabled'
+03-13 11:46:03.118  8663  8684 D Unity   : loading library OVRPlugin
+03-13 11:46:03.144  8663  8684 D Unity   :  GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_EGL_sync GL_OES_vertex_half_float GL_OES_framebuffer_object GL_OES_rgb8_rgba8 GL_OES_compressed_ETC1_RGB8_texture GL_AMD_compressed_ATC_texture GL_KHR_texture_compression_astc_ldr GL_KHR_texture_compression_astc_hdr GL_OES_texture_compression_astc GL_OES_texture_npot GL_EXT_texture_filter_anisotropic GL_EXT_texture_format_BGRA8888 GL_EXT_read_format_bgra GL_OES_texture_3D GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_QCOM_alpha_test GL_OES_depth24 GL_OES_packed_depth_stencil GL_OES_depth_texture GL_OES_depth_texture_cube_map GL_EXT_sRGB GL_OES_texture_float GL_OES_texture_float_linear GL_OES_texture_half_float GL_OES_texture_half_float_linear GL_EXT_texture_type_2_10_10_10_REV GL_EXT_texture_sRGB_decode GL_EXT_texture_format_sRGB_override GL_OES_element_index_uint GL_EXT_copy_image GL_EXT_geometry_shader GL_EXT_tessellation_shader GL_OES_texture_stencil8 GL_EXT_shader_io_blocks GL_OES_shader_image_atomic GL_OES_sample_variables GL_EXT_texture_b
+03-13 11:46:03.144  8663  8684 D Unity   : order_clamp GL_EXT_EGL_image_external_wrap_modes GL_EXT_multisampled_render_to_texture GL_EXT_multisampled_render_to_texture2 GL_OES_shader_multisample_interpolation GL_EXT_texture_cube_map_array GL_EXT_draw_buffers_indexed GL_EXT_gpu_shader5 GL_EXT_robustness GL_EXT_texture_buffer GL_EXT_shader_framebuffer_fetch GL_ARM_shader_framebuffer_fetch_depth_stencil GL_OES_texture_storage_multisample_2d_array GL_OES_sample_shading GL_OES_get_program_binary GL_EXT_debug_label GL_KHR_blend_equation_advanced GL_KHR_blend_equation_advanced_coherent GL_QCOM_tiled_rendering GL_ANDROID_extension_pack_es31a GL_EXT_primitive_bounding_box GL_OES_standard_derivatives GL_OES_vertex_array_object GL_EXT_disjoint_timer_query GL_KHR_debug GL_EXT_YUV_target GL_EXT_sRGB_write_control GL_EXT_texture_norm16 GL_EXT_discard_framebuffer GL_OES_surfaceless_context GL_OVR_multiview GL_OVR_multiview2 GL_EXT_texture_sRGB_R8 GL_KHR_no_error GL_EXT_debug_marker GL_OES_EGL_image_external_essl3 GL_OVR_multiview_multisampled_render_to_texture GL_E
+03-13 11:46:03.144  8663  8684 D Unity   : XT_buffer_storage GL_EXT_external_buffer GL_EXT_blit_framebuffer_params GL_EXT_clip_cull_distance GL_EXT_protected_textures GL_EXT_shader_non_constant_global_initializers GL_QCOM_texture_foveated GL_QCOM_texture_foveated_subsampled_layout GL_QCOM_shader_framebuffer_fetch_noncoherent GL_QCOM_shader_framebuffer_fetch_rate GL_EXT_memory_object GL_EXT_memory_object_fd GL_EXT_EGL_image_array GL_NV_shader_noperspective_interpolation GL_KHR_robust_buffer_access_behavior GL_EXT_EGL_image_storage GL_EXT_blend_func_extended GL_EXT_clip_control GL_OES_texture_view GL_EXT_fragment_invocation_density GL_QCOM_motion_estimation GL_QCOM_validate_shader_binary GL_QCOM_YUV_texture_gather
+03-13 11:46:03.655  8663  8684 I Unity   : XRGeneral Settings awakening... 
+03-13 11:46:03.655  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:03.655  8663  8684 I Unity   : 
+03-13 11:46:05.218  8663  8684 D Unity   : initOculus Java!
+03-13 11:46:05.218  8663  8663 D Unity   : Oculus UI thread done.
+03-13 11:46:09.773  8663  8684 E Unity   : Unable to find AudioPluginOculusSpatializer
+03-13 11:46:09.840  8663  8684 E Unity   : DllNotFoundException: AudioPluginOculusSpatializer
+03-13 11:46:09.840  8663  8684 E Unity   :   at (wrapper managed-to-native) ONSPAudioSource.OSP_SetGlobalVoiceLimit(int)
+03-13 11:46:09.840  8663  8684 E Unity   :   at ONSPAudioSource.OnBeforeSceneLoadRuntimeMethod () [0x00005] in <5660f5335269439f9702988fb3ba4bd3>:0 
+03-13 11:46:09.840  8663  8684 E Unity   :  
+03-13 11:46:09.840  8663  8684 E Unity   : (Filename: <5660f5335269439f9702988fb3ba4bd3> Line: 0)
+03-13 11:46:09.840  8663  8684 E Unity   : 
+03-13 11:46:10.071  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:10.071  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:10.071  8663  8684 I Unity   : 
+03-13 11:46:10.329  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:10.329  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:10.329  8663  8684 I Unity   : 
+03-13 11:46:10.331  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:10.331  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:10.331  8663  8684 I Unity   : 
+03-13 11:46:10.339  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:10.339  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:10.339  8663  8684 I Unity   : 
+03-13 11:46:10.381  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:10.381  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:10.381  8663  8684 I Unity   : 
+03-13 11:46:10.395  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:10.395  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:10.395  8663  8684 I Unity   : 
+03-13 11:46:10.855  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:10.855  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:10.855  8663  8684 I Unity   : 
+03-13 11:46:10.869  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:10.869  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:10.869  8663  8684 I Unity   : 
+03-13 11:46:10.882  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:10.882  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:10.882  8663  8684 I Unity   : 
+03-13 11:46:10.896  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:10.896  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:10.896  8663  8684 I Unity   : 
+03-13 11:46:10.910  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:10.910  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:10.910  8663  8684 I Unity   : 
+03-13 11:46:10.924  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:10.924  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:10.924  8663  8684 I Unity   : 
+03-13 11:46:11.300  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:11.300  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:11.300  8663  8684 I Unity   : 
+03-13 11:46:11.314  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:11.314  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:11.314  8663  8684 I Unity   : 
+03-13 11:46:11.829  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:11.829  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:11.829  8663  8684 I Unity   : 
+03-13 11:46:11.843  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:11.843  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:11.843  8663  8684 I Unity   : 
+03-13 11:46:12.052  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:12.052  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:12.052  8663  8684 I Unity   : 
+03-13 11:46:12.066  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:12.066  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:12.066  8663  8684 I Unity   : 
+03-13 11:46:12.136  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:12.136  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:12.136  8663  8684 I Unity   : 
+03-13 11:46:12.150  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:12.150  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:12.150  8663  8684 I Unity   : 
+03-13 11:46:12.219  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:12.219  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:12.219  8663  8684 I Unity   : 
+03-13 11:46:12.233  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:12.233  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:12.233  8663  8684 I Unity   : 
+03-13 11:46:12.261  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:12.261  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:12.261  8663  8684 I Unity   : 
+03-13 11:46:12.275  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:12.275  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:12.275  8663  8684 I Unity   : 
+03-13 11:46:12.302  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:12.302  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:12.302  8663  8684 I Unity   : 
+03-13 11:46:12.316  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:12.316  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:12.316  8663  8684 I Unity   : 
+03-13 11:46:12.344  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:12.344  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:12.344  8663  8684 I Unity   : 
+03-13 11:46:12.358  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:12.358  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:12.358  8663  8684 I Unity   : 
+03-13 11:46:12.609  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:12.609  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:12.609  8663  8684 I Unity   : 
+03-13 11:46:12.624  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:12.624  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:12.624  8663  8684 I Unity   : 
+03-13 11:46:12.637  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:12.637  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:12.637  8663  8684 I Unity   : 
+03-13 11:46:12.790  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:12.790  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:12.790  8663  8684 I Unity   : 
+03-13 11:46:12.804  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:12.804  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:12.804  8663  8684 I Unity   : 
+03-13 11:46:12.846  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:12.846  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:12.846  8663  8684 I Unity   : 
+03-13 11:46:12.859  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:12.859  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:12.859  8663  8684 I Unity   : 
+03-13 11:46:13.054  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:13.054  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:13.054  8663  8684 I Unity   : 
+03-13 11:46:13.069  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:13.069  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:13.069  8663  8684 I Unity   : 
+03-13 11:46:13.277  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:13.277  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:13.277  8663  8684 I Unity   : 
+03-13 11:46:13.291  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:13.291  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:13.291  8663  8684 I Unity   : 
+03-13 11:46:13.305  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:13.305  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:13.305  8663  8684 I Unity   : 
+03-13 11:46:13.319  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:13.319  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:13.319  8663  8684 I Unity   : 
+03-13 11:46:13.625  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:13.625  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:13.625  8663  8684 I Unity   : 
+03-13 11:46:13.639  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:13.639  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:13.639  8663  8684 I Unity   : 
+03-13 11:46:14.308  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:14.308  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:14.308  8663  8684 I Unity   : 
+03-13 11:46:14.321  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:14.321  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:14.321  8663  8684 I Unity   : 
+03-13 11:46:14.488  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:14.488  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:14.488  8663  8684 I Unity   : 
+03-13 11:46:14.502  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:14.502  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:14.502  8663  8684 I Unity   : 
+03-13 11:46:15.088  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:15.088  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:15.088  8663  8684 I Unity   : 
+03-13 11:46:15.101  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:15.101  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:15.101  8663  8684 I Unity   : 
+03-13 11:46:15.143  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:15.143  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:15.143  8663  8684 I Unity   : 
+03-13 11:46:15.157  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:15.157  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:15.157  8663  8684 I Unity   : 
+03-13 11:46:15.310  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:15.310  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:15.310  8663  8684 I Unity   : 
+03-13 11:46:15.324  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:15.324  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:15.324  8663  8684 I Unity   : 
+03-13 11:46:15.421  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:15.421  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:15.421  8663  8684 I Unity   : 
+03-13 11:46:15.435  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:15.435  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:15.435  8663  8684 I Unity   : 
+03-13 11:46:15.797  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:15.797  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:15.797  8663  8684 I Unity   : 
+03-13 11:46:15.811  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:15.811  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:15.811  8663  8684 I Unity   : 
+03-13 11:46:15.825  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:15.825  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:15.825  8663  8684 I Unity   : 
+03-13 11:46:15.839  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:15.839  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:15.839  8663  8684 I Unity   : 
+03-13 11:46:16.090  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.090  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.090  8663  8684 I Unity   : 
+03-13 11:46:16.104  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.104  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.104  8663  8684 I Unity   : 
+03-13 11:46:16.243  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.243  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.243  8663  8684 I Unity   : 
+03-13 11:46:16.256  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.256  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.256  8663  8684 I Unity   : 
+03-13 11:46:16.285  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.285  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.285  8663  8684 I Unity   : 
+03-13 11:46:16.298  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.298  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.298  8663  8684 I Unity   : 
+03-13 11:46:16.312  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.312  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.312  8663  8684 I Unity   : 
+03-13 11:46:16.326  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.326  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.326  8663  8684 I Unity   : 
+03-13 11:46:16.452  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.452  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.452  8663  8684 I Unity   : 
+03-13 11:46:16.465  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.465  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.465  8663  8684 I Unity   : 
+03-13 11:46:16.702  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.702  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.702  8663  8684 I Unity   : 
+03-13 11:46:16.717  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.717  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.717  8663  8684 I Unity   : 
+03-13 11:46:16.730  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.730  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.730  8663  8684 I Unity   : 
+03-13 11:46:16.744  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.744  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.744  8663  8684 I Unity   : 
+03-13 11:46:16.758  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.758  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.758  8663  8684 I Unity   : 
+03-13 11:46:16.772  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.772  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.772  8663  8684 I Unity   : 
+03-13 11:46:16.786  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.786  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.786  8663  8684 I Unity   : 
+03-13 11:46:16.801  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.801  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.801  8663  8684 I Unity   : 
+03-13 11:46:16.814  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.814  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.814  8663  8684 I Unity   : 
+03-13 11:46:16.827  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.827  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.827  8663  8684 I Unity   : 
+03-13 11:46:16.841  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.841  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.841  8663  8684 I Unity   : 
+03-13 11:46:16.856  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.856  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.856  8663  8684 I Unity   : 
+03-13 11:46:16.869  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.869  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.869  8663  8684 I Unity   : 
+03-13 11:46:16.883  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.883  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.883  8663  8684 I Unity   : 
+03-13 11:46:16.898  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.898  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.898  8663  8684 I Unity   : 
+03-13 11:46:16.911  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.911  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.911  8663  8684 I Unity   : 
+03-13 11:46:16.925  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.925  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.925  8663  8684 I Unity   : 
+03-13 11:46:16.939  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.939  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.939  8663  8684 I Unity   : 
+03-13 11:46:16.953  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.953  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.953  8663  8684 I Unity   : 
+03-13 11:46:16.967  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:16.967  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:16.967  8663  8684 I Unity   : 
+03-13 11:46:17.106  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:17.106  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:17.106  8663  8684 I Unity   : 
+03-13 11:46:17.120  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:17.120  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:17.120  8663  8684 I Unity   : 
+03-13 11:46:17.217  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:17.217  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:17.217  8663  8684 I Unity   : 
+03-13 11:46:17.231  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:17.231  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:17.231  8663  8684 I Unity   : 
+03-13 11:46:17.301  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:17.301  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:17.301  8663  8684 I Unity   : 
+03-13 11:46:17.315  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:17.315  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:17.315  8663  8684 I Unity   : 
+03-13 11:46:17.426  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:17.426  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:17.426  8663  8684 I Unity   : 
+03-13 11:46:17.440  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:17.440  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:17.440  8663  8684 I Unity   : 
+03-13 11:46:17.621  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:17.621  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:17.621  8663  8684 I Unity   : 
+03-13 11:46:17.635  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:17.635  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:17.635  8663  8684 I Unity   : 
+03-13 11:46:17.719  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:17.719  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:17.719  8663  8684 I Unity   : 
+03-13 11:46:17.732  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:17.732  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:17.732  8663  8684 I Unity   : 
+03-13 11:46:17.941  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:17.941  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:17.941  8663  8684 I Unity   : 
+03-13 11:46:17.955  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:17.955  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:17.955  8663  8684 I Unity   : 
+03-13 11:46:17.969  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:17.969  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:17.969  8663  8684 I Unity   : 
+03-13 11:46:17.983  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:17.983  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:17.983  8663  8684 I Unity   : 
+03-13 11:46:17.996  8663  8684 I Unity   : line renderer hitting nothing 
+03-13 11:46:17.996  8663  8684 I Unity   : (Filename: ./Runtime/Export/Debug/Debug.bindings.h Line: 35)
+03-13 11:46:17.996  8663  8684 I Unity   : 
